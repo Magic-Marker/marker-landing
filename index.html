@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' x='20' font-size='80' font-family='IA'>L</text></svg>" />
+    <title>Marker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'IA';
+            src: url('fonts/TT Firs Text Trial Bold.woff') format('truetype');
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background-color: white;
+            margin-left: 14px;
+            animation: blink 1s step-end infinite;
+            vertical-align: baseline;
+            position: absolute;
+            right: -6px;
+            margin-top: -6px;
+        }
+        .text-container {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: baseline;
+        }
+        .hidden {
+            opacity: 0;
+        }
+        .visible {
+            opacity: 1;
+            transition: opacity 0.1s ease-in-out;
+        }
+        #text {
+            font-family: 'IA', monospace;
+            display: inline;
+        }
+        .word {
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: baseline;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="bg-[#C95C30] text-white min-h-screen flex items-center justify-center p-4 md:p-8 lg:p-12">
+    <div class="text-center">
+        <div class="text-container">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wide" id="text"></h1>
+        </div>
+    </div>
+    <script>
+        const words = ["Marker"];
+        const textElement = document.getElementById('text');
+        let wordIndex = 0;
+        let charIndex = 0;
+
+        function createWordContainer() {
+            const wordSpan = document.createElement('span');
+            wordSpan.className = 'word';
+            return wordSpan;
+        }
+
+        function typeText() {
+            if (wordIndex < words.length) {
+                const word = words[wordIndex];
+                
+                if (charIndex === 0) {
+                    // Create new word container at the start of each word
+                    const wordContainer = createWordContainer();
+                    textElement.appendChild(wordContainer);
+                    if (wordIndex > 0) {
+                        // Add space before word except for first word
+                        const space = document.createElement('span');
+                        space.textContent = ' ';
+                        textElement.insertBefore(space, wordContainer);
+                    }
+                }
+
+                if (charIndex < word.length) {
+                    const span = document.createElement('span');
+                    span.textContent = word[charIndex];
+                    span.className = 'hidden';
+                    textElement.lastChild.appendChild(span);
+                    
+                    // Trigger reflow
+                    span.offsetHeight;
+                    
+                    span.className = 'visible';
+                    charIndex++;
+                    setTimeout(typeText, 150);
+                } else {
+                    // Word complete
+                    if (wordIndex === words.length - 1) {
+                        // Add cursor after last word
+                        const cursor = document.createElement('span');
+                        cursor.className = 'cursor';
+                        textElement.lastChild.appendChild(cursor);
+                    }
+                    charIndex = 0;
+                    wordIndex++;
+                    setTimeout(typeText, 150);
+                }
+            }
+        }
+
+        window.addEventListener('load', typeText);
+    </script>
+</body>
+</html> 
