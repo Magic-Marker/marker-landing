@@ -12,9 +12,43 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @font-face {
-            font-family: 'IA';
-            src: url('fonts/TT Firs Text Trial Bold.woff') format('truetype');
-        }
+    font-family: 'iA';
+    src: url('../fonts/iAWriterQuattroS-Bold.woff2') format('woff2'),
+        url('../fonts/iAWriterQuattroS-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'iA';
+    src: url('../fonts/iAWriterQuattroS-Regular.woff2') format('woff2'),
+        url('../fonts/iAWriterQuattroS-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'iA';
+    src: url('../fonts/iAWriterQuattroS-BoldItalic.woff2') format('woff2'),
+        url('../fonts/iAWriterQuattroS-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'iA';
+    src: url('../fonts/iAWriterQuattroS-Italic.woff2') format('woff2'),
+        url('../fonts/iAWriterQuattroS-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+        .ia {font-family: 'iA', sans-serif; letter-spacing: -.4px;}
+        h2 {padding-bottom: .25em}
 
     </style>
     
@@ -30,14 +64,25 @@
 <!-- End MailerLite Universal -->
     <!-- End MailerLite Universal -->
 </head>
-<body class="m-8">
+<body class="mt-8 ia">
         <div class="flex flex-col justify-center items-center space-y-8">
             <img src="../marker-plain.png" width="252">
-            <div></div>
             
-            <div class="w-[600px]">
-                <h1 class="text-2xl font-bold IA">Jobs on the go</h1>
-                <iframe src="https://calico-poinsettia-626.notion.site/ebd/1b417aeaf71b80f78591d5a2b43dc3d8" width="100%" height="600" frameborder="0" allowfullscreen />                
+            
+            <div class="w-full max-w-[700px]">
+                <h2>We're hiring!</h2>
+                <ul class="list-disc ml-4 space-y-1">
+                    <li>
+                        <a href="product-engineer.html">Product Engineer</a>
+                    </li>
+                    <li>
+                        <a href="ai-engineer.html">AI Engineer</a>
+                    </li>
+                    
+                </ul>
+                
+                
+
 
             </div>
         </div>
