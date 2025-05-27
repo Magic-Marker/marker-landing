@@ -11,6 +11,34 @@
     <title>Marker</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+      @font-face {
+    font-family: 'Byrd';
+    src: url('../fonts/GTFByrdTRIAL-SemiBold.woff2') format('woff2'),
+        url('../fonts/GTFByrdTRIAL-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Byrd';
+    src: url('../fonts/GTFByrdTRIAL-Regular.woff2') format('woff2'),
+        url('../fonts/GTFByrdTRIAL-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Byrd';
+    src: url('../fonts/GTFByrdTRIAL-Light.woff2') format('woff2'),
+        url('../fonts/GTFByrdTRIAL-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+
         @font-face {
     font-family: 'iA';
     src: url('../fonts/iAWriterQuattroS-Bold.woff2') format('woff2'),
@@ -48,31 +76,76 @@
 }
 
         .ia {font-family: 'iA', sans-serif; letter-spacing: -.4px;}
+        .byrd {font-family: 'byrd', sans-serif; }
         h2 {padding-bottom: .25em}
 
     </style>
  
 </head>
-<body class="mt-8 ia">
+<body class="mt-8 mx-4 byrd">
         <div class="flex flex-col justify-center items-center space-y-8">
             <img src="../marker-plain.png" width="252">
             
             
             <div class="w-full max-w-[700px]">
-                <h2>We're hiring!</h2>
-                <ul class="list-disc ml-4 space-y-1">
-                    <li>
-                        <a href="product-engineer.html">Product Engineer</a>
-                    </li>
-                    <li>
-                        <a href="ai-engineer.html">AI Engineer</a>
-                    </li>
-                    
-                </ul>
-                
-                
-
-
+                <div class="my-8">
+                  <h2 class="text-2xl ">We're hiring!</h2>
+                  <p>Some more company information here perhaps?</p>
+                </div>
+                <div class="flex gap-8 flex-col md:flex-row ">
+                  <div>
+                    <a href="product-engineer.html" >
+                      <div class="relative z-10 bg-white mx-auto rounded-xl border border-gray-200">
+                        <div class="p-5 py-4 space-y-3">
+                          <h2 class="text-xl font-semibold text-gray-800">Product Engineer</h2>
+                          <div>
+                            <p class="text-xs font-medium text-gray-500 uppercase">Location</p>
+                            <p class="text-sm text-gray-800">London, UK</p>
+                          </div>
+                          <div>
+                            <p class="text-xs font-medium text-gray-500 uppercase">Salary</p>
+                            <p class="text-sm text-gray-800">
+                              £100,000–£150,000 p.a. + equity,
+                              depending on experience (up to £170,000
+                              for candidates with exceptional relevant
+                              experience)
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="px-5 pt-10 py-3 relative  top-[-29px] bg-gray-100 flex items-center  border border-gray-200 rounded-xl space-x-2 border-t border-gray-200">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                        <div class="text-sm font-semibold text-gray-800 hover:underline">Learn more</div>
+                      </div>
+                    </a>
+                  </div>
+                  <div>
+                    <a href="ai-engineer.html" >
+                      <div class="relative z-10 bg-white mx-auto rounded-xl border border-gray-200">
+                        <div class="p-5 py-4 space-y-3">
+                          <h2 class="text-xl font-semibold text-gray-800">AI Engineer</h2>
+                          <div>
+                            <p class="text-xs font-medium text-gray-500 uppercase">Location</p>
+                            <p class="text-sm text-gray-800">London, UK</p>
+                          </div>
+                          <div>
+                            <p class="text-xs font-medium text-gray-500 uppercase">Salary</p>
+                            <p class="text-sm text-gray-800">
+                              £100,000–£150,000 p.a. + equity,
+                              depending on experience (up to £170,000
+                              for candidates with exceptional relevant
+                              experience)
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="px-5 pt-10 py-3 relative  top-[-29px] bg-gray-100 flex items-center  border border-gray-200 rounded-xl space-x-2 border-t border-gray-200">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                        <div class="text-sm font-semibold text-gray-800 hover:underline">Learn more</div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
             </div>
         </div>
     
