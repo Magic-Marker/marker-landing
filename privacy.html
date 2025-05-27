@@ -4,59 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="favicon.svg" />
-<link rel="shortcut icon" href="favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-<link rel="manifest" href="site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
     <title>Marker</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @font-face {
-            font-family: 'IA';
-            src: url('fonts/TT Firs Text Trial Bold.woff') format('truetype');
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        body, html {background: #fafafa;}
-        .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.1em;
-            background-color: white;
-            margin-left: 14px;
-            animation: blink 1s step-end infinite;
-            vertical-align: baseline;
-            position: absolute;
-            right: -6px;
-            margin-top: -6px;
-        }
-        .text-container {
-            display: inline-flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: baseline;
-        }
-        .hidden {
-            opacity: 0;
-        }
-        .visible {
-            opacity: 1;
-            transition: opacity 0.1s ease-in-out;
-        }
-        #text {
-            font-family: 'IA', monospace;
-            display: inline;
-        }
-        .word {
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: baseline;
-            position: relative;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
     <!-- MailerLite Universal -->
     <!-- MailerLite Universal -->
 <script>
