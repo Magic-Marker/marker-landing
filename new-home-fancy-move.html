@@ -94,20 +94,148 @@
                 height: 400px;
             }
         }
+
+        /* Falling pebble animations */
+        @keyframes fall1 {
+            0% {
+                transform: translateX(-50%) translateY(-100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(0) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fall2 {
+            0% {
+                transform: translateX(-50%) translateY(-100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(0) rotate(-220deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fall3 {
+            0% {
+                transform: translateX(-50%) translateY(-100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(0) rotate(300deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fall4 {
+            0% {
+                transform: translateX(-50%) translateY(-100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(0) rotate(-150deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fall5 {
+            0% {
+                transform: translateX(-50%) translateY(-100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(0) rotate(240deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fall6 {
+            0% {
+                transform: translateX(-50%) translateY(-100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            35% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(0) rotate(-180deg);
+                opacity: 1;
+            }
+        }
+
+        /* Apply animations to pebbles */
+        .pebble-1 {
+            animation: fall1 2.5s ease-out forwards;
+            animation-delay: 0s;
+        }
+
+        .pebble-2 {
+            animation: fall2 2.8s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        .pebble-3 {
+            animation: fall3 2.2s ease-out forwards;
+            animation-delay: 0.6s;
+        }
+
+        .pebble-4 {
+            animation: fall4 2.4s ease-out forwards;
+            animation-delay: 0.9s;
+        }
+
+        .pebble-5 {
+            animation: fall5 2.6s ease-out forwards;
+            animation-delay: 1.2s;
+        }
+
+        .pebble-6 {
+            animation: fall6 2.3s ease-out forwards;
+            animation-delay: 1.5s;
+        }
     </style>
 </head>
 
 <body class="bg-cream min-h-screen  overflow-hidden">
     <!-- Logo -->
     <div class="absolute top-3 md:top-8 left-6 md:left-8">
-        <img src="logo2x.png" alt="Marker" class="h-8 md:h-10 w-auto">
+        <img src="logo2x.png" alt="Marker" class="h-10 w-auto">
     </div>
 
     <!-- Bottom Left Content Stack -->
     <div
-        class="absolute top-24 md:top-32 left-1/2 transform -translate-x-1/2 md:bottom-8 md:top-auto md:left-8 md:transform-none md:translate-x-0 w-72 text-balance md:max-w-64 text-center md:text-left">
+        class="absolute top-28 md:top-32 left-1/2 transform -translate-x-1/2 md:bottom-8 md:top-auto md:left-8 md:transform-none md:translate-x-0 w-72 text-balance md:max-w-64 text-center md:text-left">
         <!-- Main Heading -->
-        <h1 class="font-museum text-dark-brown text-[28px] md:text-3xl leading-[30px] md:leading-[33px] mb-3.5">
+        <h1 class="font-museum text-dark-brown text-3xl leading-[33px] mb-3.5">
             Where the rough becomes refined
         </h1>
 
@@ -119,7 +247,7 @@
 
         <!-- CTA Button -->
         <button
-            class="bg-rust text-white px-6 py-2.5 font-grosa-mono text-[10px] uppercase tracking-wider hover:bg-opacity-90 transition-colors mb-5 md:mb-6 rough-border">
+            class="bg-rust text-white px-6 py-2.5 font-grosa-mono text-[10px] uppercase tracking-wider hover:bg-opacity-90 transition-colors mb-5 md:mb-8 rough-border">
             Get Early Access
         </button>
 
@@ -144,27 +272,27 @@
     <div class="pebble-stack">
         <!-- Pebble 1: Bottom large blue pebble (base) -->
         <img src="pebbles/pebble1.png" alt="Blue Base Pebble"
-            class="absolute bottom-[0%] md:bottom-[2%] left-1/2 -translate-x-1/2 w-[173px] md:w-[359px] h-auto object-contain" />
+            class="pebble-1 absolute bottom-[0%] md:bottom-[2%] left-1/2 -translate-x-1/2 w-[173px] md:w-[359px] h-auto object-contain" />
 
         <!-- Pebble 2: Red elongated pebble (horizontal on top of base) -->
         <img src="pebbles/pebble2.png" alt="Red long Pebble"
-            class="absolute bottom-[22.45%] md:bottom-[34%] left-[61%] md:left-[62%] -translate-x-1/2 -rotate-[0deg] w-[105px] md:w-[175px] h-auto object-contain" />
+            class="pebble-2 absolute bottom-[22.45%] md:bottom-[34%] left-[61%] md:left-[62%] -translate-x-1/2 -rotate-[0deg] w-[105px] md:w-[175px] h-auto object-contain" />
 
         <!-- Pebble 3: Small  -->
         <img src="pebbles/pebble3.png" alt="yellow oval Pebble"
-            class="absolute bottom-[28.25%] md:bottom-[40.7%] left-[46.5%] md:left-[47%] -translate-x-1/2 w-[57px] md:w-[130px] h-auto object-contain" />
+            class="pebble-3 absolute bottom-[28.25%] md:bottom-[40.7%] left-[46.5%] md:left-[47%] -translate-x-1/2 w-[57px] md:w-[130px] h-auto object-contain" />
 
         <!-- Pebble 4:  -->
         <img src="pebbles/pebble4.png" alt="black Pebble"
-            class="absolute bottom-[25%] md:bottom-[36.8%] left-[73%] md:left-[76%] -translate-x-1/2 w-[38px] md:w-[72px] h-auto object-contain" />
+            class="pebble-4 absolute bottom-[25%] md:bottom-[36.8%] left-[73%] md:left-[76%] -translate-x-1/2 w-[38px] md:w-[72px] h-auto object-contain" />
 
         <!-- Pebble 5: Large gray/white pebble (center of stack) -->
         <img src="pebbles/pebble5.png" alt="Gray Pebble"
-            class="absolute bottom-[40.8%] md:bottom-[59.75%] left-1/2 -translate-x-1/2 w-[105px] md:w-[209px] h-auto object-contain" />
+            class="pebble-5 absolute bottom-[40.8%] md:bottom-[59.75%] left-1/2 -translate-x-1/2 w-[105px] md:w-[209px] h-auto object-contain" />
 
         <!-- Pebble 6: Top yellow/tan round pebble -->
         <img src="pebbles/pebble6.png" alt="Top Yellow Pebble"
-            class="absolute bottom-[59%] md:bottom-[84.5%] left-[52%] -translate-x-1/2 w-[45px] md:w-[85px] h-auto object-contain" />
+            class="pebble-6 absolute bottom-[59%] md:bottom-[84.5%] left-[52%] -translate-x-1/2 w-[45px] md:w-[85px] h-auto object-contain" />
     </div>
 
 </body>
