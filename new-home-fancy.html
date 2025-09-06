@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marker - Where the rough becomes refined</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                screens: {
+                    'sm': '640px',
+                    'md': '860px',
+                    'lg': '1024px',
+                    'xl': '1280px',
+                    '2xl': '1536px',
+                },
+                extend: {
+                    colors: {
+                        'cream': '#fbede2',
+                        'dark-brown': '#222222',
+                        'medium-brown': '#111111',
+                        'rust': '#994e41'
+                    },
+                    fontFamily: {
+                        'museum': ['PP Museum', 'serif'],
+                        'grosa': ['Grosa', 'sans-serif'],
+                        'grosa-mono': ['Grosa Mono Trial', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom font definitions */
+        @font-face {
+            font-family: 'PP Museum';
+            src: url('./fonts/museum.woff2') format('woff2'),
+                url('./fonts/museum.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Grosa';
+            src: url('./fonts/grosa.woff2') format('woff2'),
+                url('./fonts/grosa.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Font class definitions with fallbacks */
+        .font-museum {
+            font-family: 'PP Museum', Georgia, 'Times New Roman', serif;
+        }
+
+        .font-grosa {
+            font-family: 'Grosa', Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .font-grosa-mono {
+            font-family: 'Grosa Mono Trial', 'Courier New', monospace;
+        }
+
+        /* Rough button border effect */
+        .rough-border {
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rough-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: #994e41;
+            border-radius: 6px;
+            z-index: -1;
+            clip-path: polygon(0% 2px, 2px 0%, 8px 1px, 12px 0%, 18px 2px, 25px 0%,
+                    32px 1px, 38px 0%, 45px 2px, 52px 1px, 58px 0%, 65px 1px,
+                    72px 0%, 78px 2px, 85px 1px, 92px 0%, 98px 1px, 100% 2px,
+                    100% 8px, 99% 12px, 100% 18px, 98% 25px, 100% 32px,
+                    99% 38px, 100% 45px, 98% 52px, 100% 58px, 99% 65px,
+                    100% 72px, 98% 78px, 100% 85px, 99% 92px, 100% 98%,
+                    98% 100%, 92px 99%, 85px 100%, 78px 98%, 72px 100%,
+                    65px 99%, 58px 100%, 52px 98%, 45px 100%, 38px 99%,
+                    32px 100%, 25px 98%, 18px 100%, 12px 99%, 8px 100%,
+                    2px 98%, 0% 92px, 1px 85px, 0% 78px, 2px 72px, 0% 65px,
+                    1px 58px, 0% 52px, 2px 45px, 0% 38px, 1px 32px, 0% 25px,
+                    2px 18px, 0% 12px, 1px 8px);
+        }
+
+        /* Pebble container styles */
+        .pebble-stack {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            height: 600px;
+        }
+
+        .pebble {
+            position: absolute;
+            object-fit: contain;
+        }
+
+        /* Responsive adjustments for pebble stack */
+        @media (max-width: 860px) {
+            .pebble-stack {
+                max-width: 400px;
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-cream min-h-screen  overflow-hidden">
+    <!-- Logo -->
+    <div class="absolute top-4 md:top-8 left-5 md:left-8">
+        <img src="logo2x.png" alt="Marker" class="h-10 w-auto">
+    </div>
+
+    <!-- Bottom Left Content Stack -->
+    <div
+        class="absolute top-32 left-1/2 transform -translate-x-1/2 md:bottom-8 md:top-auto md:left-8 md:transform-none md:translate-x-0 w-72 text-balance md:max-w-64 text-center md:text-left">
+        <!-- Main Heading -->
+        <h1 class="font-museum text-dark-brown text-3xl leading-[33px] mb-3.5">
+            Where the rough becomes refined
+        </h1>
+
+        <!-- Description -->
+        <p class="font-grosa text-medium-brown text-sm leading-tight mb-5">
+            Marker is a writing space built for serious thinking: focused, flexible, and made for ideas to take
+            shape.
+        </p>
+
+        <!-- CTA Button -->
+        <button
+            class="bg-rust text-white px-6 py-2.5 font-grosa-mono text-[10px] uppercase tracking-wider hover:bg-opacity-90 transition-colors mb-8 rough-border">
+            Get Early Access
+        </button>
+
+        <!-- Footer Social Links -->
+        <div class="flex space-x-8 justify-center md:justify-start">
+            <a href="#"
+                class="font-grosa-mono text-medium-brown text-[8px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                Substack
+            </a>
+            <a href="#"
+                class="font-grosa-mono text-medium-brown text-[8px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                Discord
+            </a>
+            <a href="#"
+                class="font-grosa-mono text-medium-brown text-[8px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                Twitter
+            </a>
+        </div>
+    </div>
+
+    <!-- Static Pebble Stack -->
+    <div class="pebble-stack">
+        <!-- Pebble 1: Bottom large blue pebble (base) -->
+        <img src="pebbles/pebble1.png" alt="Blue Base Pebble" class="pebble w-[280px] md:w-[359px]"
+            style="bottom: 5%; left: 50%; transform: translateX(-50%);" />
+
+        <!-- Pebble 2: Red elongated pebble (horizontal on top of base) -->
+        <img src="pebbles/pebble2.png" alt="Red long Pebble" class="pebble w-[140px] md:w-[175px]"
+            style="bottom: 38%; left: 63%; transform: translateX(-50%) rotate(-5deg);" />
+
+        <!-- Pebble 3: Small dark round pebble (right side balancing) -->
+        <img src="pebbles/pebble3.png" alt="yellow oval Pebble" class="pebble w-[56px] md:w-[130px]"
+            style="bottom: 43%; left: 47%; transform: translateX(-50%);" />
+
+        <!-- Pebble 4: Yellow/tan tilted oval pebble (left middle) -->
+        <img src="pebbles/pebble4.png" alt="black Pebble" class="pebble w-[70px] md:w-[72px]"
+            style="bottom: 41%; left: 78%; transform: translateX(-50%) ;" />
+
+        <!-- Pebble 5: Large gray/white pebble (center of stack) -->
+        <img src="pebbles/pebble5.png" alt="Gray Pebble" class="pebble w-[168px] md:w-[209px]"
+            style="bottom: 61.75%; left: 50%; transform: translateX(-50%);" />
+
+        <!-- Pebble 6: Top yellow/tan round pebble -->
+        <img src="pebbles/pebble6.png" alt="Top Yellow Pebble" class="pebble w-[84px] md:w-[85px]"
+            style="bottom: 86.5%; left: 52%; transform: translateX(-50%);" />
+    </div>
+
+</body>
+
+</html>
