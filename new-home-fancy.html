@@ -65,43 +65,14 @@
             font-family: 'Grosa Mono Trial', 'Courier New', monospace;
         }
 
-        /* Rough button border effect */
-        .rough-border {
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
-        }
 
-        .rough-border::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: #994e41;
-            border-radius: 6px;
-            z-index: -1;
-            clip-path: polygon(0% 2px, 2px 0%, 8px 1px, 12px 0%, 18px 2px, 25px 0%,
-                    32px 1px, 38px 0%, 45px 2px, 52px 1px, 58px 0%, 65px 1px,
-                    72px 0%, 78px 2px, 85px 1px, 92px 0%, 98px 1px, 100% 2px,
-                    100% 8px, 99% 12px, 100% 18px, 98% 25px, 100% 32px,
-                    99% 38px, 100% 45px, 98% 52px, 100% 58px, 99% 65px,
-                    100% 72px, 98% 78px, 100% 85px, 99% 92px, 100% 98%,
-                    98% 100%, 92px 99%, 85px 100%, 78px 98%, 72px 100%,
-                    65px 99%, 58px 100%, 52px 98%, 45px 100%, 38px 99%,
-                    32px 100%, 25px 98%, 18px 100%, 12px 99%, 8px 100%,
-                    2px 98%, 0% 92px, 1px 85px, 0% 78px, 2px 72px, 0% 65px,
-                    1px 58px, 0% 52px, 2px 45px, 0% 38px, 1px 32px, 0% 25px,
-                    2px 18px, 0% 12px, 1px 8px);
-        }
 
         /* Pebble container styles */
         .pebble-stack {
             position: absolute;
             left: 50%;
             bottom: 0;
-            transform: translateX(-50%) scale(1.2);
+            transform: translateX(-50%) scale(1.25);
             transform-origin: center bottom;
             width: 100%;
             max-width: 600px;
@@ -148,7 +119,7 @@
 
         <!-- CTA Button -->
         <button
-            class="bg-rust text-white px-6 py-2.5 font-grosa-mono text-[10px] uppercase tracking-wider hover:bg-opacity-90 transition-colors mb-6 md:mb-8 rough-border">
+            class="bg-rust text-white px-6 py-2.5 font-grosa-mono text-[10px] uppercase tracking-wider hover:bg-opacity-90 transition-colors mb-5 md:mb-8 rough-border">
             Get Early Access
         </button>
 
