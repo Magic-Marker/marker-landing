@@ -169,14 +169,15 @@
     <!-- Black Pebble -->
     <img id="black-pebble" src="black-pebble2x.png" alt="Black Pebble"
         class="draggable-pebble w-[155px] md:w-[258px] h-auto object-contain"
-        style="bottom: 4px; right: calc(50% - 77.5px); transform: translateX(50%);"
-        data-md-style="bottom: 32px; right: calc(32px + 285px - 10px);" />
+        style="bottom: 4px; left: calc(50% - 155px);" data-mobile-style="bottom: 4px; left: calc(50% - 152px);"
+        data-md-style="bottom: 36px; right: calc(42px + 285px - 10px);" />
 
     <!-- Red Pebble -->
     <img id="red-pebble" src="red-pebble2x.png" alt="Red Pebble"
         class="draggable-pebble w-[171px] md:w-[285px] h-auto object-contain"
-        style="bottom: 4px; right: calc(50% - 85.5px); transform: translateX(100%);"
-        data-md-style="bottom: 32px; right: 32px;" />
+        style="bottom: 4px; left: calc(50% - 85.5px + 77.5px);"
+        data-mobile-style="bottom: 4px; left: calc(50% - 85.5px + 77.5px);"
+        data-md-style="bottom: 36px; right: 32px;" />
 
 
     <script>
@@ -215,18 +216,26 @@
             }
 
             updateInitialPosition() {
-                const rect = this.element.getBoundingClientRect();
-                this.initialX = rect.left;
-                this.initialY = rect.top;
+                // Don't update position while dragging
+                if (this.isDragging) return;
 
                 // Apply responsive positioning based on screen size
                 const isMobile = window.innerWidth < 860;
                 const mdStyle = this.element.getAttribute('data-md-style');
+                const mobileStyle = this.element.getAttribute('data-mobile-style');
 
                 if (!isMobile && mdStyle) {
-                    // Parse and apply desktop styles
+                    // Apply desktop styles
                     this.element.style.cssText = mdStyle;
+                } else if (isMobile && mobileStyle) {
+                    // Apply mobile styles
+                    this.element.style.cssText = mobileStyle;
                 }
+
+                // Get position after applying styles
+                const rect = this.element.getBoundingClientRect();
+                this.initialX = rect.left;
+                this.initialY = rect.top;
             }
 
             getEventPos(e) {
