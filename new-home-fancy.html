@@ -101,10 +101,18 @@
             position: absolute;
             left: 50%;
             bottom: 0;
-            transform: translateX(-50%);
+            transform: translateX(-50%) scale(1.1);
+            transform-origin: center bottom;
             width: 100%;
             max-width: 600px;
             height: 600px;
+        }
+
+        /* Desktop: no scaling */
+        @media (min-width: 860px) {
+            .pebble-stack {
+                transform: translateX(-50%);
+            }
         }
 
 
@@ -165,27 +173,27 @@
     <div class="pebble-stack">
         <!-- Pebble 1: Bottom large blue pebble (base) -->
         <img src="pebbles/pebble1.png" alt="Blue Base Pebble"
-            class="absolute bottom-[1.5%] md:bottom-[2%] left-1/2 -translate-x-1/2 w-[173px] md:w-[359px] h-auto object-contain" />
+            class="absolute bottom-[0%] md:bottom-[2%] left-1/2 -translate-x-1/2 w-[173px] md:w-[359px] h-auto object-contain" />
 
         <!-- Pebble 2: Red elongated pebble (horizontal on top of base) -->
         <img src="pebbles/pebble2.png" alt="Red long Pebble"
-            class="absolute bottom-[23.95%] md:bottom-[34%] left-[61%] md:left-[62%] -translate-x-1/2 -rotate-[0deg] w-[105px] md:w-[175px] h-auto object-contain" />
+            class="absolute bottom-[22.45%] md:bottom-[34%] left-[61%] md:left-[62%] -translate-x-1/2 -rotate-[0deg] w-[105px] md:w-[175px] h-auto object-contain" />
 
         <!-- Pebble 3: Small  -->
         <img src="pebbles/pebble3.png" alt="yellow oval Pebble"
-            class="absolute bottom-[29.75%] md:bottom-[40.7%] left-[46.5%] md:left-[47%] -translate-x-1/2 w-[57px] md:w-[130px] h-auto object-contain" />
+            class="absolute bottom-[28.25%] md:bottom-[40.7%] left-[46.5%] md:left-[47%] -translate-x-1/2 w-[57px] md:w-[130px] h-auto object-contain" />
 
         <!-- Pebble 4:  -->
         <img src="pebbles/pebble4.png" alt="black Pebble"
-            class="absolute bottom-[26.5%] md:bottom-[36.8%] left-[73%] md:left-[76%] -translate-x-1/2 w-[38px] md:w-[72px] h-auto object-contain" />
+            class="absolute bottom-[25%] md:bottom-[36.8%] left-[73%] md:left-[76%] -translate-x-1/2 w-[38px] md:w-[72px] h-auto object-contain" />
 
         <!-- Pebble 5: Large gray/white pebble (center of stack) -->
         <img src="pebbles/pebble5.png" alt="Gray Pebble"
-            class="absolute bottom-[42.3%] md:bottom-[59.75%] left-1/2 -translate-x-1/2 w-[105px] md:w-[209px] h-auto object-contain" />
+            class="absolute bottom-[40.8%] md:bottom-[59.75%] left-1/2 -translate-x-1/2 w-[105px] md:w-[209px] h-auto object-contain" />
 
         <!-- Pebble 6: Top yellow/tan round pebble -->
         <img src="pebbles/pebble6.png" alt="Top Yellow Pebble"
-            class="absolute bottom-[60.5%] md:bottom-[84.5%] left-[52%] -translate-x-1/2 w-[45px] md:w-[85px] h-auto object-contain" />
+            class="absolute bottom-[59%] md:bottom-[84.5%] left-[52%] -translate-x-1/2 w-[45px] md:w-[85px] h-auto object-contain" />
     </div>
 
 </body>
