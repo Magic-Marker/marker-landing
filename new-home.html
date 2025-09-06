@@ -95,6 +95,30 @@
                     1px 58px, 0% 52px, 2px 45px, 0% 38px, 1px 32px, 0% 25px,
                     2px 18px, 0% 12px, 1px 8px);
         }
+
+        /* Draggable pebble styles */
+        .draggable-pebble {
+            position: absolute;
+            cursor: grab;
+            z-index: 10;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .draggable-pebble:hover {
+            transform: scale(1.02);
+            transition: transform 0.15s ease-out;
+        }
+
+        .draggable-pebble:active,
+        .draggable-pebble.dragging {
+            cursor: grabbing;
+            transform: scale(1.05);
+            z-index: 20;
+            transition: transform 0.1s ease-out;
+        }
     </style>
 </head>
 
@@ -141,18 +165,141 @@
         </div>
     </div>
 
-    <!-- Bottom Right Decorative Elements -->
-    <div
-        class="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 md:right-8 md:left-auto md:transform-none md:translate-x-0">
-        <div class="flex items-end gap-0">
-            <!-- Black -->
-            <img src="black-pebble2x.png" alt=""
-                class="block w-[155px] md:w-[258px] h-auto shrink-0 object-contain relative -right-2.5" />
-            <!-- Red -->
-            <img src="red-pebble2x.png" alt="" class="block w-[171px] md:w-[285px] h-auto shrink-0 object-contain" />
-        </div>
-    </div>
+    <!-- Draggable Pebbles -->
+    <!-- Black Pebble -->
+    <img id="black-pebble" src="black-pebble2x.png" alt="Black Pebble"
+        class="draggable-pebble w-[155px] md:w-[258px] h-auto object-contain"
+        style="bottom: 4px; right: calc(50% - 77.5px); transform: translateX(50%);"
+        data-md-style="bottom: 32px; right: calc(32px + 285px - 10px);" />
 
+    <!-- Red Pebble -->
+    <img id="red-pebble" src="red-pebble2x.png" alt="Red Pebble"
+        class="draggable-pebble w-[171px] md:w-[285px] h-auto object-contain"
+        style="bottom: 4px; right: calc(50% - 85.5px); transform: translateX(100%);"
+        data-md-style="bottom: 32px; right: 32px;" />
+
+
+    <script>
+        // Drag and Drop functionality for pebbles
+        class DraggablePebble {
+            constructor(element) {
+                this.element = element;
+                this.isDragging = false;
+                this.startX = 0;
+                this.startY = 0;
+                this.initialX = 0;
+                this.initialY = 0;
+
+                this.init();
+            }
+
+            init() {
+                // Set initial position based on current CSS positioning
+                this.updateInitialPosition();
+
+                // Mouse events
+                this.element.addEventListener('mousedown', this.handleStart.bind(this));
+                document.addEventListener('mousemove', this.handleMove.bind(this));
+                document.addEventListener('mouseup', this.handleEnd.bind(this));
+
+                // Touch events for mobile
+                this.element.addEventListener('touchstart', this.handleStart.bind(this));
+                document.addEventListener('touchmove', this.handleMove.bind(this));
+                document.addEventListener('touchend', this.handleEnd.bind(this));
+
+                // Prevent default drag behavior on images
+                this.element.addEventListener('dragstart', (e) => e.preventDefault());
+
+                // Handle responsive positioning
+                window.addEventListener('resize', this.updateInitialPosition.bind(this));
+            }
+
+            updateInitialPosition() {
+                const rect = this.element.getBoundingClientRect();
+                this.initialX = rect.left;
+                this.initialY = rect.top;
+
+                // Apply responsive positioning based on screen size
+                const isMobile = window.innerWidth < 860;
+                const mdStyle = this.element.getAttribute('data-md-style');
+
+                if (!isMobile && mdStyle) {
+                    // Parse and apply desktop styles
+                    this.element.style.cssText = mdStyle;
+                }
+            }
+
+            getEventPos(e) {
+                return {
+                    x: e.type.includes('touch') ? e.touches[0].clientX : e.clientX,
+                    y: e.type.includes('touch') ? e.touches[0].clientY : e.clientY
+                };
+            }
+
+            handleStart(e) {
+                e.preventDefault();
+
+                const pos = this.getEventPos(e);
+                this.isDragging = true;
+                this.startX = pos.x;
+                this.startY = pos.y;
+
+                const rect = this.element.getBoundingClientRect();
+                this.initialX = rect.left;
+                this.initialY = rect.top;
+
+                this.element.classList.add('dragging');
+
+                // Switch to fixed positioning for smooth dragging
+                this.element.style.position = 'fixed';
+                this.element.style.left = this.initialX + 'px';
+                this.element.style.top = this.initialY + 'px';
+                this.element.style.right = 'auto';
+                this.element.style.bottom = 'auto';
+                this.element.style.transform = 'none';
+            }
+
+            handleMove(e) {
+                if (!this.isDragging) return;
+
+                e.preventDefault();
+                const pos = this.getEventPos(e);
+
+                const deltaX = pos.x - this.startX;
+                const deltaY = pos.y - this.startY;
+
+                const newX = this.initialX + deltaX;
+                const newY = this.initialY + deltaY;
+
+                // Keep pebble within viewport bounds
+                const rect = this.element.getBoundingClientRect();
+                const maxX = window.innerWidth - rect.width;
+                const maxY = window.innerHeight - rect.height;
+
+                const clampedX = Math.max(0, Math.min(newX, maxX));
+                const clampedY = Math.max(0, Math.min(newY, maxY));
+
+                this.element.style.left = clampedX + 'px';
+                this.element.style.top = clampedY + 'px';
+            }
+
+            handleEnd(e) {
+                if (!this.isDragging) return;
+
+                this.isDragging = false;
+                this.element.classList.remove('dragging');
+            }
+        }
+
+        // Initialize draggable pebbles when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const blackPebble = document.getElementById('black-pebble');
+            const redPebble = document.getElementById('red-pebble');
+
+            if (blackPebble) new DraggablePebble(blackPebble);
+            if (redPebble) new DraggablePebble(redPebble);
+        });
+    </script>
 
 </body>
 
