@@ -71,7 +71,7 @@
         .pebble-stack {
             position: absolute;
             left: 50%;
-            bottom: 0;
+            bottom: .75em;
             transform: translateX(-50%) scale(1.25);
             transform-origin: center bottom;
             width: 100%;
@@ -79,27 +79,25 @@
             height: 600px;
         }
 
-        /* Desktop: no scaling */
-        @media (min-width: 860px) {
-            .pebble-stack {
-                transform: translateX(-50%);
-            }
-        }
-
-
         /* Responsive adjustments for pebble stack */
         @media (max-width: 860px) {
             .pebble-stack {
                 max-width: 400px;
                 height: 400px;
+                bottom: 0;
             }
+        }
+
+        /* Smooth transition for scale changes */
+        .pebble-stack {
+            transition: transform 0.3s ease-out;
         }
     </style>
 </head>
 
 <body class="bg-cream min-h-screen  overflow-hidden">
     <!-- Logo -->
-    <div class="absolute top-3 md:top-8 left-6 md:left-8">
+    <div class="absolute top-3 md:top-8 left-1/2 transform -translate-x-1/2">
         <img src="logo2x.png" alt="Marker" class="h-8 md:h-10 w-auto">
     </div>
 
@@ -119,11 +117,26 @@
 
         <!-- CTA Button -->
         <button
-            class="bg-rust text-white px-6 py-2.5 font-grosa-mono text-[10px] uppercase tracking-wider hover:bg-opacity-90 transition-colors mb-5 md:mb-6 rough-border">
+            class="bg-rust text-white px-6 py-2.5 font-grosa-mono text-[10px] uppercase tracking-wider hover:bg-opacity-90 transition-colors rounded-xs rough-border">
             Get Early Access
         </button>
+        <div class="flex space-x-8 justify-center md:justify-start md:hidden mt-5">
+            <a href="#"
+                class="font-grosa-mono text-medium-brown text-[8px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                Substack
+            </a>
+            <a href="#"
+                class="font-grosa-mono text-medium-brown text-[8px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                Discord
+            </a>
+            <a href="#"
+                class="font-grosa-mono text-medium-brown text-[8px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                Twitter
+            </a>
+        </div>
 
-        <!-- Footer Social Links -->
+    </div>
+    <div class="absolute right-8 bottom-6 hidden md:block">
         <div class="flex space-x-8 justify-center md:justify-start">
             <a href="#"
                 class="font-grosa-mono text-medium-brown text-[8px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
@@ -139,7 +152,6 @@
             </a>
         </div>
     </div>
-
     <!-- Static Pebble Stack -->
     <div class="pebble-stack">
         <!-- Pebble 1: Bottom large blue pebble (base) -->
@@ -166,6 +178,59 @@
         <img src="pebbles/pebble6.png" alt="Top Yellow Pebble"
             class="absolute bottom-[59%] md:bottom-[84.5%] left-[52%] -translate-x-1/2 w-[45px] md:w-[85px] h-auto object-contain" />
     </div>
+
+    <script>
+        function updatePebbleStackScale() {
+            const pebbleStack = document.querySelector('.pebble-stack');
+            const logo = document.querySelector('img[alt="Marker"]');
+
+            if (!pebbleStack || !logo) return;
+
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
+
+            // Get logo position and height
+            const logoRect = logo.getBoundingClientRect();
+            const logoBottom = logoRect.bottom;
+
+            // Calculate desired clearance (logo bottom + 20px minimum)
+            const desiredClearance = logoBottom + 40;
+
+            // Base height of pebble stack (600px for desktop, 400px for mobile)
+            const baseHeight = viewportWidth <= 860 ? 400 : 600;
+
+            // Calculate available height (viewport - desired clearance)
+            const availableHeight = viewportHeight - desiredClearance;
+
+            // Calculate scale to fit available height
+            let scale = availableHeight / baseHeight;
+
+            // Set minimum and maximum scale limits
+            const minScale = 0.3;
+            const maxScale = viewportWidth <= 860 ? 1.2 : 1.4;
+
+            // Clamp scale within limits
+            scale = Math.max(minScale, Math.min(maxScale, scale));
+
+            // Apply smooth scaling
+            pebbleStack.style.transform = `translateX(-50%) scale(${scale})`;
+        }
+
+        // Initial call
+        updatePebbleStackScale();
+
+        // Update on resize with debouncing
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(updatePebbleStackScale, 100);
+        });
+
+        // Update on orientation change
+        window.addEventListener('orientationchange', () => {
+            setTimeout(updatePebbleStackScale, 200);
+        });
+    </script>
 
 </body>
 
