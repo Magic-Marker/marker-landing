@@ -67,6 +67,38 @@
     src: url('fonts/TT Firs Text Trial Bold.woff') format('truetype');
 }
 
+ /* Custom font definitions */
+ @font-face {
+    font-family: 'PP Museum';
+    src: url('./fonts/museum.woff2') format('woff2'),
+        url('./fonts/museum.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Grosa';
+    src: url('./fonts/grosa.woff2') format('woff2'),
+        url('./fonts/grosa.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Font class definitions with fallbacks */
+.font-museum {
+    font-family: 'PP Museum', Georgia, 'Times New Roman', serif;
+}
+
+.font-grosa {
+    font-family: 'Grosa', Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.font-grosa-mono {
+    font-family: 'Grosa Mono Trial', 'Courier New', monospace;
+}
+
 /* Animations */
 @keyframes blink {
     0%, 100% { opacity: 1; }
@@ -75,8 +107,17 @@
 
 /* Base styles */
 body, html {
-    background: #fafafa;
+    background: #fbede2;
+    font-family: 'Grosa', Inter, -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'PP Museum', serif;
+}
+p {
+    
+}
+
 p, ul {margin-bottom: .5em !important;}
 
 /* Utility classes */

@@ -4,62 +4,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-    <link rel="manifest" href="site.webmanifest" />
-    <title>Marker</title>
-    <meta name="description"
-        content="Marker is an AI-native Word Processor – a next-generation alternative to Google Docs and Word. Join our waitlist for updates and try the future of writing, enhanced by collaborative workflows and human-centred AI editors.">
-    <meta property="og:title" content="Marker – AI-native Word Processor">
-    <meta property="og:description"
-        content="Marker is an AI-native Word Processor – a next-generation alternative to Google Docs and Word. Join our waitlist for updates and try the future of writing, enhanced by collaborative workflows and human-centred AI editors.">
-    <meta property="og:image" content="https://writewithmarker.com/opengraph.png">
+    <title>Marker - Where the rough becomes refined</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://writewithmarker.com/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Marker – AI-native Word Processor">
-    <meta name="twitter:description"
-        content="Marker is an AI-native Word Processor – a next-generation alternative to Google Docs and Word. Join our waitlist for updates and try the future of writing, enhanced by collaborative workflows and human-centred AI editors.">
-    <meta name="twitter:image" content="https://writewithmarker.com/opengraph.png">
+    <meta property="og:url" content="https://marker.page/">
+    <meta property="og:title" content="Marker - Where the rough becomes refined">
+    <meta property="og:description" content="Marker is a writing space built for serious thinking: focused, flexible, and made for ideas to take shape.">
+    <meta property="og:image" content="https://marker.page/images/opengraph.png">
+    
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://marker.page/">
+    <meta property="twitter:title" content="Marker - Where the rough becomes refined">
+    <meta property="twitter:description" content="Marker is a writing space built for serious thinking: focused, flexible, and made for ideas to take shape.">
+    <meta property="twitter:image" content="https://marker.page/images/opengraph.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
-    <!-- MailerLite Universal -->
     <script>
-        (function (w, d, e, u, f, l, n) {
-            w[f] = w[f] || function () {
-                (w[f].q = w[f].q || [])
-                    .push(arguments);
-            }, l = d.createElement(e), l.async = 1, l.src = u,
-                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
-        })
-            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
-        ml('account', '1489888');
+        tailwind.config = {
+            theme: {
+                screens: {
+                    'sm': '640px',
+                    'md': '860px',
+                    'lg': '1024px',
+                    'xl': '1280px',
+                    '2xl': '1536px',
+                },
+                extend: {
+                    colors: {
+                        'cream': '#fbede2',
+                        'dark-brown': '#222222',
+                        'medium-brown': '#111111',
+                        'rust': '#994e41'
+                    },
+                    fontFamily: {
+                        'museum': ['PP Museum', 'serif'],
+                        'grosa': ['Grosa', 'sans-serif'],
+                        'grosa-mono': ['Grosa Mono Trial', 'monospace']
+                    }
+                }
+            }
+        }
     </script>
-    <!-- End MailerLite Universal -->
+    <style>
+       
 
+
+
+        /* Pebble container styles */
+        .pebble-stack {
+            position: absolute;
+            left: 50%;
+            bottom: .75em;
+            transform: translateX(-50%) scale(1.25);
+            transform-origin: center bottom;
+            width: 100%;
+            max-width: 600px;
+            height: 600px;
+        }
+
+        /* Responsive adjustments for pebble stack */
+        @media (max-width: 860px) {
+            .pebble-stack {
+                max-width: 400px;
+                height: 400px;
+                bottom: 0;
+            }
+        }
+
+        /* Smooth transition for scale changes */
+        .pebble-stack {
+            transition: transform 0.3s ease-out;
+        }
+    </style>
 </head>
 
-<body>
-    <div class="flex items-center flex-col">
-        <div class="flex flex-col justify-center min-h-screen items-center">
-            <a href="jobs/"
-                class="mb-6 bg-[#2A85C5] hover:bg-green-600 transition text-white px-4 py-1 rounded-3xl byrd text-left text-sm">
-                We're hiring, join us!&rarr;
-            </a>
-            <img src="marker.png" width="300">
+<body class="bg-cream min-h-screen  overflow-hidden">
+    <!-- Logo -->
+    <div class="absolute top-3 md:top-8 left-1/2 transform -translate-x-1/2">
+        <img src="images/logo2x.png" alt="Marker" class="h-8 md:h-10 w-auto">
+    </div>
 
-            <div class="ml-embedded" data-form="k7m9jV"></div>
-            <div class="text-center text-gray-600 text-sm relative -t-2">
-                Enter your email above for periodic updates.<br />You can also try us on <a
-                    href="mailto:hello@writewithmarker.com" class="underline">hello@writewithmarker.com</a>.<br /><br>
-            </div>
-            <div class="leading-tight text-xs italic text-gray-400 text-center">All data handled with kid
-                gloves<br />(see <a href="privacy" class="underline">privacy policy</a> for more details)<br /><br />
+    <!-- Bottom Left Content Stack -->
+    <div
+        class="absolute top-24 md:top-32 left-1/2 transform -translate-x-1/2 md:bottom-8 md:top-auto md:left-8 md:transform-none md:translate-x-0 w-72 text-balance md:max-w-64 text-center md:text-left">
+        <!-- Main Heading -->
+        <h1 class="font-museum text-dark-brown text-[28px] md:text-3xl leading-[30px] md:leading-[33px] mb-3.5">
+            Where the rough becomes refined
+        </h1>
+
+        <!-- Description -->
+        <p class="font-grosa text-medium-brown text-sm leading-tight mb-4">Marker is a new writing space built for thinking: focused, flexible, and made for ideas to take shape.
+        </p>
+
+        <!-- CTA Button -->
+        <button
+            class="bg-rust text-white px-6 py-2.5 font-grosa-mono text-[10px] uppercase tracking-wider hover:bg-opacity-90 transition-colors rounded-xs rough-border">
+            Get Early Access
+        </button>
+        <div class="flex space-x-8 justify-center md:justify-start md:hidden mt-5">
+            <a href="jobs"
+                class="font-grosa-mono text-medium-brown text-[8px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                Jobs
+            </a>
+            <div href="#"
+                class="flex gap-2 font-grosa-mono text-medium-brown text-[8px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                London made <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="#000000" viewBox="0 0 256 256"><path d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"></path></svg>
             </div>
         </div>
+
     </div>
+    <div class="absolute right-8 bottom-6 hidden md:block">
+        <div class="flex space-x-8 justify-center md:justify-start">
+            <a href="jobs"
+                class="font-grosa-mono text-medium-brown text-[8px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                Jobs
+            </a>
+            <div href="#"
+                class="flex gap-2 font-grosa-mono text-medium-brown text-[8px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                London made <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="#000000" viewBox="0 0 256 256"><path d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"></path></svg>
+            </div>
+           
+        </div>
+    </div>
+    <!-- Static Pebble Stack -->
+    <div class="pebble-stack">
+        <!-- Pebble 1: Bottom large blue pebble (base) -->
+        <img src="pebbles/pebble1.png" alt="Blue Base Pebble"
+            class="absolute bottom-[0%] md:bottom-[2%] left-1/2 -translate-x-1/2 w-[173px] md:w-[359px] h-auto object-contain" />
+
+        <!-- Pebble 2: Red elongated pebble (horizontal on top of base) -->
+        <img src="pebbles/pebble2.png" alt="Red long Pebble"
+            class="absolute bottom-[22.45%] md:bottom-[34%] left-[61%] md:left-[62%] -translate-x-1/2 -rotate-[0deg] w-[105px] md:w-[175px] h-auto object-contain" />
+
+        <!-- Pebble 3: Small  -->
+        <img src="pebbles/pebble3.png" alt="yellow oval Pebble"
+            class="absolute bottom-[28.25%] md:bottom-[40.7%] left-[46.5%] md:left-[47%] -translate-x-1/2 w-[57px] md:w-[130px] h-auto object-contain" />
+
+        <!-- Pebble 4:  -->
+        <img src="pebbles/pebble4.png" alt="black Pebble"
+            class="absolute bottom-[25%] md:bottom-[36.8%] left-[73%] md:left-[76%] -translate-x-1/2 w-[38px] md:w-[72px] h-auto object-contain" />
+
+        <!-- Pebble 5: Large gray/white pebble (center of stack) -->
+        <img src="pebbles/pebble5.png" alt="Gray Pebble"
+            class="absolute bottom-[40.8%] md:bottom-[59.75%] left-1/2 -translate-x-1/2 w-[105px] md:w-[209px] h-auto object-contain" />
+
+        <!-- Pebble 6: Top yellow/tan round pebble -->
+        <img src="pebbles/pebble6.png" alt="Top Yellow Pebble"
+            class="absolute bottom-[59%] md:bottom-[84.5%] left-[52%] -translate-x-1/2 w-[45px] md:w-[85px] h-auto object-contain" />
+    </div>
+
+    <script>
+        function updatePebbleStackScale() {
+            const pebbleStack = document.querySelector('.pebble-stack');
+            const logo = document.querySelector('img[alt="Marker"]');
+
+            if (!pebbleStack || !logo) return;
+
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
+
+            // Get logo position and height
+            const logoRect = logo.getBoundingClientRect();
+            const logoBottom = logoRect.bottom;
+
+            // Calculate desired clearance (logo bottom + 20px minimum)
+            const desiredClearance = logoBottom + 40;
+
+            // Base height of pebble stack (600px for desktop, 400px for mobile)
+            const baseHeight = viewportWidth <= 860 ? 400 : 600;
+
+            // Calculate available height (viewport - desired clearance)
+            const availableHeight = viewportHeight - desiredClearance;
+
+            // Calculate scale to fit available height
+            let scale = availableHeight / baseHeight;
+
+            // Set minimum and maximum scale limits
+            const minScale = 0.3;
+            const maxScale = viewportWidth <= 860 ? 1.2 : 1.4;
+
+            // Clamp scale within limits
+            scale = Math.max(minScale, Math.min(maxScale, scale));
+
+            // Apply smooth scaling
+            pebbleStack.style.transform = `translateX(-50%) scale(${scale})`;
+        }
+
+        // Initial call
+        updatePebbleStackScale();
+
+        // Update on resize with debouncing
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(updatePebbleStackScale, 100);
+        });
+
+        // Update on orientation change
+        window.addEventListener('orientationchange', () => {
+            setTimeout(updatePebbleStackScale, 200);
+        });
+    </script>
 
 </body>
 
