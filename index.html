@@ -36,7 +36,7 @@
             theme: {
                 screens: {
                     'sm': '640px',
-                    'md': '860px',
+                    'md': '1025px',
                     'lg': '1024px',
                     'xl': '1280px',
                     '2xl': '1536px',
@@ -87,6 +87,13 @@
         .pebble-stack {
             transition: transform 0.3s ease-out;
         }
+
+        /* Custom margin-top reset for screens between 400px and 768px */
+        @media (min-width: 400px) and (max-width: 1025px) {
+            .custom-mt-reset {
+                margin-top: 1em !important;
+            }
+        }
     </style>
 
       <!-- MailerLite Universal -->
@@ -135,13 +142,17 @@
   background: #fff !important;
 }
 
-/* 3) Nuke MailerLite’s mobile margins/radii/cards */
+/* 3) Nuke MailerLite's mobile margins/radii/cards */
 #ml-inline .ml-form-embedBody .ml-form-formContent > *,
 #ml-inline .ml-form-embedBody .ml-form-horizontalRow > * {
   margin: 0 !important;
   border: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
+}
+
+/* Don't remove box-shadow from inputs - we need it for focus styles */
+#ml-inline .ml-form-embedBody .ml-form-embedSubmit {
   box-shadow: none !important;
 }
 
@@ -159,6 +170,24 @@
   border-radius: 0 !important;
   min-width: 0 !important; /* iOS shrink fix */
   -webkit-appearance: none;
+}
+
+/* Custom outline color for email input focus - multiple selectors for maximum coverage */
+#ml-inline .ml-form-embedBody input[type="email"]:focus,
+#mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input:focus,
+#mlb2-25443517 input[type="email"]:focus {
+  outline: 1px solid #994e41 !important;
+  outline-offset: 0px !important;
+  /* box-shadow: 0 0 0 2px #994e41 !important; */
+}
+
+/* Remove default browser focus styles */
+#ml-inline .ml-form-embedBody input[type="email"]:focus-visible,
+#mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input:focus-visible,
+#mlb2-25443517 input[type="email"]:focus-visible {
+  outline: 1px solid #994e41 !important;
+  outline-offset: -1px !important;
+  /* box-shadow: 0 0 0 2px #994e41 !important; */
 }
 
 /* 5) Submit column — stop it from going full-width */
@@ -245,7 +274,7 @@
             <div class="ml-embedded " data-form="k7m9jV"></div>
         </div>
 
-        <div class="flex space-x-8 justify-center md:justify-start md:hidden -mt-2 relative md:mt-5">
+        <div class="flex space-x-8 justify-center md:justify-start md:hidden -mt-2 relative md:mt-5 custom-mt-reset">
             <a href="jobs"
                 class="font-grosa-mono text-medium-brown text-[9px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
                 Jobs
@@ -348,6 +377,36 @@
         window.addEventListener('orientationchange', () => {
             setTimeout(updatePebbleStackScale, 200);
         });
+
+        // Auto-focus the email input field when page loads
+        function focusEmailInput() {
+            // Wait for MailerLite form to load
+            const checkForInput = () => {
+                const emailInput = document.querySelector('#ml-inlne input[type="email"]');
+                if (emailInput) {
+                    // Small delay to ensure the form is fully rendered
+                    setTimeout(() => {
+                        emailInput.focus();
+                    }, 100);
+                } else {
+                    // If not found, try again after a short delay
+                    setTimeout(checkForInput, 100);
+                }
+            };
+            
+            // Start checking after a brief initial delay
+            setTimeout(checkForInput, 200);
+        }
+
+        // Focus input when page loads
+        window.addEventListener('load', focusEmailInput);
+
+        // Also try focusing after DOM is ready (in case load event already fired)
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', focusEmailInput);
+        } else {
+            focusEmailInput();
+        }
     </script>
 
 </body>
