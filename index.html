@@ -116,6 +116,107 @@
             letter-spacing: 0.1px !important;
             border-radius: 5px 0 0 5px !important;
         }
+        /* 1) Make the whole form one row at every width */
+#ml-inline .ml-form-embedBody form,
+#ml-inline .ml-form-embedBody .ml-form-formContent,
+#ml-inline .ml-form-embedBody .ml-form-horizontalRow {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+}
+
+/* 2) Move the rounded border to the ROW, not the children */
+#ml-inline .ml-form-embedBody .ml-form-formContent {
+  border: 1px solid #E7E3DD !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  background: #fff !important;
+}
+
+/* 3) Nuke MailerLite’s mobile margins/radii/cards */
+#ml-inline .ml-form-embedBody .ml-form-formContent > *,
+#ml-inline .ml-form-embedBody .ml-form-horizontalRow > * {
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 4) Input column */
+#ml-inline .ml-form-embedBody .ml-form-fieldRow,
+#ml-inline .ml-form-embedBody .ml-field-group {
+  flex: 1 1 auto !important;
+  width: auto !important;
+}
+#ml-inline .ml-form-embedBody input[type="email"] {
+  width: 100% !important;
+  height: 52px !important;
+  padding: 0 16px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  min-width: 0 !important; /* iOS shrink fix */
+  -webkit-appearance: none;
+}
+
+/* 5) Submit column — stop it from going full-width */
+#ml-inline .ml-form-embedBody .ml-form-embedSubmit {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+#ml-inline .ml-form-embedBody .ml-button,
+#ml-inline .ml-form-embedBody button[type="submit"] {
+  height: 52px !important;
+  padding: 0 18px !important;
+  white-space: nowrap !important;
+  width: auto !important;
+  border: 0 !important;
+  border-left: 1px solid #E7E3DD !important;
+  border-radius: 0 !important;
+  background: #9B4D42 !important;
+  color: #fff !important;
+}
+
+/* 6) Spinner: keep it inside the button (or hide it) */
+#ml-inline .ml-form-embedBody .ml-form-embedSubmit .loading {
+  position: absolute !important;
+  inset: 50% auto auto 50% !important;
+  transform: translate(-50%, -50%) !important;
+  pointer-events: none !important;
+}
+#ml-inline .ml-form-embedBody .ml-form-embedSubmit { position: relative !important; }
+
+/* If you’d rather just hide ML’s spinner completely, swap the rule above for: */
+/* #ml-inline .ml-form-embedBody .ml-form-embedSubmit .loading { display:none !important; } */
+
+/* 7) Optional: hide label/help that push layout on small widths */
+#ml-inline .ml-form-embedBody label,
+#ml-inline .ml-form-privacy-policy,
+#ml-inline .ml-form-embedBody .ml-error { display: none !important; }
+
+#mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-formContent.horozintalForm {padding-bottom: 0 !important;}
+@media (max-width: 400px) {
+    #mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody,
+    #mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody
+    {padding: 10px 0 0 0 !important;}
+}
+.ml-mobileButton-horizontal {
+    position: relative;
+    margin-top: -21px;
+    margin-bottom: 0px !important;
+    position: absolute;
+    width: 90px !important;
+    right: 0;
+    top: 31px;
+    border-radius: 0px 4px 4px 0 !important;
+    
+}
+#ml-inlne #mlb2-25443517 .ml-mobileButton-horizontal button{ font-size: 12px !important;letter-spacing: .1px !important;}
+
      </style>
 </head>
 
@@ -127,20 +228,22 @@
 
     <!-- Bottom Left Content Stack -->
     <div
-        class="absolute top-24 md:top-32 left-1/2 transform -translate-x-1/2 md:bottom-[-4px]
-        md:top-auto md:left-8 md:transform-none md:translate-x-0 w-72 text-balance md:max-w-96 text-center md:text-left">
+        class="absolute top-24 md:top-32 left-1/2 transform -translate-x-1/2 md:bottom-[14px]
+        md:top-auto md:left-8 md:transform-none md:translate-x-0 w-full text-balance md:max-w-72 text-center md:text-left">
         <!-- Main Heading -->
-        <h1 class="font-museum text-dark-brown text-[28px] md:text-3xl leading-[30px] md:leading-[33px] mb-3.5">
+        <h1 class="font-museum text-dark-brown text-[28px] md:text-3xl leading-[30px] md:leading-[33px] mb-3.5 w-72 md:w-auto mx-auto">
             Where the rough becomes refined
         </h1>
 
         <!-- Description -->
-        <p class="font-grosa text-medium-brown text-sm leading-tight mb-3.5">Marker is a new writing space built for thinking: focused, flexible, and made for ideas to take shape.
+        <p class="font-grosa text-medium-brown text-sm leading-tight mb-3.5 w-72 md:w-auto mx-auto">Marker is a new writing space built for thinking: focused, flexible, and made for ideas to take shape.
         </p>
 
         <!-- CTA Button -->
         
-        <div class="ml-embedded relative md:-left-5 md:-top-2" data-form="k7m9jV"></div>
+        <div id="ml-inlne" class="mx-8 md:mx-0 relative md:-left-5 md:-top-2">
+            <div class="ml-embedded " data-form="k7m9jV"></div>
+        </div>
 
         <div class="flex space-x-8 justify-center md:justify-start md:hidden mt-5">
             <a href="jobs"
@@ -157,11 +260,11 @@
     <div class="absolute right-8 bottom-6 hidden md:block">
         <div class="flex space-x-8 justify-center md:justify-start">
             <a href="jobs"
-                class="font-grosa-mono text-medium-brown text-[8px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                class="font-grosa-mono text-medium-brown text-[9px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
                 Jobs
             </a>
             <div href="#"
-                class="flex gap-2 font-grosa-mono text-medium-brown text-[8px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                class="flex gap-2 font-grosa-mono text-medium-brown text-[9px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
                 London made <svg xmlns="https://www.w3.org/2000/svg" width="10" height="10" fill="#000000" viewBox="0 0 256 256"><path d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"></path></svg>
             </div>
            
