@@ -36,8 +36,8 @@
             theme: {
                 screens: {
                     'sm': '640px',
-                    'md': '1025px',
-                    'lg': '1024px',
+                    'md': '1020px',
+                    // 'lgg': '1px',
                     'xl': '1280px',
                     '2xl': '1536px',
                 },
@@ -58,9 +58,9 @@
         }
     </script>
     <style>
-       
-
-
+        :root {
+            --medium-breakpoint: 1020px;
+        }
 
         /* Pebble container styles */
         .pebble-stack {
@@ -75,7 +75,7 @@
         }
 
         /* Responsive adjustments for pebble stack */
-        @media (max-width: 860px) {
+        @media (max-width: 1020px) {
             .pebble-stack {
                 max-width: 400px;
                 height: 400px;
@@ -87,13 +87,19 @@
         .pebble-stack {
             transition: transform 0.3s ease-out;
         }
+          /* Responsive adjustments for vertical small iPads */
+          @media (min-height: 1020px) and (max-height: 1190px) and (min-width: 760px) and (max-width: 830px) {
+             .pebble-stack {
+                 margin-left: 140px;
+                 scale: 1.8;
+             }
+             .logo-container {
+                 scale: 1.4;
+                 margin-top: 15px;
+             }
+          }
 
-        /* Custom margin-top reset for screens between 400px and 768px */
-        @media (min-width: 400px) and (max-width: 1025px) {
-            .custom-mt-reset {
-                margin-top: 1em !important;
-            }
-        }
+      
     </style>
 
       <!-- MailerLite Universal -->
@@ -252,7 +258,7 @@
 <body class="bg-cream min-h-screen  overflow-hidden">
     <!-- Logo -->
     <div class="absolute top-3 md:top-8 left-1/2 transform -translate-x-1/2">
-        <img src="images/logo2x.png" alt="Marker" class="h-8 md:h-10 w-auto">
+        <img src="images/logo2x.png" alt="Marker" class="h-8 md:h-10 w-auto logo-container">
     </div>
 
     <!-- Bottom Left Content Stack -->
@@ -274,7 +280,7 @@
             <div class="ml-embedded " data-form="k7m9jV"></div>
         </div>
 
-        <div class="flex space-x-8 justify-center md:justify-start md:hidden -mt-2 relative md:mt-5 custom-mt-reset">
+        <div class="flex space-x-8 justify-center md:justify-start md:hidden mt-2 relative md:mt-5 custom-mt-reset">
             <a href="jobs"
                 class="font-grosa-mono text-medium-brown text-[9px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
                 Jobs
