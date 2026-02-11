@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marker - Where the rough becomes refined</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://marker.page/">
+    <meta property="og:title" content="Marker - Where the rough becomes refined">
+    <meta property="og:description" content="Marker is a writing space built for serious thinking: focused, flexible, and made for ideas to take shape.">
+    <meta property="og:image" content="https://marker.page/images/opengraph.png">
+    
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://marker.page/">
+    <meta property="twitter:title" content="Marker - Where the rough becomes refined">
+    <meta property="twitter:description" content="Marker is a writing space built for serious thinking: focused, flexible, and made for ideas to take shape.">
+    <meta property="twitter:image" content="https://marker.page/images/opengraph.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                screens: {
+                    'sm': '640px',
+                    'md': '1020px',
+                    // 'lgg': '1px',
+                    'xl': '1280px',
+                    '2xl': '1536px',
+                },
+                extend: {
+                    colors: {
+                        'cream': '#fbede2',
+                        'dark-brown': '#222222',
+                        'medium-brown': '#111111',
+                        'rust': '#994e41'
+                    },
+                    fontFamily: {
+                        'museum': ['PP Museum', 'serif'],
+                        'grosa': ['Grosa', 'sans-serif'],
+                        'grosa-mono': ['Grosa Mono Trial', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --medium-breakpoint: 1020px;
+        }
+      
+    </style>
+
+      <!-- MailerLite Universal -->
+      <script>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '1489888');
+    </script>
+    <!-- End MailerLite Universal -->
+     <style>
+        .ml-form-formContent.horozintalForm .ml-form-horizontalRow .horizontal-fields {padding: 0 !important;}
+        #mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow button {
+            /* font-family: 'Grosa',serif !important; */
+            /* letter-spacing: 0.5px !important; */
+            
+            border-radius: 0px 4px 4px 0 !important;
+            /* line-height: 38px !important; */
+        }
+        #mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input {
+            font-family: 'Grosa',serif !important;
+            letter-spacing: 0.1px !important;
+            border-radius: 5px 0 0 5px !important;
+        }
+        /* 1) Make the whole form one row at every width */
+#ml-inline .ml-form-embedBody form,
+#ml-inline .ml-form-embedBody .ml-form-formContent,
+#ml-inline .ml-form-embedBody .ml-form-horizontalRow {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+}
+
+/* 2) Move the rounded border to the ROW, not the children */
+#ml-inline .ml-form-embedBody .ml-form-formContent {
+  border: 1px solid #E7E3DD !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  background: #fff !important;
+}
+
+/* 3) Nuke MailerLite's mobile margins/radii/cards */
+#ml-inline .ml-form-embedBody .ml-form-formContent > *,
+#ml-inline .ml-form-embedBody .ml-form-horizontalRow > * {
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+/* Don't remove box-shadow from inputs - we need it for focus styles */
+#ml-inline .ml-form-embedBody .ml-form-embedSubmit {
+  box-shadow: none !important;
+}
+
+/* 4) Input column */
+#ml-inline .ml-form-embedBody .ml-form-fieldRow,
+#ml-inline .ml-form-embedBody .ml-field-group {
+  flex: 1 1 auto !important;
+  width: auto !important;
+}
+#ml-inline .ml-form-embedBody input[type="email"] {
+  width: 100% !important;
+  height: 52px !important;
+  padding: 0 16px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  min-width: 0 !important; /* iOS shrink fix */
+  -webkit-appearance: none;
+}
+
+/* Custom outline color for email input focus - multiple selectors for maximum coverage */
+#ml-inline .ml-form-embedBody input[type="email"]:focus,
+#mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input:focus,
+#mlb2-25443517 input[type="email"]:focus {
+  outline: 1px solid #994e41 !important;
+  outline-offset: 0px !important;
+  /* box-shadow: 0 0 0 2px #994e41 !important; */
+}
+
+/* Remove default browser focus styles */
+#ml-inline .ml-form-embedBody input[type="email"]:focus-visible,
+#mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input:focus-visible,
+#mlb2-25443517 input[type="email"]:focus-visible {
+  outline: 1px solid #994e41 !important;
+  outline-offset: -1px !important;
+  /* box-shadow: 0 0 0 2px #994e41 !important; */
+}
+
+/* 5) Submit column — stop it from going full-width */
+#ml-inline .ml-form-embedBody .ml-form-embedSubmit {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+#ml-inline .ml-form-embedBody .ml-button,
+#ml-inline .ml-form-embedBody button[type="submit"] {
+  height: 52px !important;
+  padding: 0 18px !important;
+  white-space: nowrap !important;
+  width: auto !important;
+  border: 0 !important;
+  border-left: 1px solid #E7E3DD !important;
+  border-radius: 0 !important;
+  background: #9B4D42 !important;
+  color: #fff !important;
+}
+
+/* 6) Spinner: keep it inside the button (or hide it) */
+#ml-inline .ml-form-embedBody .ml-form-embedSubmit .loading {
+  position: absolute !important;
+  inset: 50% auto auto 50% !important;
+  transform: translate(-50%, -50%) !important;
+  pointer-events: none !important;
+}
+#ml-inline .ml-form-embedBody .ml-form-embedSubmit { position: relative !important; }
+
+/* If you’d rather just hide ML’s spinner completely, swap the rule above for: */
+/* #ml-inline .ml-form-embedBody .ml-form-embedSubmit .loading { display:none !important; } */
+
+/* 7) Optional: hide label/help that push layout on small widths */
+#ml-inline .ml-form-embedBody label,
+#ml-inline .ml-form-privacy-policy,
+#ml-inline .ml-form-embedBody .ml-error { display: none !important; }
+
+#mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-formContent.horozintalForm {padding-bottom: 0 !important;}
+@media (max-width: 400px) {
+    #mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody,
+    #mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody
+    {padding: 10px 0 0 0 !important;}
+}
+.ml-mobileButton-horizontal {
+    position: relative;
+    margin-top: -21px;
+    margin-bottom: 0px !important;
+    position: absolute;
+    width: 90px !important;
+    right: 0;
+    top: 31px;
+    border-radius: 0px 4px 4px 0 !important;
+    
+}
+#ml-inlne #mlb2-25443517 .ml-mobileButton-horizontal button{ font-size: 12px !important;letter-spacing: .1px !important;}
+#mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input:focus{color:#444444 !important;}
+     </style>
+</head>
+
+<body class="bg-cream min-h-screen overflow-hidden flex items-center justify-center">
+    <!-- Logo -->
+    <div class="absolute top-3 md:top-8 left-8">
+        <img src="../images/logo2x.png" alt="Marker" class="h-8 md:h-10 w-auto logo-container">
+    </div>
+
+    <!-- Centered Content Block -->
+    <div class="w-full max-w-lg px-8 text-center">
+        
+        <!-- Main Heading -->
+        <h1 class="font-museum text-dark-brown text-[32px] text-balance md:text-[36px] leading-[30px] md:leading-[38px] mb-3.5">
+            Thanks for sitting through our demo!
+        </h1>
+        
+        <p class="font-grosa text-medium-brown text-md leading-tight mb-3.5 w-80 mx-auto ">Sign up below to jump the queue
+            and get access to our alpha right away.</p>
+            <p class="font-grosa text-md leading-tight mb-3.5 w-80 mx-auto  text-slate-500">P.S. Interested in working with us?<br/>Drop us a line at <a href="mailto:workhere@marker.page" class="underline">workhere@marker.page</a></p>
+        
+        <div class="w-64 mx-auto">
+            <!-- CTA Button -->
+            <div id="ml-inle">
+                <div class="ml-embedded" data-form="wivgaw"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="absolute  -translate-x-1/2 left-1/2 md:translate-x-0 md:left-8 -bottom-2 w-60 md:w-auto md:block"><img src="../images/pile-rocks.png" alt="AI Demo Days" class="w-96 mx-auto mb-6" ></div>
+    <div class="absolute right-8 bottom-6 hidden md:block">
+
+        <div class="flex space-x-8 justify-center md:justify-start">
+            <a href="privacy"
+                class="font-grosa-mono text-medium-brown text-[10px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                Privacy
+            </a>
+            <a href="jobs"
+                class="font-grosa-mono text-medium-brown text-[10px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                Jobs
+            </a>
+            <div href="#"
+                class="flex items-center gap-1 font-grosa-mono text-medium-brown text-[10px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                London made <a href="https://my.marker.page">
+                    <svg xmlns="https://www.w3.org/2000/svg" width="11" height="11" fill="#994E41" viewBox="0 0 256 256"><path d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"></path></svg>
+                </a>
+            </div>
+           
+        </div>
+    </div>
+    <!-- Static Pebble Stack -->
+    
+
+    
+
+</body>
+
+</html>
