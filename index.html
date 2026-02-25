@@ -106,157 +106,8 @@
       
     </style>
 
-      <!-- MailerLite Universal -->
-      <script>
-        (function (w, d, e, u, f, l, n) {
-            w[f] = w[f] || function () {
-                (w[f].q = w[f].q || [])
-                    .push(arguments);
-            }, l = d.createElement(e), l.async = 1, l.src = u,
-                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
-        })
-            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
-        ml('account', '1489888');
-    </script>
-    <!-- End MailerLite Universal -->
-     <style>
-        .ml-form-formContent.horozintalForm .ml-form-horizontalRow .horizontal-fields {padding: 0 !important;}
-        #mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow button {
-            /* font-family: 'Grosa',serif !important; */
-            /* letter-spacing: 0.5px !important; */
-            
-            border-radius: 0px 4px 4px 0 !important;
-            /* line-height: 38px !important; */
-        }
-        #mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input {
-            font-family: 'Grosa',serif !important;
-            letter-spacing: 0.1px !important;
-            border-radius: 5px 0 0 5px !important;
-        }
-        /* 1) Make the whole form one row at every width */
-#ml-inline .ml-form-embedBody form,
-#ml-inline .ml-form-embedBody .ml-form-formContent,
-#ml-inline .ml-form-embedBody .ml-form-horizontalRow {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  align-items: stretch !important;
-  gap: 0 !important;
-}
-
-/* 2) Move the rounded border to the ROW, not the children */
-#ml-inline .ml-form-embedBody .ml-form-formContent {
-  border: 1px solid #E7E3DD !important;
-  border-radius: 14px !important;
-  overflow: hidden !important;
-  background: #fff !important;
-}
-
-/* 3) Nuke MailerLite's mobile margins/radii/cards */
-#ml-inline .ml-form-embedBody .ml-form-formContent > *,
-#ml-inline .ml-form-embedBody .ml-form-horizontalRow > * {
-  margin: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-}
-
-/* Don't remove box-shadow from inputs - we need it for focus styles */
-#ml-inline .ml-form-embedBody .ml-form-embedSubmit {
-  box-shadow: none !important;
-}
-
-/* 4) Input column */
-#ml-inline .ml-form-embedBody .ml-form-fieldRow,
-#ml-inline .ml-form-embedBody .ml-field-group {
-  flex: 1 1 auto !important;
-  width: auto !important;
-}
-#ml-inline .ml-form-embedBody input[type="email"] {
-  width: 100% !important;
-  height: 52px !important;
-  padding: 0 16px !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  min-width: 0 !important; /* iOS shrink fix */
-  -webkit-appearance: none;
-}
-
-/* Custom outline color for email input focus - multiple selectors for maximum coverage */
-#ml-inline .ml-form-embedBody input[type="email"]:focus,
-#mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input:focus,
-#mlb2-25443517 input[type="email"]:focus {
-  outline: 1px solid #994e41 !important;
-  outline-offset: 0px !important;
-  /* box-shadow: 0 0 0 2px #994e41 !important; */
-}
-
-/* Remove default browser focus styles */
-#ml-inline .ml-form-embedBody input[type="email"]:focus-visible,
-#mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input:focus-visible,
-#mlb2-25443517 input[type="email"]:focus-visible {
-  outline: 1px solid #994e41 !important;
-  outline-offset: -1px !important;
-  /* box-shadow: 0 0 0 2px #994e41 !important; */
-}
-
-/* 5) Submit column — stop it from going full-width */
-#ml-inline .ml-form-embedBody .ml-form-embedSubmit {
-  flex: 0 0 auto !important;
-  width: auto !important;
-  display: flex !important;
-  align-items: stretch !important;
-}
-#ml-inline .ml-form-embedBody .ml-button,
-#ml-inline .ml-form-embedBody button[type="submit"] {
-  height: 52px !important;
-  padding: 0 18px !important;
-  white-space: nowrap !important;
-  width: auto !important;
-  border: 0 !important;
-  border-left: 1px solid #E7E3DD !important;
-  border-radius: 0 !important;
-  background: #9B4D42 !important;
-  color: #fff !important;
-}
-
-/* 6) Spinner: keep it inside the button (or hide it) */
-#ml-inline .ml-form-embedBody .ml-form-embedSubmit .loading {
-  position: absolute !important;
-  inset: 50% auto auto 50% !important;
-  transform: translate(-50%, -50%) !important;
-  pointer-events: none !important;
-}
-#ml-inline .ml-form-embedBody .ml-form-embedSubmit { position: relative !important; }
-
-/* If you’d rather just hide ML’s spinner completely, swap the rule above for: */
-/* #ml-inline .ml-form-embedBody .ml-form-embedSubmit .loading { display:none !important; } */
-
-/* 7) Optional: hide label/help that push layout on small widths */
-#ml-inline .ml-form-embedBody label,
-#ml-inline .ml-form-privacy-policy,
-#ml-inline .ml-form-embedBody .ml-error { display: none !important; }
-
-#mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-formContent.horozintalForm {padding-bottom: 0 !important;}
-@media (max-width: 400px) {
-    #mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody,
-    #mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody
-    {padding: 10px 0 0 0 !important;}
-}
-.ml-mobileButton-horizontal {
-    position: relative;
-    margin-top: -21px;
-    margin-bottom: 0px !important;
-    position: absolute;
-    width: 90px !important;
-    right: 0;
-    top: 31px;
-    border-radius: 0px 4px 4px 0 !important;
-    
-}
-#ml-inlne #mlb2-25443517 .ml-mobileButton-horizontal button{ font-size: 12px !important;letter-spacing: .1px !important;}
-#mlb2-25443517.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-horizontalRow input:focus{color:#444444 !important;}
-     </style>
+      
+   
 </head>
 
 <body class="bg-cream min-h-screen  overflow-hidden">
@@ -280,9 +131,17 @@
 
         <!-- CTA Button -->
         
-        <div id="ml-inlne" class="mx-8 md:mx-0 relative md:-left-5 md:-top-2">
-            <div class="ml-embedded " data-form="k7m9jV"></div>
-        </div>
+       
+        <form action="https://forms.userlist.com/5444a4a9-ad95-4e2a-87b2-090ce86aa9cd/submissions" method="POST" accept-charset="UTF-8"
+              class="flex flex-row flex-nowrap items-stretch border border-stone-200 mt-4 rounded-[6px] overflow-hidden bg-white focus-within:border-rust transition-colors">
+            <div class="flex-1 min-w-0">
+              <label for="fields_email" class="hidden">Email</label>
+              <input type="email" id="fields_email" name="fields[email]" placeholder="Enter email for early access" required autofocus
+                     class="w-full h-[42px] px-4 pl-3 border-0 outline-none font-grosa text-sm bg-white"/>
+            </div>
+            <button type="submit"
+                    class="h-[42px] px-4 pt-1 whitespace-nowrap border-0 border-l border-stone-200 bg-rust text-white font-grosa text-xs uppercase tracking-wider font-semibold cursor-pointer hover:bg-black transition-colors">Sign up</button>
+          </form>
 
         <div class="flex space-x-8 justify-center md:justify-start md:hidden mt-2 relative md:mt-5 custom-mt-reset">
             <a href="jobs"
@@ -396,33 +255,12 @@
 
         // Auto-focus the email input field when page loads
         function focusEmailInput() {
-            // Wait for MailerLite form to load
-            const checkForInput = () => {
-                const emailInput = document.querySelector('#ml-inlne input[type="email"]');
-                if (emailInput) {
-                    // Small delay to ensure the form is fully rendered
-                    setTimeout(() => {
-                        emailInput.focus();
-                    }, 100);
-                } else {
-                    // If not found, try again after a short delay
-                    setTimeout(checkForInput, 100);
-                }
-            };
-            
-            // Start checking after a brief initial delay
-            setTimeout(checkForInput, 200);
+            const emailInput = document.getElementById('fields_email');
+            if (emailInput) emailInput.focus();
         }
 
-        // Focus input when page loads
         window.addEventListener('load', focusEmailInput);
-
-        // Also try focusing after DOM is ready (in case load event already fired)
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', focusEmailInput);
-        } else {
-            focusEmailInput();
-        }
+        if (document.readyState !== 'loading') focusEmailInput();
     </script>
 
 </body>
