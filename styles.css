@@ -73,6 +73,26 @@
 }
 
 @font-face {
+    font-family: 'PP Museum';
+    src: url('fonts/museum-light.woff2') format('woff2'),
+        url('fonts/museum-light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Museum';
+    src: url('fonts/museum-light-italic.woff2') format('woff2'),
+        url('fonts/museum-light-italic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+
+@font-face {
     font-family: 'Grosa';
     src: url('fonts/grosa.woff2') format('woff2'),
         url('fonts/grosa.woff') format('woff');

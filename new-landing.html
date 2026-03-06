@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marker - Where the rough becomes refined</title>
+
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://marker.page/">
+    <meta property="og:title" content="Marker - Where the rough becomes refined">
+    <meta property="og:description" content="Marker is a writing space built for serious thinking: focused, flexible, and made for ideas to take shape.">
+    <meta property="og:image" content="https://marker.page/images/opengraph.png">
+
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://marker.page/">
+    <meta property="twitter:title" content="Marker - Where the rough becomes refined">
+    <meta property="twitter:description" content="Marker is a writing space built for serious thinking: focused, flexible, and made for ideas to take shape.">
+    <meta property="twitter:image" content="https://marker.page/images/opengraph.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'grosa': ['Grosa', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        'ia': ['iA', 'Courier New', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @font-face {
+            font-family: 'Grosa';
+            src: url('fonts/grosa.woff2') format('woff2'),
+                url('fonts/grosa.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'iA';
+            src: url('fonts/iAWriterQuattroS-Regular.woff2') format('woff2'),
+                url('fonts/iAWriterQuattroS-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'iA';
+            src: url('fonts/iAWriterQuattroS-Bold.woff2') format('woff2'),
+                url('fonts/iAWriterQuattroS-Bold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        html, body {
+            @apply w-full h-full overflow-hidden;
+        }
+
+        body {
+            @apply bg-[#fbede2] font-grosa;
+        }
+
+        .page {
+            @apply relative w-screen h-screen overflow-hidden;
+        }
+
+        .nav-links {
+            @apply absolute z-10 flex items-center;
+            top: 20px;
+            right: 26px;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            @apply font-ia font-medium uppercase text-[#111] no-underline;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            @apply opacity-60;
+        }
+
+        .pill {
+            @apply absolute flex items-center bg-white border border-[#cecece] whitespace-nowrap;
+            height: 46px;
+            border-radius: 30px;
+            padding: 0 20px 0 14px;
+            gap: 10px;
+        }
+
+        .pill-icon {
+            @apply shrink-0 flex items-center justify-center;
+        }
+
+        .pill-icon img {
+            width: 26px;
+            height: 26px;
+        }
+
+        .pill--words .pill-icon img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .pill--ideas .pill-icon img {
+            width: 22px;
+            height: 22px;
+        }
+
+        .pill-text {
+            @apply font-grosa text-black;
+            font-size: 24px;
+            line-height: 1;
+            transform: translateY(2px);
+        }
+
+        .pill--writers {
+            left: 25.1%;
+            top: 23.1%;
+        }
+
+        .pill--words {
+            left: 40.6%;
+            top: 40.1%;
+        }
+
+        .pill--ideas {
+            left: 54.7%;
+            top: 12.9%;
+        }
+
+        .marker-logo {
+            @apply absolute left-1/2 -translate-x-1/2;
+            bottom: -.6%;
+            width: 70.8%;
+        }
+
+        .marker-logo img {
+            @apply w-full h-auto block;
+        }
+
+        @media (max-width: 640px) {
+            .pill--writers {
+                left: 10%;
+                top: 22.9%;
+            }
+
+            .pill--words {
+                left: 35.6%;
+                top: 40.1%;
+            }
+
+            .pill--ideas {
+                left: 6.4%;
+                top: 57.4%;
+            }
+
+            .marker-logo {
+                width: 102%;
+                bottom: -1%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <nav class="nav-links">
+            <a href="#">LEARN MORE</a>
+            <a href="#">JOBS</a>
+            <a href="#">LOGIN</a>
+        </nav>
+
+        <div class="pill pill--writers">
+            <span class="pill-icon">
+                <img src="images/icon-circle.svg" alt="">
+            </span>
+            <span class="pill-text">Writers first</span>
+        </div>
+
+        <div class="pill pill--words">
+            <span class="pill-icon">
+                <img src="images/icon-star.svg" alt="">
+            </span>
+            <span class="pill-text">Words matter</span>
+        </div>
+
+        <div class="pill pill--ideas">
+            <span class="pill-icon">
+                <img src="images/icon-grid.svg" alt="">
+            </span>
+            <span class="pill-text">Ideas are built together</span>
+        </div>
+
+        <div class="marker-logo">
+            <img src="images/marker-logo.svg" alt="Marker">
+        </div>
+    </div>
+</body>
+
+</html>
