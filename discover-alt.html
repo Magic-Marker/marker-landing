@@ -140,9 +140,9 @@
         .headline {
             @apply absolute text-black;
             font-family: 'GTF Byrd', sans-serif;
-            left: 43px;
-            bottom: 138px;
-            width: 387px;
+            left: 59px;
+            top: 53px;
+            width: 375px;
             font-size: 18px;
             line-height: 1.08;
             letter-spacing: 0.18px;
@@ -160,19 +160,15 @@
         .headline .star {
             color: #994e41;
             font-weight: 600;
-            font-size: 1.4em;
-            position: relative;
-            top: 0px;
-            line-height: 0;
         }
 
         /* ========= SIGNUP FORM ========= */
 
         .signup-form {
             @apply absolute flex items-center;
-            left: 40px;
-            bottom: 70px;
-            width: 285px;
+            left: 56px;
+            top: 159px;
+            width: 297px;
             border-radius: 10px;
             padding: 5px 5px 5px 10px;
             border: 1px solid #cecece;
@@ -218,10 +214,11 @@
 
         .pebbles-image {
             @apply absolute overflow-hidden;
-            right: 5%;
-            bottom: 6%;
-            width: 610px;
-            height: 326px;
+            left: 50%;
+            top: 50%;
+            width: 676px;
+            height: 361px;
+            transform: translate(-50%, -50%);
         }
 
         .pebbles-image img {
@@ -229,16 +226,16 @@
             object-fit: cover;
         }
 
-        /* ========= MARKER LOGO ========= */
+        /* ========= BOTTOM LOGO ========= */
 
-        .marker-logo {
+        .bottom-logo {
             @apply absolute;
-            left: 3.4%;
-            top: 3.8%;
-            width: 83.5%;
+            left: 4.2%;
+            bottom: -0.8%;
+            width: 36%;
         }
 
-        .marker-logo img {
+        .bottom-logo img {
             @apply w-full h-auto block;
         }
 
@@ -246,22 +243,19 @@
 
         .flannery-corner {
             @apply absolute;
-            left: 0;
+            right: 34px;
             bottom: 0;
             display: flex;
             align-items: flex-end;
-            gap: 0;
+            gap: 15px;
         }
 
         .flannery-photo {
-            width: 43px;
+            width: 40px;
             height: auto;
             display: block;
             cursor: pointer;
             flex-shrink: 0;
-            transform: rotate(38.32deg);
-            margin-left: -8px;
-            margin-bottom: -2px;
         }
 
         .flannery-right {
@@ -269,7 +263,6 @@
             flex-direction: column;
             justify-content: flex-end;
             padding-bottom: 8px;
-            margin-left: 4px;
         }
 
         .flannery-text {
@@ -304,19 +297,17 @@
             display: flex;
             align-items: baseline;
             cursor: pointer;
-            gap: 6px;
+            gap: 2px;
             white-space: nowrap;
         }
 
         .flannery-star {
             font-family: 'GTF Byrd', sans-serif;
             font-weight: 600;
-            font-size: 27px;
+            font-size: 20px;
             line-height: 1;
             color: #994e41;
             letter-spacing: 0.2px;
-            position: relative;
-            top: 11px;
         }
 
         .flannery-label {
@@ -332,24 +323,17 @@
 
         /* ========= ANIMATIONS ========= */
 
-        .marker-logo {
+        .headline {
             opacity: 0;
-            transform: translateY(40px);
-            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1),
-                        opacity 0.6s ease;
+            transform: translateY(20px);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.5s ease;
         }
 
         .nav-links {
             opacity: 0;
             transform: translateY(-20px);
             transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1),
-                        opacity 0.5s ease;
-        }
-
-        .headline {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
                         opacity 0.5s ease;
         }
 
@@ -362,9 +346,16 @@
 
         .pebbles-image {
             opacity: 0;
-            transform: translate(30px, 30px);
+            transform: translate(-50%, calc(-50% + 30px));
             transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
                         opacity 0.8s ease;
+        }
+
+        .bottom-logo {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.6s ease;
         }
 
         .flannery-corner {
@@ -372,17 +363,12 @@
             transition: opacity 0.5s ease;
         }
 
-        .phase-in .marker-logo {
+        .phase-in .headline {
             opacity: 1;
             transform: translateY(0);
         }
 
         .phase-in .nav-links {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .phase-content .headline {
             opacity: 1;
             transform: translateY(0);
         }
@@ -394,7 +380,12 @@
 
         .phase-rocks .pebbles-image {
             opacity: 1;
-            transform: translate(0, 0);
+            transform: translate(-50%, -50%);
+        }
+
+        .phase-content .bottom-logo {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .phase-content .flannery-corner {
@@ -512,38 +503,27 @@
         /* ========= MOBILE ========= */
 
         @media (max-width: 640px) {
-            .marker-logo {
-                left: 7%;
-                top: 6%;
-                bottom: auto;
-                width: 87%;
-            }
-
             .headline {
                 left: 35px;
-                bottom: 140px;
-                top: auto;
+                top: 80px;
                 font-size: 16px;
                 line-height: 0.78;
-                width: 325px;
+                width: 334px;
                 letter-spacing: 0.16px;
             }
 
             .signup-form {
                 left: 33px;
-                bottom: 75px;
-                top: auto;
+                top: 160px;
                 width: 278px;
             }
 
             .pebbles-image {
                 left: 50%;
                 top: 50%;
-                right: auto;
-                bottom: auto;
                 width: 300px;
                 height: 400px;
-                transform: translate(-50%, -55%);
+                transform: translate(-50%, -50%);
             }
 
             .pebbles-image img {
@@ -557,21 +537,21 @@
             }
 
             .phase-rocks .pebbles-image {
-                transform: translate(-50%, -55%);
+                transform: translate(-50%, -50%);
             }
 
-            .pebbles-image {
-                transform: translate(-50%, calc(-55% + 30px));
+            .bottom-logo {
+                left: 7%;
+                bottom: -0.2%;
+                width: 87%;
             }
 
             .flannery-corner {
-                left: 32px;
-                bottom: 16px;
-                right: auto;
+                right: 16px;
+                bottom: 100px;
                 z-index: 5;
                 gap: 0;
             }
-
             .flannery-text {
                 width: 150px;
             }
@@ -585,8 +565,18 @@
 
             .nav-links {
                 top: 18px;
-                right: 16px;
-                gap: 18px;
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                gap: 24px;
+            }
+
+            .phase-in .nav-links {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .nav-links {
+                transform: translateX(-50%) translateY(-20px);
             }
         }
     </style>
@@ -601,7 +591,7 @@
         </nav>
 
         <div class="headline">
-            <p>Marker is a space for thinking<span class="desktop-only"> and writing</span>.</p>
+            <p>Marker is a space for thinking and writing.</p>
             <p>Use it to discover what you know.<span class="star">*</span></p>
             <p>Write with us.</p>
         </div>
@@ -616,14 +606,14 @@
             <img src="images/lux-pebbles.png" alt="">
         </div>
 
-        <div class="marker-logo">
+        <div class="bottom-logo">
             <img src="images/logo-rough.svg" alt="Marker">
         </div>
 
         <div class="flannery-corner" id="flannery-corner">
             <img class="flannery-photo" src="images/flannery-cutout.png" alt="Flannery O'Connor">
             <div class="flannery-right">
-                <div class="flannery-text bg-[#faf8f5] p-4 rounded">
+                <div class="flannery-text">
                     <p>That's Flannery O'Conner – she wrote 2 of the most important novels of the 20th century, raised Peacocks for fun and was a New Yorker cartoonist on the side.</p>
                     <p>Oh, and she said "I write to discover what I know"</p>
                 </div>
