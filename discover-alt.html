@@ -515,7 +515,7 @@
         }
 
         .followup-input {
-            @apply w-full border-0 outline-none;
+            @apply border-0 outline-none;
             font-family: 'GTF Byrd', sans-serif;
             font-size: 13px;
             color: #333;
@@ -524,6 +524,14 @@
             border-radius: 8px;
             padding: 10px 12px;
             transition: border-color 0.2s ease;
+        }
+
+        .followup-input.input-name {
+            width: 70%;
+        }
+
+        .followup-input.input-code {
+            width: 50%;
         }
 
         .followup-input:focus {
@@ -651,6 +659,11 @@
             .signup-error {
                 left: 33px;
                 top: 200px;
+            }
+
+            .followup-input.input-name,
+            .followup-input.input-code {
+                width: 100%;
             }
 
             .pebbles-image {
@@ -819,19 +832,14 @@
         <div class="modal-overlay" id="followup-modal">
             <div class="modal">
                 <button class="modal-close" id="followup-close">&times;</button>
-                <h2 class="modal-title" id="followup-title">One more thing</h2>
+                <h2 class="modal-title" id="followup-title">You're on the list</h2>
                 <p id="followup-subtitle" style="font-family: 'GTF Byrd', sans-serif; font-size: 13px; line-height: 1.55; color: #555; margin-bottom: 24px;">
-                    We use this info to prioritise our waitlist and improve your experience with Marker. Email us at <a href="mailto:hi@marker.page" style="color: #994e41; text-decoration: underline;">hi@marker.page</a> if you are desperate though.</p>
+                    These are optional, but they help us prioritise the waitlist and make Marker better for you. Email us at <a href="mailto:hi@marker.page" style="color: #994e41; text-decoration: underline;">hi@marker.page</a> if you are desperate though.</p>
 
                 <form id="followup-form">
                     <div class="followup-field">
-                        <label class="followup-label" for="field_secret_code">Do you have a secret code?</label>
-                        <input type="text" id="field_secret_code" class="followup-input" placeholder="Enter your code">
-                    </div>
-
-                    <div class="followup-field">
                         <label class="followup-label" for="field_name">What is your name?</label>
-                        <input type="text" id="field_name" class="followup-input" placeholder="Your name">
+                        <input type="text" id="field_name" class="followup-input input-name" placeholder="Your name">
                     </div>
 
                     <div class="followup-field">
@@ -843,6 +851,11 @@
                             <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Work writing"> Work writing (comms, PR, memos, grants)</label>
                             <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Academic"> Academic papers or assignments</label>
                         </div>
+                    </div>
+
+                    <div class="followup-field">
+                        <label class="followup-label" for="field_secret_code">Do you have a secret code?</label>
+                        <input type="text" id="field_secret_code" class="followup-input input-code" placeholder="Enter your code">
                     </div>
 
                     <button type="submit" class="followup-submit">Submit</button>

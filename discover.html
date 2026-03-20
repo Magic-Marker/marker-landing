@@ -141,7 +141,7 @@
             @apply absolute text-black;
             font-family: 'GTF Byrd', sans-serif;
             left: 43px;
-            bottom: 138px;
+            bottom: 108px;
             width: 387px;
             font-size: 18px;
             line-height: 1.08;
@@ -171,7 +171,7 @@
         .signup-form {
             @apply absolute flex items-center;
             left: 40px;
-            bottom: 70px;
+            bottom: 40px;
             width: 285px;
             border-radius: 10px;
             padding: 5px 5px 5px 10px;
@@ -429,7 +429,7 @@
             border-radius: 16px;
             width: 520px;
             max-width: 90vw;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
             padding: 40px 36px;
             transform: translateY(20px);
@@ -459,7 +459,7 @@
             font-weight: normal;
             font-size: 32px;
             color: #111;
-            margin-bottom: 28px;
+            margin-bottom: 5px;
         }
 
         .faq-item {
@@ -513,6 +513,145 @@
             color: #555;
         }
 
+        /* ========= FOLLOW-UP MODAL ========= */
+
+        .followup-field {
+            margin-bottom: 24px;
+        }
+      
+
+        .followup-label {
+            display: block;
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 14px;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .followup-input {
+            @apply border-0 outline-none;
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 13px;
+            color: #333;
+            background: white;
+            border: 1px solid #cecece;
+            border-radius: 8px;
+            padding: 10px 12px;
+            transition: border-color 0.2s ease;
+        }
+
+        .followup-input.input-name {
+            width: 70%;
+        }
+
+        .followup-input.input-code {
+            width: 50%;
+        }
+
+        .followup-input:focus {
+            border-color: #994e41;
+        }
+
+        .followup-input::placeholder {
+            color: #b6b6b6;
+        }
+
+        .followup-checkboxes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .followup-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .followup-checkbox-label input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #cecece;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            flex-shrink: 0;
+            position: relative;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .followup-checkbox-label input[type="checkbox"]:checked {
+            background: #994e41;
+            border-color: #994e41;
+        }
+
+        .followup-checkbox-label input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 2px;
+            width: 5px;
+            height: 9px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .followup-submit {
+            @apply font-ia font-medium uppercase text-white cursor-pointer border-0 w-full;
+            background: #994e41;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 10px;
+            letter-spacing: 0.8px;
+            margin-top: 8px;
+            transition: background 0.2s ease;
+        }
+
+        .followup-submit:hover {
+            @apply bg-black;
+        }
+
+        .followup-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .signup-error {
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 11px;
+            color: #c0392b;
+            position: absolute;
+            left: 40px;
+            bottom: 55px;
+        }
+
+        .followup-thankyou {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .followup-thankyou h3 {
+            font-family: 'Museum', serif;
+            font-weight: normal;
+            font-size: 28px;
+            color: #111;
+            margin-bottom: 12px;
+        }
+
+        .followup-thankyou p {
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 13px;
+            line-height: 1.55;
+            color: #555;
+        }
+
         /* ========= MOBILE ========= */
 
         @media (max-width: 640px) {
@@ -525,9 +664,9 @@
 
             .headline {
                 left: 35px;
-                bottom: 140px;
+                bottom: 100px;
                 top: auto;
-                font-size: 16px;
+                font-size: 19px;
                 line-height: 0.78;
                 width: 325px;
                 letter-spacing: 0.16px;
@@ -535,9 +674,20 @@
 
             .signup-form {
                 left: 33px;
-                bottom: 75px;
+                bottom: 37px;
                 top: auto;
-                width: 278px;
+                width: 100%;
+                max-width: 330px;
+            }
+
+            .signup-error {
+                left: 33px;
+                bottom: 60px;
+            }
+
+            .followup-input.input-name,
+            .followup-input.input-code {
+                width: 100%;
             }
 
             .pebbles-image {
@@ -606,11 +756,10 @@
 
         <div class="headline">
             <p>Marker is a space for thinking<span class="desktop-only"> and writing</span>.</p>
-            <p>Use it to discover what you know.<span class="star">*</span></p>
             <p>Write with us.</p>
         </div>
 
-        <form action="https://forms.userlist.com/5444a4a9-ad95-4e2a-87b2-090ce86aa9cd/submissions" method="POST" accept-charset="UTF-8" class="signup-form">
+        <form class="signup-form">
             <label for="fields_email" class="hidden">Join the waitlist</label>
             <input type="email" id="fields_email" name="fields[email]" placeholder="Join our waiting list" required>
             <button type="submit">Sign up</button>
@@ -624,19 +773,7 @@
             <img src="images/logo-rough.svg" alt="Marker">
         </div>
 
-        <div class="flannery-corner" id="flannery-corner">
-            <img class="flannery-photo" src="images/flannery-cutout.png" alt="Flannery O'Connor">
-            <div class="flannery-right">
-                <div class="flannery-text bg-[#faf8f5] p-4 rounded">
-                    <p>That's Flannery O'Conner – she wrote 2 of the most important novels of the 20th century, raised Peacocks for fun and was a New Yorker cartoonist on the side.</p>
-                    <p>Oh, and she said "I write to discover what I know"</p>
-                </div>
-                <div class="flannery-attribution" id="flannery-trigger">
-                    <span class="flannery-star">*</span>
-                    <span class="flannery-label"><span class="desktop-only">with apologies to Flannery</span><span class="mobile-only">sorry Flannery</span></span>
-                </div>
-            </div>
-        </div>
+        
 
         <div class="modal-overlay" id="learn-more-modal">
             <div class="modal">
@@ -694,11 +831,56 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal-overlay" id="followup-modal">
+            <div class="modal">
+                <button class="modal-close" id="followup-close">&times;</button>
+                <h2 class="modal-title" id="followup-title">You're on the list!</h2>
+                <p id="followup-subtitle" style="font-family: 'GTF Byrd', sans-serif; font-size: 13px; line-height: 1.55; color: #555; margin-bottom: 24px;">
+                    These ?'s are optional, but they help us prioritise the waitlist. Email us at <a href="mailto:hi@marker.page" style="color: #994e41; text-decoration: underline;">hi@marker.page</a> if you are desperate though.</p>
+
+                <form id="followup-form">
+                    <div class="followup-field">
+                        <label class="followup-label" for="field_name">What is your name?</label>
+                        <input type="text" id="field_name" class="followup-input input-name" placeholder="Your name">
+                    </div>
+
+                    <div class="followup-field">
+                        <label class="followup-label">What are you writing?</label>
+                        <div class="followup-checkboxes">
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Newsletter or blog"> Newsletter or blog (Substack and beyond)</label>
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Journalism and non-fiction"> Journalism, non-fiction, personal essays</label>
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Creative writing"> Creative writing (novels, scripts, short stories)</label>
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Work writing"> Work writing (comms, PR, memos, grants)</label>
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Academic"> Academic papers or assignments</label>
+                        </div>
+                    </div>
+
+                    <div class="followup-field">
+                        <label class="followup-label" for="field_secret_code">Do you have a secret code?</label>
+                        <input type="text" id="field_secret_code" class="followup-input input-code" placeholder="Enter your code">
+                    </div>
+
+                    <button type="submit" class="followup-submit">Submit</button>
+                </form>
+
+                <div class="followup-thankyou" id="followup-thankyou" style="display: none;">
+                    <h3>Thanks!</h3>
+                    <p>You're all signed up. We'll be in touch.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
+        const USERLIST_FORM_URL = 'https://forms.userlist.com/5444a4a9-ad95-4e2a-87b2-090ce86aa9cd/submissions';
+        const USERLIST_WORKER_URL = 'https://userlist-proxy.marker-276.workers.dev';
+        let storedEmail = '';
+
         const page = document.querySelector('.page');
         const emailInput = document.getElementById('fields_email');
+
+        const signupForm = document.querySelector('.signup-form');
 
         setTimeout(() => page.classList.add('phase-in'), 200);
         setTimeout(() => page.classList.add('phase-rocks'), 500);
@@ -726,7 +908,10 @@
         });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') modal.classList.remove('active');
+            if (e.key === 'Escape') {
+                modal.classList.remove('active');
+                followupOverlay.classList.remove('active');
+            }
         });
 
         function updateIcons() {
@@ -746,22 +931,112 @@
             });
         });
 
-        // Flannery corner interaction
-        const flanneryCorner = document.getElementById('flannery-corner');
-        const flanneryTrigger = document.getElementById('flannery-trigger');
-        const flanneryPhoto = flanneryCorner.querySelector('.flannery-photo');
+        // Follow-up modal elements
+        const followupOverlay = document.getElementById('followup-modal');
+        const followupCloseBtn = document.getElementById('followup-close');
+        const followupForm = document.getElementById('followup-form');
+        const followupThankyou = document.getElementById('followup-thankyou');
 
-        function toggleFlannery(e) {
-            e.stopPropagation();
-            flanneryCorner.classList.toggle('active');
-        }
+        followupCloseBtn.addEventListener('click', () => {
+            followupOverlay.classList.remove('active');
+        });
 
-        flanneryTrigger.addEventListener('click', toggleFlannery);
-        flanneryPhoto.addEventListener('click', toggleFlannery);
+        followupOverlay.addEventListener('click', (e) => {
+            if (e.target === followupOverlay) followupOverlay.classList.remove('active');
+        });
 
-        document.addEventListener('click', (e) => {
-            if (!flanneryCorner.contains(e.target)) {
-                flanneryCorner.classList.remove('active');
+        // Step 1: Intercept signup form, POST email to Userlist, then show follow-up modal
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = signupForm.querySelector('button[type="submit"]');
+            const origText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = '...';
+
+            const existingError = document.querySelector('.signup-error');
+            if (existingError) existingError.remove();
+
+            const email = emailInput.value.trim();
+
+            const formData = new FormData();
+            formData.append('fields[email]', email);
+
+            try {
+                const res = await fetch(USERLIST_FORM_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!res.ok) throw new Error('Submission failed');
+
+                storedEmail = email;
+                emailInput.value = '';
+                submitBtn.disabled = false;
+                submitBtn.textContent = origText;
+
+                followupForm.style.display = '';
+                followupThankyou.style.display = 'none';
+                followupOverlay.classList.add('active');
+
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = origText;
+
+                const errorEl = document.createElement('div');
+                errorEl.className = 'signup-error';
+                errorEl.textContent = 'Something went wrong. Please try again.';
+                signupForm.parentNode.insertBefore(errorEl, signupForm.nextSibling);
+
+                setTimeout(() => errorEl.remove(), 4000);
+            }
+        });
+
+        // Step 2: Submit follow-up answers via Cloudflare Worker to Userlist Push API
+        followupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = followupForm.querySelector('.followup-submit');
+            const origText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = '...';
+
+            const secretCode = document.getElementById('field_secret_code').value.trim();
+            const name = document.getElementById('field_name').value.trim();
+
+            const checkedBoxes = followupForm.querySelectorAll('input[name="writing"]:checked');
+            const writingValues = Array.from(checkedBoxes).map(cb => cb.value).join(', ');
+
+            const nameParts = name.split(/\s+/);
+            const firstName = nameParts[0] || '';
+            const lastName = nameParts.slice(1).join(' ') || '';
+
+            const properties = {};
+            if (secretCode) properties.secret_code = secretCode;
+            if (writingValues) properties.writing_question = writingValues;
+            if (firstName) properties.firstname = firstName;
+            if (lastName) properties.lastname = lastName;
+
+            try {
+                const res = await fetch(USERLIST_WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: storedEmail, properties })
+                });
+
+                if (!res.ok) throw new Error('Submission failed');
+
+                followupForm.style.display = 'none';
+                document.getElementById('followup-title').style.display = 'none';
+                document.getElementById('followup-subtitle').style.display = 'none';
+                followupThankyou.style.display = '';
+
+                setTimeout(() => followupOverlay.classList.remove('active'), 5000);
+
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = origText;
+                alert('Something went wrong. Please try again.');
             }
         });
     </script>
