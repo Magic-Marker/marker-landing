@@ -446,7 +446,7 @@
             font-weight: normal;
             font-size: 32px;
             color: #111;
-            margin-bottom: 28px;
+            margin-bottom: 5px;
         }
 
         .faq-item {
@@ -500,6 +500,136 @@
             color: #555;
         }
 
+        /* ========= FOLLOW-UP MODAL ========= */
+
+        .followup-field {
+            margin-bottom: 24px;
+        }
+
+        .followup-label {
+            display: block;
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 14px;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .followup-input {
+            @apply w-full border-0 outline-none;
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 13px;
+            color: #333;
+            background: white;
+            border: 1px solid #cecece;
+            border-radius: 8px;
+            padding: 10px 12px;
+            transition: border-color 0.2s ease;
+        }
+
+        .followup-input:focus {
+            border-color: #994e41;
+        }
+
+        .followup-input::placeholder {
+            color: #b6b6b6;
+        }
+
+        .followup-checkboxes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .followup-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .followup-checkbox-label input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #cecece;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            flex-shrink: 0;
+            position: relative;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .followup-checkbox-label input[type="checkbox"]:checked {
+            background: #994e41;
+            border-color: #994e41;
+        }
+
+        .followup-checkbox-label input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 2px;
+            width: 5px;
+            height: 9px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .followup-submit {
+            @apply font-ia font-medium uppercase text-white cursor-pointer border-0 w-full;
+            background: #994e41;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 10px;
+            letter-spacing: 0.8px;
+            margin-top: 8px;
+            transition: background 0.2s ease;
+        }
+
+        .followup-submit:hover {
+            @apply bg-black;
+        }
+
+        .followup-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .signup-error {
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 11px;
+            color: #c0392b;
+            position: absolute;
+            left: 56px;
+            top: 200px;
+        }
+
+        .followup-thankyou {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .followup-thankyou h3 {
+            font-family: 'Museum', serif;
+            font-weight: normal;
+            font-size: 28px;
+            color: #111;
+            margin-bottom: 12px;
+        }
+
+        .followup-thankyou p {
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 13px;
+            line-height: 1.55;
+            color: #555;
+        }
+
         /* ========= MOBILE ========= */
 
         @media (max-width: 640px) {
@@ -516,6 +646,11 @@
                 left: 33px;
                 top: 160px;
                 width: 278px;
+            }
+
+            .signup-error {
+                left: 33px;
+                top: 200px;
             }
 
             .pebbles-image {
@@ -596,7 +731,7 @@
             <p>Write with us.</p>
         </div>
 
-        <form action="https://forms.userlist.com/5444a4a9-ad95-4e2a-87b2-090ce86aa9cd/submissions" method="POST" accept-charset="UTF-8" class="signup-form">
+        <form class="signup-form">
             <label for="fields_email" class="hidden">Join the waitlist</label>
             <input type="email" id="fields_email" name="fields[email]" placeholder="Join our waiting list" required>
             <button type="submit">Sign up</button>
@@ -680,11 +815,55 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal-overlay" id="followup-modal">
+            <div class="modal">
+                <button class="modal-close" id="followup-close">&times;</button>
+                <h2 class="modal-title" id="followup-title">One more thing</h2>
+                <p id="followup-subtitle" style="font-family: 'GTF Byrd', sans-serif; font-size: 13px; line-height: 1.55; color: #555; margin-bottom: 24px;">
+                    We use this info to prioritise our waitlist and improve your experience with Marker. Email us at <a href="mailto:hi@marker.page" style="color: #994e41; text-decoration: underline;">hi@marker.page</a> if you are desperate though.</p>
+
+                <form id="followup-form">
+                    <div class="followup-field">
+                        <label class="followup-label" for="field_secret_code">Do you have a secret code?</label>
+                        <input type="text" id="field_secret_code" class="followup-input" placeholder="Enter your code">
+                    </div>
+
+                    <div class="followup-field">
+                        <label class="followup-label" for="field_name">What is your name?</label>
+                        <input type="text" id="field_name" class="followup-input" placeholder="Your name">
+                    </div>
+
+                    <div class="followup-field">
+                        <label class="followup-label">What are you writing?</label>
+                        <div class="followup-checkboxes">
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Newsletter or blog"> Newsletter or blog (Substack and beyond)</label>
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Journalism and non-fiction"> Journalism, non-fiction, personal essays</label>
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Creative writing"> Creative writing (novels, scripts, short stories)</label>
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Work writing"> Work writing (comms, PR, memos, grants)</label>
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Academic"> Academic papers or assignments</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="followup-submit">Submit</button>
+                </form>
+
+                <div class="followup-thankyou" id="followup-thankyou" style="display: none;">
+                    <h3>Thanks!</h3>
+                    <p>You're all signed up. We'll be in touch.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
+        const USERLIST_FORM_URL = 'https://forms.userlist.com/5444a4a9-ad95-4e2a-87b2-090ce86aa9cd/submissions';
+        const USERLIST_WORKER_URL = 'https://userlist-proxy.marker-276.workers.dev';
+        let storedEmail = '';
+
         const page = document.querySelector('.page');
         const emailInput = document.getElementById('fields_email');
+        const signupForm = document.querySelector('.signup-form');
 
         setTimeout(() => page.classList.add('phase-in'), 200);
         setTimeout(() => page.classList.add('phase-rocks'), 500);
@@ -712,7 +891,10 @@
         });
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') modal.classList.remove('active');
+            if (e.key === 'Escape') {
+                modal.classList.remove('active');
+                followupOverlay.classList.remove('active');
+            }
         });
 
         function updateIcons() {
@@ -748,6 +930,115 @@
         document.addEventListener('click', (e) => {
             if (!flanneryCorner.contains(e.target)) {
                 flanneryCorner.classList.remove('active');
+            }
+        });
+
+        // Follow-up modal elements
+        const followupOverlay = document.getElementById('followup-modal');
+        const followupCloseBtn = document.getElementById('followup-close');
+        const followupForm = document.getElementById('followup-form');
+        const followupThankyou = document.getElementById('followup-thankyou');
+
+        followupCloseBtn.addEventListener('click', () => {
+            followupOverlay.classList.remove('active');
+        });
+
+        followupOverlay.addEventListener('click', (e) => {
+            if (e.target === followupOverlay) followupOverlay.classList.remove('active');
+        });
+
+        // Step 1: Intercept signup form, POST email to Userlist, then show follow-up modal
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = signupForm.querySelector('button[type="submit"]');
+            const origText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = '...';
+
+            const existingError = document.querySelector('.signup-error');
+            if (existingError) existingError.remove();
+
+            const email = emailInput.value.trim();
+
+            const formData = new FormData();
+            formData.append('fields[email]', email);
+
+            try {
+                const res = await fetch(USERLIST_FORM_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!res.ok) throw new Error('Submission failed');
+
+                storedEmail = email;
+                emailInput.value = '';
+                submitBtn.disabled = false;
+                submitBtn.textContent = origText;
+
+                followupForm.style.display = '';
+                followupThankyou.style.display = 'none';
+                followupOverlay.classList.add('active');
+
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = origText;
+
+                const errorEl = document.createElement('div');
+                errorEl.className = 'signup-error';
+                errorEl.textContent = 'Something went wrong. Please try again.';
+                signupForm.parentNode.insertBefore(errorEl, signupForm.nextSibling);
+
+                setTimeout(() => errorEl.remove(), 4000);
+            }
+        });
+
+        // Step 2: Submit follow-up answers to Userlist with the stored email
+        followupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = followupForm.querySelector('.followup-submit');
+            const origText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = '...';
+
+            const secretCode = document.getElementById('field_secret_code').value.trim();
+            const name = document.getElementById('field_name').value.trim();
+
+            const checkedBoxes = followupForm.querySelectorAll('input[name="writing"]:checked');
+            const writingValues = Array.from(checkedBoxes).map(cb => cb.value).join(', ');
+
+            const nameParts = name.split(/\s+/);
+            const firstName = nameParts[0] || '';
+            const lastName = nameParts.slice(1).join(' ') || '';
+
+            const properties = {};
+            if (secretCode) properties.secret_code = secretCode;
+            if (writingValues) properties.writing_question = writingValues;
+            if (firstName) properties.firstname = firstName;
+            if (lastName) properties.lastname = lastName;
+
+            try {
+                const res = await fetch(USERLIST_WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: storedEmail, properties })
+                });
+
+                if (!res.ok) throw new Error('Submission failed');
+
+                followupForm.style.display = 'none';
+                document.getElementById('followup-title').style.display = 'none';
+                document.getElementById('followup-subtitle').style.display = 'none';
+                followupThankyou.style.display = '';
+
+                setTimeout(() => followupOverlay.classList.remove('active'), 5000);
+
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = origText;
+                alert('Something went wrong. Please try again.');
             }
         });
     </script>
