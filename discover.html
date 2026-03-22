@@ -653,9 +653,25 @@
             color: #555;
         }
 
+        /* ========= TABLET ========= */
+
+        @media (min-width: 641px) and (max-width: 1080px) {
+            .pebbles-image {
+                right: auto;
+                left: 50%;
+                top: 50%;
+                bottom: auto;
+                transform: translate(-50%, calc(-50% + 30px));
+            }
+
+            .phase-rocks .pebbles-image {
+                transform: translate(-50%, -50%) scale(.8);
+            }
+        }
+
         /* ========= MOBILE ========= */
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .marker-logo {
                 left: 7%;
                 top: 6%;
@@ -667,9 +683,10 @@
                 left: 35px;
                 bottom: 100px;
                 top: auto;
-                font-size: 19px;
-                line-height: 0.78;
-                width: 325px;
+                font-size: 16px;
+                line-height: 1.28;
+                width:100%;
+                max-width: 340px;
                 letter-spacing: 0.16px;
             }
 
@@ -757,7 +774,7 @@
 
         <div class="headline">
             <p>Marker is a space for thinking and writing.</p>
-            <p>Where rough thoughts and vague inklings start to take shape.</p>
+            <p>A refuge in a storm of slop, where even the vaguest inklings can take shape.</p>
             <p>Write with us.</p>
         </div>
 
