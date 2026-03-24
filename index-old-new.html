@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marker - Where the rough becomes refined</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://marker.page/">
+    <meta property="og:title" content="Marker - Where the rough becomes refined">
+    <meta property="og:description" content="Marker is a writing space built for serious thinking: focused, flexible, and made for ideas to take shape.">
+    <meta property="og:image" content="https://marker.page/images/opengraph.png">
+    
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://marker.page/">
+    <meta property="twitter:title" content="Marker - Where the rough becomes refined">
+    <meta property="twitter:description" content="Marker is a writing space built for serious thinking: focused, flexible, and made for ideas to take shape.">
+    <meta property="twitter:image" content="https://marker.page/images/opengraph.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                screens: {
+                    'sm': '640px',
+                    'md': '1020px',
+                    // 'lgg': '1px',
+                    'xl': '1280px',
+                    '2xl': '1536px',
+                },
+                extend: {
+                    colors: {
+                        'cream': '#fbede2',
+                        'dark-brown': '#222222',
+                        'medium-brown': '#111111',
+                        'rust': '#994e41'
+                    },
+                    fontFamily: {
+                        'museum': ['PP Museum', 'serif'],
+                        'grosa': ['Grosa', 'sans-serif'],
+                        'grosa-mono': ['Grosa Mono Trial', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --medium-breakpoint: 1020px;
+        }
+
+        /* Pebble container styles */
+        .pebble-stack {
+            position: absolute;
+            left: 50%;
+            bottom: .75em;
+            transform: translateX(-50%) scale(1.25);
+            transform-origin: center bottom;
+            width: 100%;
+            max-width: 600px;
+            height: 600px;
+        }
+
+        /* Responsive adjustments for pebble stack */
+        @media (max-width: 1020px) {
+            .pebble-stack {
+                max-width: 400px;
+                height: 400px;
+                bottom: 0;
+            }
+        }
+
+        /* Smooth transition for scale changes */
+        .pebble-stack {
+            transition: transform 0.3s ease-out;
+        }
+          /* Responsive adjustments for vertical small iPads */
+          @media (min-height: 900px) and (max-height: 1290px) and (min-width: 660px) and (max-width: 1020px) {
+             .pebble-stack {
+                 margin-left: 140px;
+                 scale: 1.6
+             }
+             .logo-container {
+                 scale: 1.4;
+                 margin-top: 15px;
+             }
+          }
+          @media (max-width: 400px) {
+            .custom-mt-reset {
+                margin-top: -.5em !important;
+            }
+          }
+      
+    </style>
+
+      
+   
+</head>
+
+<body class="bg-cream min-h-screen  overflow-hidden">
+    <!-- Logo -->
+    <div class="absolute top-3 md:top-8 left-1/2 transform -translate-x-1/2">
+        <img src="images/logo2x.png" alt="Marker" class="h-8 md:h-10 w-auto logo-container">
+    </div>
+
+    <!-- Log in -->
+    <a href="https://my.marker.page"
+       class="absolute top-7 md:top-10 right-4 md:right-8 font-grosa-mono text-medium-brown text-[12px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+        Log in
+    </a>
+
+    <!-- Bottom Left Content Stack -->
+    <div
+        class="absolute top-24 md:top-32 left-1/2 transform -translate-x-1/2 md:bottom-[32px]
+        md:top-auto md:left-8 md:transform-none md:translate-x-0 w-full text-balance md:max-w-72 text-center md:text-left">
+        <!-- Main Heading -->
+        <h1 class="font-museum text-dark-brown text-[28px] md:text-3xl leading-[30px] md:leading-[33px] mb-3.5 w-72 md:w-auto mx-auto">
+            Where the rough becomes refined
+        </h1>
+
+        <!-- Description -->
+        <p class="font-grosa text-medium-brown text-sm leading-tight mb-3.5 w-72 md:w-auto mx-auto">Marker is a new writing space built for thinking: focused, flexible, and made for ideas to take shape.
+        </p>
+
+        <!-- CTA Button -->
+        
+       
+        <form action="https://forms.userlist.com/5444a4a9-ad95-4e2a-87b2-090ce86aa9cd/submissions" method="POST" accept-charset="UTF-8"
+              class="flex flex-row flex-nowrap items-stretch border border-stone-200 mt-4 max-w-72 mx-auto md:mx-0 rounded-[6px] overflow-hidden bg-white focus-within:border-rust transition-colors">
+            <div class="flex-1 min-w-0">
+              <label for="fields_email" class="hidden">Email</label>
+              <input type="email" id="fields_email" name="fields[email]" placeholder="Enter email for early access" required autofocus
+                     class="w-full h-[42px] px-4 pl-3 border-0 outline-none font-grosa text-sm bg-white"/>
+            </div>
+            <button type="submit"
+                    class="h-[42px] px-4 pt-1 whitespace-nowrap border-0 border-l border-stone-200 bg-rust text-white font-grosa text-xs uppercase tracking-wider font-semibold cursor-pointer hover:bg-black transition-colors">Sign up</button>
+          </form>
+
+        <div class="flex space-x-8 justify-center md:justify-start md:hidden  relative md:mt-5 mt-6">
+            <a href="jobs"
+                class="font-grosa-mono text-medium-brown text-[9px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                Jobs
+            </a>
+            <div href="#"
+                class="flex items-center gap-2 font-grosa-mono text-medium-brown text-[9px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                London made <svg xmlns="https://www.w3.org/2000/svg" width="11" height="11" fill="#994E41" viewBox="0 0 256 256"><path d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"></path></svg>
+            </div>
+        </div>
+
+    </div>
+    <div class="absolute right-8 bottom-6 hidden md:block">
+        <div class="flex space-x-8 justify-center md:justify-start">
+            <a href="privacy"
+                class="font-grosa-mono text-medium-brown text-[10px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                Privacy
+            </a>
+            <a href="jobs"
+                class="font-grosa-mono text-medium-brown text-[10px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                Jobs
+            </a>
+            <div href="#"
+                class="flex items-center gap-1 font-grosa-mono text-medium-brown text-[10px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
+                London made <a href="https://my.marker.page">
+                    <svg xmlns="https://www.w3.org/2000/svg" width="11" height="11" fill="#994E41" viewBox="0 0 256 256"><path d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"></path></svg>
+                </a>
+            </div>
+           
+        </div>
+    </div>
+    <!-- Static Pebble Stack -->
+    <div class="pebble-stack pointer-events-none">
+        <!-- Pebble 1: Bottom large blue pebble (base) -->
+        <img src="pebbles/pebble1.png" alt="Blue Base Pebble"
+            class="absolute bottom-[0%] md:bottom-[2%] left-1/2 -translate-x-1/2 w-[173px] md:w-[359px] h-auto object-contain" />
+
+        <!-- Pebble 2: Red elongated pebble (horizontal on top of base) -->
+        <img src="pebbles/pebble2.png" alt="Red long Pebble"
+            class="absolute bottom-[22.45%] md:bottom-[34%] left-[61%] md:left-[62%] -translate-x-1/2 -rotate-[0deg] w-[105px] md:w-[175px] h-auto object-contain" />
+
+        <!-- Pebble 3: Small  -->
+        <img src="pebbles/pebble3.png" alt="yellow oval Pebble"
+            class="absolute bottom-[28.25%] md:bottom-[40.7%] left-[46.5%] md:left-[47%] -translate-x-1/2 w-[57px] md:w-[130px] h-auto object-contain" />
+
+        <!-- Pebble 4:  -->
+        <img src="pebbles/pebble4.png" alt="black Pebble"
+            class="absolute bottom-[25%] md:bottom-[36.8%] left-[73%] md:left-[76%] -translate-x-1/2 w-[38px] md:w-[72px] h-auto object-contain" />
+
+        <!-- Pebble 5: Large gray/white pebble (center of stack) -->
+        <img src="pebbles/pebble5.png" alt="Gray Pebble"
+            class="absolute bottom-[40.8%] md:bottom-[59.75%] left-1/2 -translate-x-1/2 w-[105px] md:w-[209px] h-auto object-contain" />
+
+        <!-- Pebble 6: Top yellow/tan round pebble -->
+        <img src="pebbles/pebble6.png" alt="Top Yellow Pebble"
+            class="absolute bottom-[59%] md:bottom-[84.5%] left-[52%] -translate-x-1/2 w-[45px] md:w-[85px] h-auto object-contain" />
+    </div>
+
+    <script>
+        function updatePebbleStackScale() {
+            const pebbleStack = document.querySelector('.pebble-stack');
+            const logo = document.querySelector('img[alt="Marker"]');
+
+            if (!pebbleStack || !logo) return;
+
+            const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
+
+            // Get logo position and height
+            const logoRect = logo.getBoundingClientRect();
+            const logoBottom = logoRect.bottom;
+
+            // Calculate desired clearance (logo bottom + 20px minimum)
+            const desiredClearance = logoBottom + 40;
+
+            // Base height of pebble stack (600px for desktop, 400px for mobile)
+            const baseHeight = viewportWidth <= 860 ? 400 : 600;
+
+            // Calculate available height (viewport - desired clearance)
+            const availableHeight = viewportHeight - desiredClearance;
+
+            // Calculate scale to fit available height
+            let scale = availableHeight / baseHeight;
+
+            // Set minimum and maximum scale limits
+            const minScale = 0.3;
+            const maxScale = viewportWidth <= 860 ? 1.2 : 1.4;
+
+            // Clamp scale within limits
+            scale = Math.max(minScale, Math.min(maxScale, scale));
+
+            // Apply smooth scaling
+            pebbleStack.style.transform = `translateX(-50%) scale(${scale})`;
+        }
+
+        // Initial call
+        updatePebbleStackScale();
+
+        // Update on resize with debouncing
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(updatePebbleStackScale, 100);
+        });
+
+        // Update on orientation change
+        window.addEventListener('orientationchange', () => {
+            setTimeout(updatePebbleStackScale, 200);
+        });
+
+        // Auto-focus the email input field when page loads
+        function focusEmailInput() {
+            const emailInput = document.getElementById('fields_email');
+            if (emailInput) emailInput.focus();
+        }
+
+        window.addEventListener('load', focusEmailInput);
+        if (document.readyState !== 'loading') focusEmailInput();
+    </script>
+
+</body>
+
+</html>

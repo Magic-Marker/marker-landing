@@ -4,270 +4,1068 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marker - Where the rough becomes refined</title>
-    
+    <title>Marker</title>
+
     <!-- Favicon and App Icons -->
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="styles.css">
-    
+
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://marker.page/">
-    <meta property="og:title" content="Marker - Where the rough becomes refined">
-    <meta property="og:description" content="Marker is a writing space built for serious thinking: focused, flexible, and made for ideas to take shape.">
+    <meta property="og:title" content="Marker - A space for thinking and writing">
+    <meta property="og:description" content="Marker is a space for thinking and writing. Write with us.">
     <meta property="og:image" content="https://marker.page/images/opengraph.png">
-    
+
     <!-- Twitter Card -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://marker.page/">
-    <meta property="twitter:title" content="Marker - Where the rough becomes refined">
-    <meta property="twitter:description" content="Marker is a writing space built for serious thinking: focused, flexible, and made for ideas to take shape.">
+    <meta property="twitter:title" content="Marker - A space for thinking and writing">
+    <meta property="twitter:description" content="Marker is a space for thinking and writing. Write with us.">
     <meta property="twitter:image" content="https://marker.page/images/opengraph.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
-                screens: {
-                    'sm': '640px',
-                    'md': '1020px',
-                    // 'lgg': '1px',
-                    'xl': '1280px',
-                    '2xl': '1536px',
-                },
                 extend: {
-                    colors: {
-                        'cream': '#fbede2',
-                        'dark-brown': '#222222',
-                        'medium-brown': '#111111',
-                        'rust': '#994e41'
-                    },
                     fontFamily: {
-                        'museum': ['PP Museum', 'serif'],
-                        'grosa': ['Grosa', 'sans-serif'],
-                        'grosa-mono': ['Grosa Mono Trial', 'monospace']
+                        'grosa': ['Grosa Light', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        'ia': ['iA', 'Courier New', 'monospace'],
                     }
                 }
             }
         }
     </script>
-    <style>
-        :root {
-            --medium-breakpoint: 1020px;
+    <style type="text/tailwindcss">
+        @font-face {
+            font-family: 'Grosa';
+            src: url('fonts/grosa.woff2') format('woff2'),
+                url('fonts/grosa.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Grosa Light';
+            src: url('fonts/GrosaTrial-Light.woff2') format('woff2'),
+                url('fonts/GrosaTrial-Light.woff') format('woff');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
         }
 
-        /* Pebble container styles */
-        .pebble-stack {
+        @font-face {
+            font-family: 'GTF Byrd';
+            src: url('fonts/GTFByrdTRIAL-Regular.woff2') format('woff2'),
+                url('fonts/GTFByrdTRIAL-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'GTF Byrd';
+            src: url('fonts/GTFByrdTRIAL-SemiBold.woff2') format('woff2'),
+                url('fonts/GTFByrdTRIAL-SemiBold.woff') format('woff');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'iA';
+            src: url('fonts/iAWriterQuattroS-Regular.woff2') format('woff2'),
+                url('fonts/iAWriterQuattroS-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'iA';
+            src: url('fonts/iAWriterQuattroS-Bold.woff2') format('woff2'),
+                url('fonts/iAWriterQuattroS-Bold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Museum';
+            src: url('fonts/museum.woff2') format('woff2'),
+                url('fonts/museum.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        html, body {
+            @apply w-full h-full overflow-hidden;
+        }
+
+        body {
+            @apply bg-[#faf8f5] font-grosa;
+        }
+
+        .page {
+            @apply relative w-screen overflow-hidden;
+            height: 100dvh;
+        }
+
+        /* ========= NAV ========= */
+
+        .nav-links {
+            @apply absolute z-10 flex items-center;
+            top: 24px;
+            right: 34px;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            @apply font-ia font-medium uppercase text-[#111] no-underline;
+            font-size: 10px;
+            letter-spacing: 1.2px;
+        }
+
+        .nav-links a:hover {
+            @apply opacity-60;
+        }
+
+        /* ========= HEADLINE ========= */
+
+        .headline {
+            @apply absolute text-black;
+            font-family: 'GTF Byrd', sans-serif;
+            left: 43px;
+            bottom: 108px;
+            width: 387px;
+            font-size: 18px;
+            line-height: 1.4;
+            letter-spacing: 0.18px;
+            text-wrap: balance;
+        }
+
+        .headline p {
+            margin-bottom: 13px;
+        }
+
+        .headline p:last-child {
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .headline .star {
+            color: #994e41;
+            font-weight: 600;
+            font-size: 1.4em;
+            position: relative;
+            top: 0px;
+            line-height: 0;
+        }
+
+        /* ========= SIGNUP FORM ========= */
+
+        .signup-form {
+            @apply absolute flex items-center;
+            left: 40px;
+            bottom: 40px;
+            width: 285px;
+            border-radius: 10px;
+            padding: 5px 5px 5px 10px;
+            border: 1px solid #cecece;
+            background: white;
+        }
+
+        .signup-form input {
+            @apply bg-transparent border-0 outline-none;
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 12px;
+            line-height: 1.1;
+            color: #333;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .signup-form input::placeholder {
+            color: #b6b6b6;
+            opacity: 1;
+        }
+
+        .signup-form input:focus::placeholder {
+            color: #b6b6b6;
+            opacity: 1;
+        }
+
+        .signup-form button {
+            @apply font-ia font-medium uppercase text-white cursor-pointer border-0 shrink-0;
+            background: #994e41;
+            border-radius: 7px;
+            padding: 9px 16px 9px 15px;
+            font-size: 9px;
+            letter-spacing: 0.72px;
+            margin-left: 8px;
+            transition: background 0.2s ease;
+        }
+
+        .signup-form button:hover {
+            @apply bg-black;
+        }
+
+        /* ========= PEBBLES IMAGE ========= */
+
+        .pebbles-image {
+            @apply absolute overflow-hidden;
+            right: 5%;
+            bottom: 6%;
+            width: 610px;
+            height: 326px;
+        }
+
+        .pebbles-image img {
+            @apply w-full h-full block;
+            object-fit: cover;
+        }
+
+        /* ========= MARKER LOGO ========= */
+
+        .marker-logo {
+            @apply absolute;
+            left: 3.4%;
+            top: 3.8%;
+            width: 83.5%;
+        }
+
+        .marker-logo img {
+            @apply w-full h-auto block;
+        }
+
+        /* ========= FLANNERY CORNER ========= */
+
+        .flannery-corner {
+            @apply absolute;
+            left: 0;
+            bottom: 0;
+            display: flex;
+            align-items: flex-end;
+            gap: 0;
+        }
+
+        .flannery-photo {
+            width: 43px;
+            height: auto;
+            display: block;
+            cursor: pointer;
+            flex-shrink: 0;
+            transform: rotate(38.32deg);
+            margin-left: -8px;
+            margin-bottom: -2px;
+        }
+
+        .flannery-right {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 8px;
+            margin-left: 4px;
+        }
+
+        .flannery-text {
             position: absolute;
-            left: 50%;
-            bottom: .75em;
-            transform: translateX(-50%) scale(1.25);
-            transform-origin: center bottom;
-            width: 100%;
-            max-width: 600px;
-            height: 600px;
+            bottom: 100%;
+            left: 0;
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 12px;
+            line-height: 17px;
+            letter-spacing: -0.24px;
+            color: #994e41;
+            width: 191px;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
         }
 
-        /* Responsive adjustments for pebble stack */
-        @media (max-width: 1020px) {
-            .pebble-stack {
-                max-width: 400px;
+        .flannery-text p {
+            margin: 0 0 12px 0;
+        }
+
+        .flannery-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .flannery-corner.active .flannery-text {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .flannery-attribution {
+            display: flex;
+            align-items: baseline;
+            cursor: pointer;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .flannery-star {
+            font-family: 'GTF Byrd', sans-serif;
+            font-weight: 600;
+            font-size: 27px;
+            line-height: 1;
+            color: #994e41;
+            letter-spacing: 0.2px;
+            position: relative;
+            top: 11px;
+        }
+
+        .flannery-label {
+            font-family: 'GTF Byrd', sans-serif;
+            font-weight: 600;
+            font-size: 11px;
+            line-height: 1.48;
+            letter-spacing: 0.11px;
+            color: black;
+        }
+
+        .mobile-only { display: none; }
+
+        /* ========= ANIMATIONS ========= */
+
+        .marker-logo {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.6s ease;
+        }
+
+        .nav-links {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.5s ease;
+        }
+
+        .headline {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.5s ease;
+        }
+
+        .signup-form {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.5s ease;
+        }
+
+        .pebbles-image {
+            opacity: 0;
+            transform: translate(30px, 30px);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.8s ease;
+        }
+
+        .flannery-corner {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .phase-in .marker-logo {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .phase-in .nav-links {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .phase-content .headline {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .phase-content .signup-form {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .phase-rocks .pebbles-image {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        .phase-content .flannery-corner {
+            opacity: 1;
+        }
+
+        /* ========= MODAL ========= */
+
+        .modal-overlay {
+            @apply fixed inset-0 z-50 flex items-center justify-center;
+            background: rgba(239, 234, 231, 0.9);
+            backdrop-filter: blur(9px);
+            -webkit-backdrop-filter: blur(9px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal {
+            @apply relative;
+            background: #FAF8F5;
+            border: 1px solid #C8C8C8;
+            border-radius: 16px;
+            width: 520px;
+            max-width: 90vw;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 40px 36px;
+            transform: translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            @apply absolute cursor-pointer border-0 bg-transparent;
+            top: 16px;
+            right: 20px;
+            font-size: 28px;
+            line-height: 1;
+            color: #999;
+            transition: color 0.2s ease;
+        }
+
+        .modal-close:hover {
+            color: #111;
+        }
+
+        .modal-title {
+            font-family: 'Museum', serif;
+            font-weight: normal;
+            font-size: 32px;
+            color: #111;
+            margin-bottom: 5px;
+        }
+
+        .faq-item {
+            border-top: 1px solid #ddd;
+        }
+
+        .faq-item:last-child {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .faq-question {
+            @apply w-full flex items-center justify-between cursor-pointer border-0 bg-transparent text-left;
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 14px;
+            color: #111;
+            padding: 16px 0;
+            gap: 12px;
+        }
+
+        .faq-question:hover {
+            color: #994e41;
+        }
+
+        .faq-icon {
+            @apply shrink-0;
+            font-size: 20px;
+            line-height: 1;
+            transition: transform 0.25s ease;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: none;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+            padding-bottom: 16px;
+        }
+
+        .faq-answer p {
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 13px;
+            line-height: 1.55;
+            color: #555;
+        }
+
+        .faq-answer a,
+        #learn-more-modal .modal > p a {
+            color: #994e41;
+            text-decoration: underline;
+        }
+
+        /* ========= FOLLOW-UP MODAL ========= */
+
+        .followup-field {
+            margin-bottom: 24px;
+        }
+      
+
+        .followup-label {
+            display: block;
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 14px;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .followup-input {
+            @apply border-0 outline-none;
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 13px;
+            color: #333;
+            background: white;
+            border: 1px solid #cecece;
+            border-radius: 8px;
+            padding: 10px 12px;
+            transition: border-color 0.2s ease;
+        }
+
+        .followup-input.input-name {
+            width: 70%;
+        }
+
+        .followup-input.input-code {
+            width: 50%;
+        }
+
+        .followup-input:focus {
+            border-color: #994e41;
+        }
+
+        .followup-input::placeholder {
+            color: #b6b6b6;
+        }
+
+        .followup-checkboxes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .followup-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .followup-checkbox-label input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #cecece;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            flex-shrink: 0;
+            position: relative;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .followup-checkbox-label input[type="checkbox"]:checked {
+            background: #994e41;
+            border-color: #994e41;
+        }
+
+        .followup-checkbox-label input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 2px;
+            width: 5px;
+            height: 9px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .followup-submit {
+            @apply font-ia font-medium uppercase text-white cursor-pointer border-0 w-full;
+            background: #994e41;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 10px;
+            letter-spacing: 0.8px;
+            margin-top: 8px;
+            transition: background 0.2s ease;
+        }
+
+        .followup-submit:hover {
+            @apply bg-black;
+        }
+
+        .followup-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .signup-error {
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 11px;
+            color: #c0392b;
+            position: absolute;
+            left: 40px;
+            bottom: 55px;
+        }
+
+        .followup-thankyou {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .followup-thankyou h3 {
+            font-family: 'Museum', serif;
+            font-weight: normal;
+            font-size: 28px;
+            color: #111;
+            margin-bottom: 12px;
+        }
+
+        .followup-thankyou p {
+            font-family: 'GTF Byrd', sans-serif;
+            font-size: 13px;
+            line-height: 1.55;
+            color: #555;
+        }
+
+        /* ========= TABLET ========= */
+
+        @media (min-width: 641px) and (max-width: 1080px) {
+            .pebbles-image {
+                right: auto;
+                left: 50%;
+                top: 50%;
+                bottom: auto;
+                transform: translate(-50%, calc(-50% + 30px));
+            }
+            .marker-logo img {transform: scale(.75); transform-origin: left top;}
+            .phase-rocks .pebbles-image {
+                transform: translate(-50%, -50%) scale(.8);
+            }
+        }
+
+        /* ========= MOBILE ========= */
+
+        @media (max-width: 768px) {
+            .marker-logo {
+                left: 7%;
+                top: 6%;
+                bottom: auto;
+                width: 87%;
+            }
+
+            .headline {
+                left: 35px;
+                bottom: 100px;
+                top: auto;
+                font-size: 16px;
+                line-height: 1.4;
+                width:100%;
+                max-width: 340px;
+                letter-spacing: 0.16px;
+            }
+
+            .signup-form {
+                left: 33px;
+                bottom: 37px;
+                top: auto;
+                width: 100%;
+                max-width: 330px;
+            }
+
+            .signup-error {
+                left: 33px;
+                bottom: 60px;
+            }
+
+            .followup-input.input-name,
+            .followup-input.input-code {
+                width: 100%;
+            }
+
+            .pebbles-image {
+                left: 50%;
+                top: 50%;
+                right: auto;
+                bottom: auto;
+                width: 300px;
                 height: 400px;
-                bottom: 0;
+                transform: translate(-50%, -55%);
             }
-        }
 
-        /* Smooth transition for scale changes */
-        .pebble-stack {
-            transition: transform 0.3s ease-out;
-        }
-          /* Responsive adjustments for vertical small iPads */
-          @media (min-height: 900px) and (max-height: 1290px) and (min-width: 660px) and (max-width: 1020px) {
-             .pebble-stack {
-                 margin-left: 140px;
-                 scale: 1.6
-             }
-             .logo-container {
-                 scale: 1.4;
-                 margin-top: 15px;
-             }
-          }
-          @media (max-width: 400px) {
-            .custom-mt-reset {
-                margin-top: -.5em !important;
+            .pebbles-image img {
+                width: auto;
+                height: 300px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(-90deg);
+                object-fit: contain;
             }
-          }
-      
+
+            .phase-rocks .pebbles-image {
+                transform: translate(-50%, -55%);
+            }
+
+            .pebbles-image {
+                transform: translate(-50%, calc(-55% + 30px));
+            }
+
+            .flannery-corner {
+                left: 32px;
+                bottom: 16px;
+                right: auto;
+                z-index: 5;
+                gap: 0;
+            }
+
+            .flannery-text {
+                width: 150px;
+            }
+
+            .flannery-photo {
+                display: none;
+            }
+
+            .desktop-only { display: none; }
+            .mobile-only { display: inline; }
+
+            .nav-links {
+                top: 18px;
+                right: 16px;
+                gap: 18px;
+            }
+        }
     </style>
-
-      
-   
 </head>
 
-<body class="bg-cream min-h-screen  overflow-hidden">
-    <!-- Logo -->
-    <div class="absolute top-3 md:top-8 left-1/2 transform -translate-x-1/2">
-        <img src="images/logo2x.png" alt="Marker" class="h-8 md:h-10 w-auto logo-container">
-    </div>
+<body>
+    <div class="page">
+        <nav class="nav-links">
+            <a href="#" id="learn-more-link">LEARN MORE</a>
+            <a href="/jobs">JOBS</a>
+            <a href="https://my.marker.page">LOGIN</a>
+        </nav>
 
-    <!-- Log in -->
-    <a href="https://my.marker.page"
-       class="absolute top-7 md:top-10 right-4 md:right-8 font-grosa-mono text-medium-brown text-[12px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
-        Log in
-    </a>
+        <div class="headline">
+            <p>Marker is a space for thinking and writing.</p>
+            <p>A refuge in a storm of slop, where even the vaguest inkling can take shape.</p>
+            <p>Write with us.</p>
+        </div>
 
-    <!-- Bottom Left Content Stack -->
-    <div
-        class="absolute top-24 md:top-32 left-1/2 transform -translate-x-1/2 md:bottom-[32px]
-        md:top-auto md:left-8 md:transform-none md:translate-x-0 w-full text-balance md:max-w-72 text-center md:text-left">
-        <!-- Main Heading -->
-        <h1 class="font-museum text-dark-brown text-[28px] md:text-3xl leading-[30px] md:leading-[33px] mb-3.5 w-72 md:w-auto mx-auto">
-            Where the rough becomes refined
-        </h1>
+        <form class="signup-form">
+            <label for="fields_email" class="hidden">Join the waitlist</label>
+            <input type="email" id="fields_email" name="fields[email]" placeholder="Join our waiting list" required title="">
+            <button type="submit">Sign up</button>
+        </form>
 
-        <!-- Description -->
-        <p class="font-grosa text-medium-brown text-sm leading-tight mb-3.5 w-72 md:w-auto mx-auto">Marker is a new writing space built for thinking: focused, flexible, and made for ideas to take shape.
-        </p>
+        <div class="pebbles-image">
+            <img src="images/lux-pebbles.png" alt="">
+        </div>
 
-        <!-- CTA Button -->
+        <div class="marker-logo">
+            <img src="images/marker-logo.svg" alt="Marker">
+        </div>
+
         
-       
-        <form action="https://forms.userlist.com/5444a4a9-ad95-4e2a-87b2-090ce86aa9cd/submissions" method="POST" accept-charset="UTF-8"
-              class="flex flex-row flex-nowrap items-stretch border border-stone-200 mt-4 max-w-72 mx-auto md:mx-0 rounded-[6px] overflow-hidden bg-white focus-within:border-rust transition-colors">
-            <div class="flex-1 min-w-0">
-              <label for="fields_email" class="hidden">Email</label>
-              <input type="email" id="fields_email" name="fields[email]" placeholder="Enter email for early access" required autofocus
-                     class="w-full h-[42px] px-4 pl-3 border-0 outline-none font-grosa text-sm bg-white"/>
-            </div>
-            <button type="submit"
-                    class="h-[42px] px-4 pt-1 whitespace-nowrap border-0 border-l border-stone-200 bg-rust text-white font-grosa text-xs uppercase tracking-wider font-semibold cursor-pointer hover:bg-black transition-colors">Sign up</button>
-          </form>
 
-        <div class="flex space-x-8 justify-center md:justify-start md:hidden  relative md:mt-5 mt-6">
-            <a href="jobs"
-                class="font-grosa-mono text-medium-brown text-[9px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
-                Jobs
-            </a>
-            <div href="#"
-                class="flex items-center gap-2 font-grosa-mono text-medium-brown text-[9px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
-                London made <svg xmlns="https://www.w3.org/2000/svg" width="11" height="11" fill="#994E41" viewBox="0 0 256 256"><path d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"></path></svg>
+        <div class="modal-overlay" id="learn-more-modal">
+            <div class="modal">
+                <button class="modal-close" id="modal-close">&times;</button>
+                <h2 class="modal-title">Learn more</h2>
+                <p style="font-family: 'GTF Byrd', sans-serif; font-size: 13px; line-height: 1.55; color: #555; margin-bottom: 24px;">Marker is still new and changing, but a few questions are worth answering now. If yours isn't here — or you just want to talk — write to us at <a href="mailto:hello@marker.page">hello@marker.page</a>.</p>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What is Marker?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Marker is a writing space built for thinking. It's focused, flexible, and made for ideas to take shape. We think of it as a love letter to anyone who works with words. If you care about how ideas come together — not just how they look — you're in the right place.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How is Marker different from other writing tools?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Most writing tools optimize for output. Marker is designed for the process — the rough drafts, the half-formed thoughts, the work that happens before something is ready to share. It's designed with features that actually help you transform your thoughts into words (without writing it for you).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>When will Marker be available?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We're building Marker thoughtfully and releasing access in waves. If you'd like to give it a try, sign up for the waitlist. Or if you have a friend or colleague using Marker, ask nicely and they can invite you (we suggest flowers).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is Marker free?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>While Marker is free in this alpha period, we eventually plan to ask people to subscribe. And we want to make it so wonderfully helpful that you're more-than-happy to support us.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Your writing is yours</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our core value is 'writers first,' and that means all your writing is yours (not ours), we don't allow it to be used to train third-party models (like Gemini or Claude or ChatGPT), and you can download your documents anytime you want. If you want to know more, you can check out our full <a href="/terms">terms of service</a> and <a href="/privacy">privacy policy</a>.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-    </div>
-    <div class="absolute right-8 bottom-6 hidden md:block">
-        <div class="flex space-x-8 justify-center md:justify-start">
-            <a href="privacy"
-                class="font-grosa-mono text-medium-brown text-[10px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
-                Privacy
-            </a>
-            <a href="jobs"
-                class="font-grosa-mono text-medium-brown text-[10px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
-                Jobs
-            </a>
-            <div href="#"
-                class="flex items-center gap-1 font-grosa-mono text-medium-brown text-[10px] uppercase tracking-[10%] hover:opacity-70 transition-opacity">
-                London made <a href="https://my.marker.page">
-                    <svg xmlns="https://www.w3.org/2000/svg" width="11" height="11" fill="#994E41" viewBox="0 0 256 256"><path d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"></path></svg>
-                </a>
+        <div class="modal-overlay" id="followup-modal">
+            <div class="modal">
+                <button class="modal-close" id="followup-close">&times;</button>
+                <h2 class="modal-title" id="followup-title">You're on the list!</h2>
+                <p id="followup-subtitle" style="font-family: 'GTF Byrd', sans-serif; font-size: 13px; line-height: 1.55; color: #555; margin-bottom: 24px;">
+                    These ?'s are optional, but they help us prioritise the waitlist. Email us at <a href="mailto:hi@marker.page" style="color: #994e41; text-decoration: underline;">hi@marker.page</a> if you are desperate though.</p>
+
+                <form id="followup-form">
+                    <div class="followup-field">
+                        <label class="followup-label" for="field_name">What is your name?</label>
+                        <input type="text" id="field_name" class="followup-input input-name" placeholder="Your name">
+                    </div>
+
+                    <div class="followup-field">
+                        <label class="followup-label">What are you writing?</label>
+                        <div class="followup-checkboxes">
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Newsletter or blog"> Newsletter or blog (Substack and beyond)</label>
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Journalism and non-fiction"> Journalism, non-fiction, personal essays</label>
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Creative writing"> Creative writing (novels, scripts, short stories)</label>
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Work writing"> Work writing (comms, PR, memos, grants)</label>
+                            <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Academic"> Academic papers or assignments</label>
+                        </div>
+                    </div>
+
+                    <div class="followup-field">
+                        <label class="followup-label" for="field_secret_code">Do you have a secret code?</label>
+                        <input type="text" id="field_secret_code" class="followup-input input-code" placeholder="Enter your code">
+                    </div>
+
+                    <button type="submit" class="followup-submit">Submit</button>
+                </form>
+
+                <div class="followup-thankyou" id="followup-thankyou" style="display: none;">
+                    <h3>Thanks!</h3>
+                    <p>You're all signed up. We'll be in touch.</p>
+                </div>
             </div>
-           
         </div>
-    </div>
-    <!-- Static Pebble Stack -->
-    <div class="pebble-stack pointer-events-none">
-        <!-- Pebble 1: Bottom large blue pebble (base) -->
-        <img src="pebbles/pebble1.png" alt="Blue Base Pebble"
-            class="absolute bottom-[0%] md:bottom-[2%] left-1/2 -translate-x-1/2 w-[173px] md:w-[359px] h-auto object-contain" />
-
-        <!-- Pebble 2: Red elongated pebble (horizontal on top of base) -->
-        <img src="pebbles/pebble2.png" alt="Red long Pebble"
-            class="absolute bottom-[22.45%] md:bottom-[34%] left-[61%] md:left-[62%] -translate-x-1/2 -rotate-[0deg] w-[105px] md:w-[175px] h-auto object-contain" />
-
-        <!-- Pebble 3: Small  -->
-        <img src="pebbles/pebble3.png" alt="yellow oval Pebble"
-            class="absolute bottom-[28.25%] md:bottom-[40.7%] left-[46.5%] md:left-[47%] -translate-x-1/2 w-[57px] md:w-[130px] h-auto object-contain" />
-
-        <!-- Pebble 4:  -->
-        <img src="pebbles/pebble4.png" alt="black Pebble"
-            class="absolute bottom-[25%] md:bottom-[36.8%] left-[73%] md:left-[76%] -translate-x-1/2 w-[38px] md:w-[72px] h-auto object-contain" />
-
-        <!-- Pebble 5: Large gray/white pebble (center of stack) -->
-        <img src="pebbles/pebble5.png" alt="Gray Pebble"
-            class="absolute bottom-[40.8%] md:bottom-[59.75%] left-1/2 -translate-x-1/2 w-[105px] md:w-[209px] h-auto object-contain" />
-
-        <!-- Pebble 6: Top yellow/tan round pebble -->
-        <img src="pebbles/pebble6.png" alt="Top Yellow Pebble"
-            class="absolute bottom-[59%] md:bottom-[84.5%] left-[52%] -translate-x-1/2 w-[45px] md:w-[85px] h-auto object-contain" />
     </div>
 
     <script>
-        function updatePebbleStackScale() {
-            const pebbleStack = document.querySelector('.pebble-stack');
-            const logo = document.querySelector('img[alt="Marker"]');
+        const USERLIST_FORM_URL = 'https://forms.userlist.com/5444a4a9-ad95-4e2a-87b2-090ce86aa9cd/submissions';
+        const USERLIST_WORKER_URL = 'https://userlist-proxy.marker-276.workers.dev';
+        let storedEmail = '';
 
-            if (!pebbleStack || !logo) return;
+        const page = document.querySelector('.page');
+        const emailInput = document.getElementById('fields_email');
 
-            const viewportHeight = window.innerHeight;
-            const viewportWidth = window.innerWidth;
+        const signupForm = document.querySelector('.signup-form');
 
-            // Get logo position and height
-            const logoRect = logo.getBoundingClientRect();
-            const logoBottom = logoRect.bottom;
+        setTimeout(() => page.classList.add('phase-in'), 200);
+        setTimeout(() => page.classList.add('phase-rocks'), 500);
+        setTimeout(() => {
+            page.classList.add('phase-content');
+            emailInput.focus();
+        }, 900);
 
-            // Calculate desired clearance (logo bottom + 20px minimum)
-            const desiredClearance = logoBottom + 40;
+        // Learn More modal
+        const modal = document.getElementById('learn-more-modal');
+        const learnMoreLink = document.getElementById('learn-more-link');
+        const modalClose = document.getElementById('modal-close');
 
-            // Base height of pebble stack (600px for desktop, 400px for mobile)
-            const baseHeight = viewportWidth <= 860 ? 400 : 600;
-
-            // Calculate available height (viewport - desired clearance)
-            const availableHeight = viewportHeight - desiredClearance;
-
-            // Calculate scale to fit available height
-            let scale = availableHeight / baseHeight;
-
-            // Set minimum and maximum scale limits
-            const minScale = 0.3;
-            const maxScale = viewportWidth <= 860 ? 1.2 : 1.4;
-
-            // Clamp scale within limits
-            scale = Math.max(minScale, Math.min(maxScale, scale));
-
-            // Apply smooth scaling
-            pebbleStack.style.transform = `translateX(-50%) scale(${scale})`;
-        }
-
-        // Initial call
-        updatePebbleStackScale();
-
-        // Update on resize with debouncing
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(updatePebbleStackScale, 100);
+        learnMoreLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('active');
         });
 
-        // Update on orientation change
-        window.addEventListener('orientationchange', () => {
-            setTimeout(updatePebbleStackScale, 200);
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
         });
 
-        // Auto-focus the email input field when page loads
-        function focusEmailInput() {
-            const emailInput = document.getElementById('fields_email');
-            if (emailInput) emailInput.focus();
-        }
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.remove('active');
+        });
 
-        window.addEventListener('load', focusEmailInput);
-        if (document.readyState !== 'loading') focusEmailInput();
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                modal.classList.remove('active');
+                followupOverlay.classList.remove('active');
+            }
+        });
+
+        function updateIcons() {
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.querySelector('.faq-icon').textContent = i.classList.contains('open') ? '−' : '+';
+            });
+        }
+        updateIcons();
+
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const wasOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+                if (!wasOpen) item.classList.add('open');
+                updateIcons();
+            });
+        });
+
+        // Follow-up modal elements
+        const followupOverlay = document.getElementById('followup-modal');
+        const followupCloseBtn = document.getElementById('followup-close');
+        const followupForm = document.getElementById('followup-form');
+        const followupThankyou = document.getElementById('followup-thankyou');
+
+        followupCloseBtn.addEventListener('click', () => {
+            followupOverlay.classList.remove('active');
+        });
+
+        followupOverlay.addEventListener('click', (e) => {
+            if (e.target === followupOverlay) followupOverlay.classList.remove('active');
+        });
+
+        // Step 1: Intercept signup form, POST email to Userlist, then show follow-up modal
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = signupForm.querySelector('button[type="submit"]');
+            const origText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = '...';
+
+            const existingError = document.querySelector('.signup-error');
+            if (existingError) existingError.remove();
+
+            const email = emailInput.value.trim();
+
+            const formData = new FormData();
+            formData.append('fields[email]', email);
+
+            try {
+                const res = await fetch(USERLIST_FORM_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!res.ok) throw new Error('Submission failed');
+
+                storedEmail = email;
+                emailInput.value = '';
+                submitBtn.disabled = false;
+                submitBtn.textContent = origText;
+
+                followupForm.style.display = '';
+                followupThankyou.style.display = 'none';
+                followupOverlay.classList.add('active');
+
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = origText;
+
+                const errorEl = document.createElement('div');
+                errorEl.className = 'signup-error';
+                errorEl.textContent = 'Something went wrong. Please try again.';
+                signupForm.parentNode.insertBefore(errorEl, signupForm.nextSibling);
+
+                setTimeout(() => errorEl.remove(), 4000);
+            }
+        });
+
+        // Step 2: Submit follow-up answers via Cloudflare Worker to Userlist Push API
+        followupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = followupForm.querySelector('.followup-submit');
+            const origText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = '...';
+
+            const secretCode = document.getElementById('field_secret_code').value.trim();
+            const name = document.getElementById('field_name').value.trim();
+
+            const checkedBoxes = followupForm.querySelectorAll('input[name="writing"]:checked');
+            const writingValues = Array.from(checkedBoxes).map(cb => cb.value).join(', ');
+
+            const nameParts = name.split(/\s+/);
+            const firstName = nameParts[0] || '';
+            const lastName = nameParts.slice(1).join(' ') || '';
+
+            const properties = {};
+            if (secretCode) properties.secret_code = secretCode;
+            if (writingValues) properties.writing_question = writingValues;
+            if (firstName) properties.firstname = firstName;
+            if (lastName) properties.lastname = lastName;
+
+            try {
+                const res = await fetch(USERLIST_WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: storedEmail, properties })
+                });
+
+                if (!res.ok) throw new Error('Submission failed');
+
+                followupForm.style.display = 'none';
+                document.getElementById('followup-title').style.display = 'none';
+                document.getElementById('followup-subtitle').style.display = 'none';
+                followupThankyou.style.display = '';
+
+                setTimeout(() => followupOverlay.classList.remove('active'), 5000);
+
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = origText;
+                alert('Something went wrong. Please try again.');
+            }
+        });
     </script>
-
 </body>
 
 </html>
