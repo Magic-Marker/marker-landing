@@ -11,12 +11,19 @@
     <title>Marker — Privacy Notice</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            background: #faf8f5 !important;
+        }
+
         body {
             max-width: 700px;
             width: 100%;
             margin: 0 auto;
             padding: 48px 20px;
-            background: #fbede2;
             font-family: 'Byrd', sans-serif;
             color: #333;
             font-size: 15px;
@@ -25,7 +32,7 @@
 
         .back-link {
             display: inline-block;
-            margin-bottom: 48px;
+            margin-bottom: 12px;
             text-transform: uppercase;
             color: #888;
             text-decoration: none;
@@ -42,6 +49,7 @@
             font-size: 42px;
             font-weight: normal;
             color: #111;
+            margin-top: 0;
             margin-bottom: 32px;
             line-height: 1.25;
         }
@@ -75,6 +83,8 @@
 
         p {
             margin-bottom: 14px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
 
         ul {
@@ -96,9 +106,53 @@
             color: #777;
             margin-bottom: 40px;
         }
+
+        .pebbles {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 80px 16px 32px;
+                font-size: 14px;
+            }
+
+            .back-link {
+                margin-bottom: 12px;
+            }
+
+            h1 {
+                font-size: 30px;
+                margin-bottom: 24px;
+            }
+
+            h2 {
+                font-size: 19px;
+                margin-top: 32px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            .pebbles {
+                width: 40px;
+                height: 40px;
+                top: 12px;
+                left: 12px;
+            }
+        }
     </style>
 </head>
 <body>
+    <img src="images/pebbles-together.png" alt="" class="pebbles">
     <a href="/" class="back-link">&larr; Back home</a>
 
     <h1>Marker privacy notice</h1>
