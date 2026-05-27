@@ -104,7 +104,9 @@
         }
 
         html, body {
-            @apply w-full h-full overflow-hidden;
+            @apply w-full;
+            min-height: 100%;
+            overflow-x: hidden;
         }
 
         body {
@@ -112,8 +114,30 @@
         }
 
         .page {
-            @apply relative w-screen overflow-hidden;
-            height: 100dvh;
+            @apply relative w-screen;
+            min-height: 100dvh;
+            overflow-x: hidden;
+        }
+
+        .landing-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 390px) minmax(0, 1fr);
+            grid-template-rows: auto minmax(0, 1fr);
+            grid-template-areas:
+                "logo logo"
+                "waitlist pebbles";
+            column-gap: clamp(40px, 8vw, 120px);
+            row-gap: clamp(34px, 8dvh, 80px);
+            box-sizing: border-box;
+            min-height: 100dvh;
+            padding: 3.8dvh clamp(34px, 5vw, 72px) 40px 40px;
+        }
+
+        .waitlist-block {
+            grid-area: waitlist;
+            align-self: end;
+            max-width: 390px;
+            z-index: 2;
         }
 
         /* ========= NAV ========= */
@@ -138,10 +162,8 @@
         /* ========= HEADLINE ========= */
 
         .headline {
-            @apply absolute text-black;
+            @apply text-black;
             font-family: 'GTF Byrd', sans-serif;
-            left: 43px;
-            bottom: 108px;
             width: 387px;
             font-size: 18px;
             line-height: 1.4;
@@ -170,14 +192,14 @@
         /* ========= SIGNUP FORM ========= */
 
         .signup-form {
-            @apply absolute flex items-center;
-            left: 40px;
-            bottom: 40px;
+            @apply flex items-center;
             width: 285px;
+            box-sizing: border-box;
             border-radius: 10px;
             padding: 5px 5px 5px 10px;
             border: 1px solid #cecece;
             background: white;
+            margin-top: 42px;
         }
 
         .signup-form input {
@@ -218,11 +240,16 @@
         /* ========= PEBBLES IMAGE ========= */
 
         .pebbles-image {
-            @apply absolute overflow-hidden;
-            right: 5%;
-            bottom: 6%;
-            width: 610px;
-            height: 326px;
+            @apply overflow-hidden;
+            position: relative;
+            grid-area: pebbles;
+            align-self: end;
+            justify-self: end;
+            width: min(610px, 100%);
+            height: auto;
+            aspect-ratio: 610 / 326;
+            z-index: 1;
+            pointer-events: none;
         }
 
         .pebbles-image img {
@@ -233,14 +260,16 @@
         /* ========= MARKER LOGO ========= */
 
         .marker-logo {
-            @apply absolute;
-            left: 3.4%;
-            top: 3.8%;
+            grid-area: logo;
             width: 83.5%;
+            z-index: 2;
         }
 
         .marker-logo img {
             @apply w-full h-auto block;
+            max-height: 300px;
+            object-fit: contain;
+            object-position: left top;
         }
 
         /* ========= FLANNERY CORNER ========= */
@@ -634,9 +663,7 @@
             font-family: 'GTF Byrd', sans-serif;
             font-size: 11px;
             color: #c0392b;
-            position: absolute;
-            left: 40px;
-            bottom: 55px;
+            margin-top: 8px;
         }
 
         .followup-thankyou {
@@ -659,87 +686,94 @@
             color: #555;
         }
 
-        /* ========= TABLET ========= */
+        /* ========= RESPONSIVE GRID ========= */
 
-        @media (min-width: 641px) and (max-width: 1080px) {
-            .pebbles-image {
-                right: auto;
-                left: 50%;
-                top: 50%;
-                bottom: auto;
-                transform: translate(-50%, calc(-50% + 30px));
+        @media (max-width: 1080px) and (min-width: 751px) {
+            .landing-grid {
+                grid-template-columns: minmax(0, 390px) minmax(220px, 1fr);
+                column-gap: clamp(28px, 5vw, 64px);
             }
-            .marker-logo img {transform: scale(.75); transform-origin: left top;}
-            .phase-rocks .pebbles-image {
-                transform: translate(-50%, -50%) scale(.8);
-            }
-        }
 
-        /* ========= MOBILE ========= */
-
-        @media (max-width: 768px) {
             .marker-logo {
-                left: 7%;
-                top: 6%;
-                bottom: auto;
-                width: 87%;
-            }
-
-            .headline {
-                left: 35px;
-                bottom: 100px;
-                top: auto;
-                font-size: 16px;
-                line-height: 1.4;
-                width:100%;
-                max-width: 340px;
-                letter-spacing: 0.16px;
-            }
-
-            .signup-form {
-                left: 33px;
-                bottom: 37px;
-                top: auto;
-                width: 100%;
-                max-width: 330px;
-            }
-
-            .signup-error {
-                left: 33px;
-                bottom: 60px;
-            }
-
-            .followup-input.input-name,
-            .followup-input.input-code {
                 width: 100%;
             }
 
             .pebbles-image {
-                left: 50%;
-                top: 50%;
-                right: auto;
-                bottom: auto;
-                width: 300px;
-                height: 400px;
-                transform: translate(-50%, -55%);
+                align-self: end;
+                justify-self: center;
+                width: min(300px, 100%);
+                height: min(400px, 52dvh);
+                min-height: 300px;
+                aspect-ratio: auto;
             }
 
             .pebbles-image img {
                 width: auto;
-                height: 300px;
+                height: min(300px, 44dvh);
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%) rotate(-90deg);
                 object-fit: contain;
             }
+        }
 
-            .phase-rocks .pebbles-image {
-                transform: translate(-50%, -55%);
+        @media (max-width: 750px) {
+            .landing-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto minmax(0, 1fr) auto;
+                grid-template-areas:
+                    "logo"
+                    "pebbles"
+                    "waitlist";
+                row-gap: clamp(24px, 5dvh, 40px);
+                min-height: 100dvh;
+                padding: 64px clamp(20px, 8.5vw, 35px) 24px;
+            }
+
+            .marker-logo {
+                width: 100%;
+            }
+
+            .waitlist-block {
+                align-self: end;
+                width: 100%;
+                max-width: 340px;
+            }
+
+            .headline {
+                width: 100%;
+                max-width: 340px;
+                font-size: 16px;
+                line-height: 1.4;
+                letter-spacing: 0.16px;
+            }
+
+            .signup-form {
+                width: 100%;
+                max-width: 330px;
+                margin-top: 24px;
             }
 
             .pebbles-image {
-                transform: translate(-50%, calc(-55% + 30px));
+                align-self: stretch;
+                justify-self: stretch;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                min-height: 120px;
+                aspect-ratio: auto;
+            }
+
+            .pebbles-image img {
+                width: min(610px, 82vw);
+                height: auto;
+                max-height: 100%;
+                position: static;
+                transform: none;
+                object-fit: contain;
             }
 
             .flannery-corner {
@@ -760,12 +794,6 @@
 
             .desktop-only { display: none; }
             .mobile-only { display: inline; }
-
-            .nav-links {
-                top: 18px;
-                right: 16px;
-                gap: 18px;
-            }
         }
     </style>
 </head>
@@ -778,25 +806,29 @@
             <a href="https://my.marker.page">LOGIN</a>
         </nav>
 
-        <div class="headline">
-            <p>Marker is a space for thinking and writing.</p>
-            <p>A refuge in a storm of slop, where even the vaguest inkling can take shape.</p>
-            <p>Write with us.</p>
-        </div>
+        <main class="landing-grid">
+            <div class="marker-logo">
+                <img src="images/marker-logo.svg" alt="Marker">
+            </div>
 
-        <form class="signup-form">
-            <label for="fields_email" class="hidden">Join the waitlist</label>
-            <input type="email" id="fields_email" name="fields[email]" placeholder="Join our waiting list" required title="">
-            <button type="submit">Sign up</button>
-        </form>
+            <section class="waitlist-block" aria-label="Join the Marker waitlist">
+                <div class="headline">
+                    <p>Marker is a space for thinking and writing.</p>
+                    <p>A refuge in a storm of slop, where even the vaguest inkling can take shape.</p>
+                    <p>Write with us.</p>
+                </div>
 
-        <div class="pebbles-image">
-            <img src="images/lux-pebbles.png" alt="">
-        </div>
+                <form class="signup-form">
+                    <label for="fields_email" class="hidden">Join the waitlist</label>
+                    <input type="email" id="fields_email" name="fields[email]" placeholder="Join our waiting list" required title="">
+                    <button type="submit">Sign up</button>
+                </form>
+            </section>
 
-        <div class="marker-logo">
-            <img src="images/marker-logo.svg" alt="Marker">
-        </div>
+            <div class="pebbles-image">
+                <img src="images/lux-pebbles.png" alt="">
+            </div>
+        </main>
 
         
 
