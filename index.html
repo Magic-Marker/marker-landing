@@ -721,14 +721,14 @@
         @media (max-width: 750px) {
             .landing-grid {
                 grid-template-columns: 1fr;
-                grid-template-rows: auto auto auto;
+                grid-template-rows: auto minmax(0, 1fr) auto;
                 grid-template-areas:
                     "logo"
                     "pebbles"
                     "waitlist";
                 row-gap: clamp(24px, 5dvh, 40px);
                 min-height: 100dvh;
-                padding: 64px clamp(20px, 8.5vw, 35px) 40px;
+                padding: 64px clamp(20px, 8.5vw, 35px) 24px;
             }
 
             .marker-logo {
@@ -736,7 +736,7 @@
             }
 
             .waitlist-block {
-                align-self: start;
+                align-self: end;
                 width: 100%;
                 max-width: 340px;
             }
@@ -756,18 +756,24 @@
             }
 
             .pebbles-image {
-                justify-self: center;
-                width: min(610px, 82vw);
-                height: auto;
-                aspect-ratio: 610 / 326;
+                align-self: stretch;
+                justify-self: stretch;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 100%;
+                min-height: 120px;
+                aspect-ratio: auto;
             }
 
             .pebbles-image img {
-                width: 100%;
-                height: 100%;
+                width: min(610px, 82vw);
+                height: auto;
+                max-height: 100%;
                 position: static;
                 transform: none;
-                object-fit: cover;
+                object-fit: contain;
             }
 
             .flannery-corner {
@@ -939,7 +945,7 @@
         setTimeout(() => {
             page.classList.add('phase-content');
             emailInput.focus();
-        }, 900);
+        }, 1450);
 
         // Learn More modal
         const modal = document.getElementById('learn-more-modal');
