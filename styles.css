@@ -101,6 +101,51 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Scratchy';
+    src: url('fonts/scratchyregular-ezylo-webfont.woff2') format('woff2'),
+        url('fonts/scratchyregular-ezylo-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tiempos Text';
+    src: url('fonts/TiemposText-Regular.woff2') format('woff2'),
+        url('fonts/TiemposText-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tiempos Text';
+    src: url('fonts/TiemposText-RegItalic.woff2') format('woff2'),
+        url('fonts/TiemposText-RegItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tiempos Text';
+    src: url('fonts/TiemposText-Semibold.woff2') format('woff2'),
+        url('fonts/TiemposText-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tiempos Text';
+    src: url('fonts/TiemposText-SemiboldItalic.woff2') format('woff2'),
+        url('fonts/TiemposText-SemiboldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
 /* Font class definitions with fallbacks */
 .font-museum {
     font-family: 'PP Museum', Georgia, 'Times New Roman', serif;
@@ -112,6 +157,10 @@
 
 .font-grosa-mono {
     font-family: 'iA', 'Courier New', monospace;
+}
+
+.font-tiempos {
+    font-family: 'Tiempos Text', Georgia, 'Times New Roman', serif;
 }
 
 /* Animations */
