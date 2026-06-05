@@ -50,10 +50,6 @@
         "font-byrd text-[14px] leading-[22px] text-black tracking-[0.02em]"
       );
       col.appendChild(p);
-      var sig = document.createElement("p");
-      sig.textContent = "- Ryan";
-      addClasses(sig, "font-signature text-[40px] leading-[0.85] text-black mt-2");
-      col.appendChild(sig);
       container.appendChild(col);
     }
 
@@ -92,7 +88,7 @@
     var popCard = document.createElement("div");
     addClasses(
       popCard,
-      "flex gap-[16px] items-start bg-white border border-[#e2e2e2] rounded-[10px] pt-[20px] px-[20px] pb-[0px] shadow-[0_3px_12px_rgba(0,0,0,0.10)]"
+      "flex gap-[16px] items-start bg-white border border-[#e2e2e2] rounded-[10px] p-[20px] shadow-[0_3px_12px_rgba(0,0,0,0.10)]"
     );
     pop.appendChild(popCard);
     document.body.appendChild(pop);
