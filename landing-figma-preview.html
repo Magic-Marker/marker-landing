@@ -508,6 +508,7 @@
 
         .carousel-card {
             position: relative;
+            display: block;
             width: 259px;
             min-height: 114px;
             padding: 13px 12px 10px;
@@ -516,6 +517,45 @@
             backdrop-filter: blur(6.3px);
             -webkit-backdrop-filter: blur(6.3px);
             box-shadow: 0 10px 32px rgba(0, 0, 0, 0.08);
+            color: inherit;
+            cursor: pointer;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .carousel-card:hover,
+        .carousel-card:focus-visible {
+            background: rgba(255, 255, 255, 0.66);
+            outline: none;
+        }
+
+        .carousel-content {
+            transition: opacity 0.28s ease, transform 0.28s ease;
+            will-change: opacity, transform;
+        }
+
+        .carousel-content.slide-out-next {
+            opacity: 0;
+            transform: translateX(-22px);
+        }
+
+        .carousel-content.slide-out-prev {
+            opacity: 0;
+            transform: translateX(22px);
+        }
+
+        .carousel-content.prepare-next,
+        .carousel-content.prepare-prev {
+            opacity: 0;
+            transition: none;
+        }
+
+        .carousel-content.prepare-next {
+            transform: translateX(22px);
+        }
+
+        .carousel-content.prepare-prev {
+            transform: translateX(-22px);
         }
 
         .carousel-kicker {
@@ -723,7 +763,8 @@
 
         @media (prefers-reduced-motion: reduce) {
             .modal-overlay,
-            .modal {
+            .modal,
+            .carousel-content {
                 transition: none;
             }
         }
@@ -785,7 +826,8 @@
                     <defs>
                         <path id="quote-path-road" d="M0.118164 42.6289C14.9182 39.0289 16.4515 36.2972 33.1182 31.1306L120.118 10.6306C133.618 6.79724 165.018 -0.56943 182.618 0.63057C204.618 2.13057 223.618 10.1289 238.118 14.6289C249.718 18.2289 282.618 30.7956 297.618 36.6289L363.118 72.1289C381.118 81.9622 419.318 105.929 428.118 113.129C436.918 120.329 445.118 131.296 448.618 135.129L477.618 169.629L507.118 204.629L525.618 234.629L537.118 254.129" />
                         <path id="quote-path-mapping" d="M505.118 699.629C516.618 679.296 551.518 636.729 599.118 629.129L637.618 623.129L718.618 620.629L772.118 623.129C782.951 622.296 808.018 620.629 821.618 620.629C835.218 620.629 860.618 620.629 871.618 620.629C887.285 621.129 925.118 624.429 951.118 633.629C977.118 642.829 992.285 648.796 996.618 650.629L1053.12 672.629L1089.62 688.629L1133.62 710.129C1141.12 714.796 1159.82 728.629 1174.62 746.629C1189.42 764.629 1212.12 785.796 1221.62 794.129L1267.12 856.129" />
-                        <path id="quote-path-didion" d="M105.618 1004.63C130.285 1007.8 189.418 1021.13 228.618 1049.13L247.118 1059.63L257.118 1029.63C260.618 1012.46 270.618 975.429 282.618 964.629C297.618 951.129 327.118 926.629 335.618 923.129" />
+                        <path id="quote-path-didion-left" d="M94 1014C128 1015 177 1031 222 1054" />
+                        <path id="quote-path-didion-right" d="M288 1042C299 1002 319 954 350 919" />
                         <path id="quote-path-think" d="M918.118 1396.63C928.518 1391.03 953.451 1371.96 964.618 1363.13C985.785 1348.46 1032.52 1318.53 1050.12 1316.13C1067.72 1313.73 1111.78 1311.8 1131.62 1311.13C1143.12 1311.8 1170.62 1315.03 1188.62 1322.63C1206.62 1330.23 1238.12 1337.8 1251.62 1340.63C1260.45 1344.3 1279.82 1352.43 1286.62 1355.63C1293.42 1358.83 1298.45 1361.96 1300.12 1363.13" />
                     </defs>
                     <text>
@@ -795,7 +837,10 @@
                         <textPath href="#quote-path-mapping" startOffset="0%" data-typewriter data-full="It is the slow process of mapping words to thoughts you didn't know you had."></textPath>
                     </text>
                     <text class="quote-small">
-                        <textPath href="#quote-path-didion" startOffset="0%" data-typewriter data-full="Joan Didion said it better,"></textPath>
+                        <textPath href="#quote-path-didion-left" startOffset="0%" data-typewriter data-full="Joan Didion said"></textPath>
+                    </text>
+                    <text class="quote-small">
+                        <textPath href="#quote-path-didion-right" startOffset="0%" data-typewriter data-full="it better,"></textPath>
                     </text>
                     <text class="quote-small">
                         <textPath href="#quote-path-think" startOffset="0%" data-typewriter data-full="I write entirely to know what I think."></textPath>
@@ -832,9 +877,9 @@
             <button class="carousel-arrow" type="button" data-carousel-prev aria-label="Previous essay">&larr;</button>
             <button class="carousel-arrow" type="button" data-carousel-next aria-label="Next essay">&rarr;</button>
         </div>
-        <article class="carousel-card">
+        <a class="carousel-card" href="bettercraft.html" data-carousel-card aria-label="Read A Labour of the Shadows">
             <p class="carousel-kicker">Essays by Marker</p>
-            <div class="carousel-body">
+            <div class="carousel-content carousel-body">
                 <img class="carousel-thumb" src="images/editedby.png" alt="">
                 <div>
                     <h2 class="carousel-title">A Labour of the Shadows</h2>
@@ -842,10 +887,10 @@
                 </div>
             </div>
             <div class="carousel-bottom">
-                <a class="carousel-link" href="bettercraft.html">Read more</a>
+                <span class="carousel-link">Read more</span>
                 <span class="carousel-count">1/4</span>
             </div>
-        </article>
+        </a>
     </aside>
 
     <div class="modal-overlay" id="about-modal">
@@ -1009,11 +1054,15 @@
             }
         ];
 
+        const CAROUSEL_INTERVAL_MS = 5000;
         let currentEssay = 0;
+        let carouselTimerId = 0;
+        let isCarouselAnimating = false;
+        const carouselCard = document.querySelector('[data-carousel-card]');
+        const carouselContent = document.querySelector('.carousel-content');
         const carouselThumb = document.querySelector('.carousel-thumb');
         const carouselTitle = document.querySelector('.carousel-title');
         const carouselExcerpt = document.querySelector('.carousel-excerpt');
-        const carouselLink = document.querySelector('.carousel-link');
         const carouselCount = document.querySelector('.carousel-count');
 
         function renderEssay() {
@@ -1021,19 +1070,62 @@
             carouselThumb.src = essay.image;
             carouselTitle.textContent = essay.title;
             carouselExcerpt.textContent = essay.excerpt;
-            carouselLink.href = essay.href;
+            carouselCard.href = essay.href;
+            carouselCard.setAttribute('aria-label', `Read ${essay.title}`);
             carouselCount.textContent = `${currentEssay + 1}/${essays.length}`;
         }
 
-        document.querySelector('[data-carousel-prev]').addEventListener('click', () => {
-            currentEssay = (currentEssay - 1 + essays.length) % essays.length;
+        function setEssay(delta = 1) {
+            currentEssay = (currentEssay + delta + essays.length) % essays.length;
             renderEssay();
+        }
+
+        function advanceEssay(delta = 1) {
+            if (prefersReducedMotion) {
+                setEssay(delta);
+                return;
+            }
+
+            if (isCarouselAnimating) return;
+
+            isCarouselAnimating = true;
+            const direction = delta >= 0 ? 'next' : 'prev';
+            carouselContent.classList.add(`slide-out-${direction}`);
+
+            window.setTimeout(() => {
+                setEssay(delta);
+                carouselContent.classList.remove(`slide-out-${direction}`);
+                carouselContent.classList.add(`prepare-${direction}`);
+                carouselContent.getBoundingClientRect();
+                carouselContent.classList.remove(`prepare-${direction}`);
+
+                window.setTimeout(() => {
+                    isCarouselAnimating = false;
+                }, 300);
+            }, 280);
+        }
+
+        function resetCarouselTimer() {
+            window.clearInterval(carouselTimerId);
+            carouselTimerId = window.setInterval(() => advanceEssay(1), CAROUSEL_INTERVAL_MS);
+        }
+
+        document.querySelector('[data-carousel-prev]').addEventListener('click', () => {
+            advanceEssay(-1);
+            resetCarouselTimer();
         });
 
         document.querySelector('[data-carousel-next]').addEventListener('click', () => {
-            currentEssay = (currentEssay + 1) % essays.length;
-            renderEssay();
+            advanceEssay(1);
+            resetCarouselTimer();
         });
+
+        carouselCard.addEventListener('click', (event) => {
+            if (essays[currentEssay].href === '#') event.preventDefault();
+        });
+
+        renderEssay();
+        resetCarouselTimer();
 
         followupCloseBtn.addEventListener('click', () => {
             followupOverlay.classList.remove('active');
