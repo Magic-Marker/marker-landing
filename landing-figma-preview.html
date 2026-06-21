@@ -443,7 +443,7 @@
             outline: 0;
             background: transparent;
             color: var(--ink);
-            font-family: 'PP Museum', Georgia, serif;
+            font-family: 'iA Writer Quattro', 'Courier New', monospace;
             font-size: 18px;
             line-height: 1.1;
         }
@@ -506,7 +506,7 @@
             height: 42px;
             display: grid;
             place-items: center;
-            border: 1px solid rgba(17, 17, 17, 0.56);
+            border: 0;
             border-radius: 999px;
             background: rgba(255, 247, 241, 0.44);
             backdrop-filter: blur(5px);
@@ -532,20 +532,17 @@
             opacity: 1;
             pointer-events: auto;
             transform: translate(-50%, 0);
-        }
-
-        .scroll-cue.is-visible::before {
             animation: scroll-cue-bounce 2.4s ease-in-out 0.45s infinite;
         }
 
         @keyframes scroll-cue-bounce {
             0%,
             100% {
-                transform: translateY(-2px) rotate(45deg);
+                transform: translate(-50%, 0);
             }
 
             45% {
-                transform: translateY(4px) rotate(45deg);
+                transform: translate(-50%, 6px);
             }
         }
 
@@ -907,8 +904,8 @@
                     <defs>
                         <path id="quote-path-road" d="M0.118164 42.6289C14.9182 39.0289 16.4515 36.2972 33.1182 31.1306L120.118 10.6306C133.618 6.79724 165.018 -0.56943 182.618 0.63057C204.618 2.13057 223.618 10.1289 238.118 14.6289C249.718 18.2289 282.618 30.7956 297.618 36.6289L363.118 72.1289C381.118 81.9622 419.318 105.929 428.118 113.129C436.918 120.329 445.118 131.296 448.618 135.129L477.618 169.629L507.118 204.629L525.618 234.629L537.118 254.129" />
                         <path id="quote-path-mapping" d="M505.118 699.629C516.618 679.296 551.518 636.729 599.118 629.129L637.618 623.129L718.618 620.629L772.118 623.129C782.951 622.296 808.018 620.629 821.618 620.629C835.218 620.629 860.618 620.629 871.618 620.629C887.285 621.129 925.118 624.429 951.118 633.629C977.118 642.829 992.285 648.796 996.618 650.629L1053.12 672.629L1089.62 688.629L1133.62 710.129C1141.12 714.796 1159.82 728.629 1174.62 746.629C1189.42 764.629 1212.12 785.796 1221.62 794.129L1267.12 856.129" />
-                        <path id="quote-path-didion-left" d="M54 1042C107 1018 184 1026 254 1060" />
-                        <path id="quote-path-didion-right" d="M280 1040C291 1001 305 961 322 924" />
+                        <path id="quote-path-didion-left" d="M85 1003C142.8 996.5 213.5 1027.9 269.6 1081.9" />
+                        <path id="quote-path-didion-right" d="M255 1045C266 1006 280 966 297 929" />
                         <path id="quote-path-think" d="M918.118 1396.63C928.518 1391.03 953.451 1371.96 964.618 1363.13C985.785 1348.46 1032.52 1318.53 1050.12 1316.13C1067.72 1313.73 1111.78 1311.8 1131.62 1311.13C1143.12 1311.8 1170.62 1315.03 1188.62 1322.63C1206.62 1330.23 1238.12 1337.8 1251.62 1340.63C1260.45 1344.3 1279.82 1352.43 1286.62 1355.63C1293.42 1358.83 1298.45 1361.96 1300.12 1363.13" />
                     </defs>
                     <text>
@@ -1040,6 +1037,17 @@
         const followupThankyou = document.getElementById('followup-thankyou');
         let storedEmail = '';
 
+        if ('scrollRestoration' in window.history) {
+            window.history.scrollRestoration = 'manual';
+        }
+
+        function resetScrollPosition() {
+            window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        }
+
+        resetScrollPosition();
+        window.addEventListener('pageshow', resetScrollPosition);
+
         function updateScale() {
             const scale = Math.min(window.innerWidth / DESIGN_WIDTH, 1);
             root.style.setProperty('--scale', scale.toFixed(5));
@@ -1105,7 +1113,7 @@
                 if (!scrollCueDismissed && window.scrollY <= SCROLL_CUE_THRESHOLD) {
                     scrollCue.classList.add('is-visible');
                 }
-            }, 600);
+            }, 3000);
         }
 
         window.addEventListener('scroll', () => {
@@ -1275,19 +1283,19 @@
         const essays = [
             {
                 title: 'A Labour of the Shadows',
-                excerpt: 'We taught our tools to write for us. We should have taught them to edit.',
+                excerpt: 'We taught our tools to write. We should have taught them to edit.',
                 image: 'images/editedby.png',
                 href: 'bettercraft.html'
             },
             {
-                title: 'Where Rough Becomes Refined',
+                title: 'How Rough Becomes Refined',
                 excerpt: 'A writing space for shaping the vague thing before it hardens.',
                 image: 'images/rocks-home/Vector-8.png',
                 href: '#'
             },
             {
                 title: 'The Winding Road',
-                excerpt: 'Notes on discovery, surprise, and the slow work of finding thought.',
+                excerpt: 'Notes on discovery, surprise, and the work of finding thought.',
                 image: 'images/rocks-home/Vector-7.png',
                 href: '#'
             },
