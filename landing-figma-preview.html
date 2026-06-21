@@ -62,7 +62,13 @@
             box-sizing: border-box;
         }
 
-        html,
+        html {
+            min-height: 100%;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: clip;
+        }
+
         body {
             margin: 0;
             min-height: 100%;
@@ -112,39 +118,6 @@
             overflow: hidden;
             transform: scale(var(--scale));
             transform-origin: top left;
-            background-color: var(--paper);
-            background-image:
-                radial-gradient(circle at 31% 13%, rgba(255, 255, 255, 0.48), transparent 0.7px),
-                radial-gradient(circle at 68% 34%, rgba(153, 106, 73, 0.13), transparent 0.8px),
-                linear-gradient(94deg, rgba(255, 255, 255, 0.16), transparent 28%, rgba(188, 150, 116, 0.1) 73%, transparent),
-                var(--paper-texture);
-            background-position: center, center, center, center top;
-            background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-            background-size: auto, auto, auto, 1254px 1254px;
-        }
-
-        .stage::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            opacity: 0.36;
-            mix-blend-mode: multiply;
-            background:
-                repeating-linear-gradient(94deg, rgba(77, 52, 36, 0.035) 0 1px, transparent 1px 27px),
-                repeating-linear-gradient(9deg, rgba(255, 255, 255, 0.32) 0 1px, transparent 1px 43px);
-        }
-
-        .stage::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            opacity: 0.24;
-            background:
-                radial-gradient(ellipse at 70% 86%, rgba(255, 255, 255, 0.56), transparent 28%),
-                radial-gradient(ellipse at 16% 72%, rgba(198, 148, 103, 0.11), transparent 30%),
-                radial-gradient(ellipse at 53% 4%, rgba(255, 255, 255, 0.5), transparent 22%);
         }
 
         .site-header {
@@ -348,6 +321,28 @@
             font-size: 22px;
         }
 
+        .quote-cursor {
+            animation: quote-cursor-blink 0.92s steps(1, end) infinite;
+        }
+
+        .quote-complete .quote-cursor,
+        .quote-reduced .quote-cursor {
+            animation: none;
+            opacity: 0;
+        }
+
+        @keyframes quote-cursor-blink {
+            0%,
+            52% {
+                opacity: 1;
+            }
+
+            53%,
+            100% {
+                opacity: 0;
+            }
+        }
+
         .quote-layer path {
             fill: none;
             stroke: none;
@@ -364,6 +359,36 @@
             font-size: 26px;
             line-height: 1.3;
             letter-spacing: 0;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .intro-copy div {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .intro-copy em {
+            font-style: italic;
+        }
+
+        .intro-copy.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .intro-copy.is-visible div {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .intro-copy.is-visible div:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .intro-copy.is-visible div:nth-child(2) {
+            transition-delay: 0.28s;
         }
 
         .waitlist-panel {
@@ -472,9 +497,61 @@
             white-space: nowrap;
         }
 
+        .scroll-cue {
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            z-index: 78;
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(17, 17, 17, 0.56);
+            border-radius: 999px;
+            background: rgba(255, 247, 241, 0.44);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            color: var(--ink);
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, 8px);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .scroll-cue::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-right: 1.5px solid currentColor;
+            border-bottom: 1.5px solid currentColor;
+            transform: translateY(-2px) rotate(45deg);
+        }
+
+        .scroll-cue.is-visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, 0);
+        }
+
+        .scroll-cue.is-visible::before {
+            animation: scroll-cue-bounce 2.4s ease-in-out 0.45s infinite;
+        }
+
+        @keyframes scroll-cue-bounce {
+            0%,
+            100% {
+                transform: translateY(-2px) rotate(45deg);
+            }
+
+            45% {
+                transform: translateY(4px) rotate(45deg);
+            }
+        }
+
         .fixed-carousel {
             position: fixed;
-            right: max(28px, calc((100vw - (1441px * var(--scale))) / 2 + 28px));
+            right: 28px;
             bottom: 28px;
             z-index: 80;
             width: 259px;
@@ -594,7 +671,7 @@
 
         .carousel-excerpt {
             margin: 0;
-            font-family: 'PP Museum', Georgia, serif;
+            font-family: 'iA Writer Quattro', 'Courier New', monospace;
             font-size: 10px;
             line-height: 1.25;
         }
@@ -764,7 +841,11 @@
         @media (prefers-reduced-motion: reduce) {
             .modal-overlay,
             .modal,
-            .carousel-content {
+            .carousel-content,
+            .intro-copy div,
+            .scroll-cue,
+            .scroll-cue::before {
+                animation: none;
                 transition: none;
             }
         }
@@ -826,8 +907,8 @@
                     <defs>
                         <path id="quote-path-road" d="M0.118164 42.6289C14.9182 39.0289 16.4515 36.2972 33.1182 31.1306L120.118 10.6306C133.618 6.79724 165.018 -0.56943 182.618 0.63057C204.618 2.13057 223.618 10.1289 238.118 14.6289C249.718 18.2289 282.618 30.7956 297.618 36.6289L363.118 72.1289C381.118 81.9622 419.318 105.929 428.118 113.129C436.918 120.329 445.118 131.296 448.618 135.129L477.618 169.629L507.118 204.629L525.618 234.629L537.118 254.129" />
                         <path id="quote-path-mapping" d="M505.118 699.629C516.618 679.296 551.518 636.729 599.118 629.129L637.618 623.129L718.618 620.629L772.118 623.129C782.951 622.296 808.018 620.629 821.618 620.629C835.218 620.629 860.618 620.629 871.618 620.629C887.285 621.129 925.118 624.429 951.118 633.629C977.118 642.829 992.285 648.796 996.618 650.629L1053.12 672.629L1089.62 688.629L1133.62 710.129C1141.12 714.796 1159.82 728.629 1174.62 746.629C1189.42 764.629 1212.12 785.796 1221.62 794.129L1267.12 856.129" />
-                        <path id="quote-path-didion-left" d="M94 1014C128 1015 177 1031 222 1054" />
-                        <path id="quote-path-didion-right" d="M288 1042C299 1002 319 954 350 919" />
+                        <path id="quote-path-didion-left" d="M54 1042C107 1018 184 1026 254 1060" />
+                        <path id="quote-path-didion-right" d="M280 1040C291 1001 305 961 322 924" />
                         <path id="quote-path-think" d="M918.118 1396.63C928.518 1391.03 953.451 1371.96 964.618 1363.13C985.785 1348.46 1032.52 1318.53 1050.12 1316.13C1067.72 1313.73 1111.78 1311.8 1131.62 1311.13C1143.12 1311.8 1170.62 1315.03 1188.62 1322.63C1206.62 1330.23 1238.12 1337.8 1251.62 1340.63C1260.45 1344.3 1279.82 1352.43 1286.62 1355.63C1293.42 1358.83 1298.45 1361.96 1300.12 1363.13" />
                     </defs>
                     <text>
@@ -843,13 +924,13 @@
                         <textPath href="#quote-path-didion-right" startOffset="0%" data-typewriter data-full="it better,"></textPath>
                     </text>
                     <text class="quote-small">
-                        <textPath href="#quote-path-think" startOffset="0%" data-typewriter data-full="I write entirely to know what I think."></textPath>
+                        <textPath href="#quote-path-think" startOffset="0%" data-typewriter data-full="&quot;I write entirely to know what I think.&quot;"></textPath>
                     </text>
                 </svg>
 
                 <div class="intro-copy">
                     <div>Marker is a writing tool built to help you discover</div>
-                    <div>what you think. To write with you, not for you.</div>
+                    <div>what <em>you</em> think. To write with you, not for you.</div>
                 </div>
 
                 <section class="waitlist-panel" aria-label="Join the Marker waitlist">
@@ -892,6 +973,8 @@
             </div>
         </a>
     </aside>
+
+    <button class="scroll-cue" type="button" aria-label="Scroll down" data-scroll-cue></button>
 
     <div class="modal-overlay" id="about-modal">
         <div class="modal">
@@ -941,6 +1024,7 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/typewriter-effect@2.22.0/dist/core.js" integrity="sha256-UYmwidprLcDnB9n8vDklmEeBSLLcy1mgbb2AC3IZ3+A=" crossorigin="anonymous"></script>
     <script>
         const DESIGN_WIDTH = 1441;
         const USERLIST_FORM_URL = 'https://forms.userlist.com/5444a4a9-ad95-4e2a-87b2-090ce86aa9cd/submissions';
@@ -998,31 +1082,192 @@
 
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const quoteTargets = Array.from(document.querySelectorAll('[data-typewriter]'));
+        const introCopy = document.querySelector('.intro-copy');
+        const scrollCue = document.querySelector('[data-scroll-cue]');
+        const SVG_NS = 'http://www.w3.org/2000/svg';
+        const QUOTE_TYPE_DELAY = 30;
+        const SCROLL_CUE_THRESHOLD = 90;
+        let scrollCueDismissed = false;
+
+        function revealIntroCopy() {
+            if (!introCopy || introCopy.classList.contains('is-visible')) return;
+            introCopy.classList.add('is-visible');
+        }
+
+        function hideScrollCue() {
+            scrollCueDismissed = true;
+            scrollCue?.classList.remove('is-visible');
+        }
+
+        function maybeShowScrollCue() {
+            if (!scrollCue || scrollCueDismissed || window.scrollY > SCROLL_CUE_THRESHOLD) return;
+            window.setTimeout(() => {
+                if (!scrollCueDismissed && window.scrollY <= SCROLL_CUE_THRESHOLD) {
+                    scrollCue.classList.add('is-visible');
+                }
+            }, 600);
+        }
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > SCROLL_CUE_THRESHOLD) hideScrollCue();
+        }, { passive: true });
+
+        scrollCue?.addEventListener('click', () => {
+            hideScrollCue();
+            window.scrollTo({
+                top: 720,
+                behavior: prefersReducedMotion ? 'auto' : 'smooth'
+            });
+        });
+
+        function prepareQuoteTarget(target) {
+            const textSpan = document.createElementNS(SVG_NS, 'tspan');
+            const cursorSpan = document.createElementNS(SVG_NS, 'tspan');
+
+            textSpan.classList.add('quote-typed-text');
+            cursorSpan.classList.add('quote-cursor');
+            cursorSpan.textContent = '|';
+            target.textContent = '';
+            target.append(textSpan, cursorSpan);
+
+            return { textSpan, cursorSpan };
+        }
+
+        function getQuotePause(segment) {
+            const finalCharacter = segment.trim().slice(-1);
+            if (finalCharacter === '.') return 544;
+            if (finalCharacter === ',') return 264;
+            return 88;
+        }
+
+        function getFallbackDelay(previousCharacter) {
+            if (previousCharacter === '.') return 496;
+            if (previousCharacter === ',') return 224;
+            if (previousCharacter === ' ') return 32;
+            return 27 + Math.round(Math.random() * 43);
+        }
+
+        function splitQuoteIntoPhrases(text) {
+            return text.match(/[^,.]+[,.]?/g) || [text];
+        }
+
+        function completeQuote(target, onComplete) {
+            window.setTimeout(() => {
+                target.parentElement.classList.add('quote-complete');
+                if (onComplete) onComplete();
+            }, 520);
+        }
+
+        function fallbackTypeQuote(target, textSpan, text, initialPause, onComplete) {
+            let index = 0;
+
+            function typeNext() {
+                const nextCharacter = text[index];
+                textSpan.textContent += nextCharacter;
+                index += 1;
+
+                if (index >= text.length) {
+                    completeQuote(target, onComplete);
+                    return;
+                }
+
+                window.setTimeout(typeNext, getFallbackDelay(nextCharacter));
+            }
+
+            window.setTimeout(typeNext, initialPause);
+        }
 
         function revealQuotes() {
+            const preparedTargets = quoteTargets.map((target, index) => ({
+                index,
+                target,
+                parts: prepareQuoteTarget(target),
+                isVisible: false,
+                isStarted: false
+            }));
+
             if (prefersReducedMotion) {
-                quoteTargets.forEach((target) => {
-                    target.textContent = target.dataset.full;
+                preparedTargets.forEach(({ target, parts }) => {
+                    parts.textSpan.textContent = target.dataset.full || '';
+                    target.parentElement.classList.add('quote-reduced');
                 });
+                revealIntroCopy();
                 return;
             }
 
-            quoteTargets.forEach((target) => {
-                target.textContent = '';
+            let activeQuoteIndex = 0;
+
+            const tryStartVisibleQuote = () => {
+                const prepared = preparedTargets[activeQuoteIndex];
+                if (!prepared || !prepared.isVisible || prepared.isStarted) return;
+                startQuote(prepared, () => {
+                    if (prepared.index === 0) maybeShowScrollCue();
+                    activeQuoteIndex += 1;
+                    if (activeQuoteIndex >= preparedTargets.length) {
+                        revealIntroCopy();
+                        return;
+                    }
+                    tryStartVisibleQuote();
+                });
+            };
+
+            const startQuote = (prepared, onComplete) => {
+                const { target, parts } = prepared;
+                if (prepared.isStarted) return;
+                prepared.isStarted = true;
+                target.dataset.started = 'true';
+
+                const text = target.dataset.full || '';
+                const initialPause = 128 + Math.round(Math.random() * 272);
+
+                if (typeof window.Typewriter !== 'function') {
+                    fallbackTypeQuote(target, parts.textSpan, text, initialPause, onComplete);
+                    return;
+                }
+
+                const typewriter = new window.Typewriter(null, {
+                    delay: QUOTE_TYPE_DELAY,
+                    cursor: '',
+                    skipAddStyles: true,
+                    onCreateTextNode: (character) => {
+                        parts.textSpan.textContent += character;
+                        return null;
+                    }
+                });
+
+                typewriter.pauseFor(initialPause);
+                splitQuoteIntoPhrases(text).forEach((phrase) => {
+                    typewriter.typeString(phrase).pauseFor(getQuotePause(phrase));
+                });
+                typewriter.callFunction(() => completeQuote(target, onComplete)).start();
+            };
+
+            if (!('IntersectionObserver' in window)) {
+                preparedTargets.forEach((prepared) => {
+                    prepared.isVisible = true;
+                });
+                tryStartVisibleQuote();
+                return;
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const prepared = preparedTargets.find(({ target }) => target.parentElement === entry.target);
+                    if (!prepared) return;
+                    prepared.isVisible = true;
+                    observer.unobserve(entry.target);
+                    tryStartVisibleQuote();
+                });
+            }, {
+                root: null,
+                rootMargin: '0px 0px -16% 0px',
+                threshold: 0.01
             });
 
-            quoteTargets.reduce((delay, target) => {
-                const text = target.dataset.full || '';
-                window.setTimeout(() => {
-                    let index = 0;
-                    const timer = window.setInterval(() => {
-                        index += 1;
-                        target.textContent = text.slice(0, index);
-                        if (index >= text.length) window.clearInterval(timer);
-                    }, 22);
-                }, delay);
-                return delay + text.length * 22 + 420;
-            }, 350);
+            preparedTargets.forEach(({ target }) => {
+                observer.observe(target.parentElement);
+            });
         }
 
         revealQuotes();
