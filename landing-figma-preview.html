@@ -82,6 +82,7 @@
             background-size: 1254px 1254px;
             color: var(--ink);
             font-family: 'PP Museum', Georgia, 'Times New Roman', serif;
+            font-weight: 300;
         }
 
         button,
@@ -134,7 +135,7 @@
             position: absolute;
             left: 27px;
             top: 18px;
-            width: 42px;
+            width: 38px;
             height: auto;
             display: block;
         }
@@ -311,18 +312,27 @@
 
         .quote-layer text {
             font-family: 'PP Museum', Georgia, 'Times New Roman', serif;
-            font-size: 23px;
-            font-weight: 400;
+            font-size: 26px;
+            font-weight: 300;
             line-height: 1;
             fill: var(--ink);
         }
 
         .quote-layer .quote-small {
-            font-size: 22px;
+            font-size: 25px;
         }
 
         .quote-cursor {
+            animation: none;
+            font-size: 0.74em;
+            opacity: 0;
+            fill:#994E41;
+            
+        }
+
+        .quote-active .quote-cursor {
             animation: quote-cursor-blink 0.92s steps(1, end) infinite;
+            opacity: 1;
         }
 
         .quote-complete .quote-cursor,
@@ -356,7 +366,7 @@
             width: 680px;
             transform: translateX(-50%);
             text-align: center;
-            font-size: 26px;
+            font-size: 34px;
             line-height: 1.3;
             letter-spacing: 0;
             opacity: 0;
@@ -471,13 +481,11 @@
             position: absolute;
             z-index: 8;
             left: 24px;
-            top: 2594px;
-            font-family: 'PP Museum', Georgia, serif;
-            font-size: 448px;
-            line-height: 0.82;
-            font-weight: 400;
-            letter-spacing: -13px;
-            white-space: nowrap;
+            top: 2588px;
+            display: block;
+            width: 1392px;
+            height: auto;
+            pointer-events: none;
         }
 
         .footer-links {
@@ -904,8 +912,8 @@
                     <defs>
                         <path id="quote-path-road" d="M0.118164 42.6289C14.9182 39.0289 16.4515 36.2972 33.1182 31.1306L120.118 10.6306C133.618 6.79724 165.018 -0.56943 182.618 0.63057C204.618 2.13057 223.618 10.1289 238.118 14.6289C249.718 18.2289 282.618 30.7956 297.618 36.6289L363.118 72.1289C381.118 81.9622 419.318 105.929 428.118 113.129C436.918 120.329 445.118 131.296 448.618 135.129L477.618 169.629L507.118 204.629L525.618 234.629L537.118 254.129" />
                         <path id="quote-path-mapping" d="M505.118 699.629C516.618 679.296 551.518 636.729 599.118 629.129L637.618 623.129L718.618 620.629L772.118 623.129C782.951 622.296 808.018 620.629 821.618 620.629C835.218 620.629 860.618 620.629 871.618 620.629C887.285 621.129 925.118 624.429 951.118 633.629C977.118 642.829 992.285 648.796 996.618 650.629L1053.12 672.629L1089.62 688.629L1133.62 710.129C1141.12 714.796 1159.82 728.629 1174.62 746.629C1189.42 764.629 1212.12 785.796 1221.62 794.129L1267.12 856.129" />
-                        <path id="quote-path-didion-left" d="M85 1003C142.8 996.5 213.5 1027.9 269.6 1081.9" />
-                        <path id="quote-path-didion-right" d="M255 1045C266 1006 280 966 297 929" />
+                        <path id="quote-path-didion-left" d="M80 1008C137.8 1001.5 208.5 1032.9 264.6 1086.9" />
+                        <path id="quote-path-didion-right" d="M249.1 1042.5C264.1 1004.9 282.2 966.5 302.9 931.5" />
                         <path id="quote-path-think" d="M918.118 1396.63C928.518 1391.03 953.451 1371.96 964.618 1363.13C985.785 1348.46 1032.52 1318.53 1050.12 1316.13C1067.72 1313.73 1111.78 1311.8 1131.62 1311.13C1143.12 1311.8 1170.62 1315.03 1188.62 1322.63C1206.62 1330.23 1238.12 1337.8 1251.62 1340.63C1260.45 1344.3 1279.82 1352.43 1286.62 1355.63C1293.42 1358.83 1298.45 1361.96 1300.12 1363.13" />
                     </defs>
                     <text>
@@ -915,7 +923,7 @@
                         <textPath href="#quote-path-mapping" startOffset="0%" data-typewriter data-full="It is the slow process of mapping words to thoughts you didn't know you had."></textPath>
                     </text>
                     <text class="quote-small">
-                        <textPath href="#quote-path-didion-left" startOffset="0%" data-typewriter data-full="Joan Didion said"></textPath>
+                        <textPath href="#quote-path-didion-left" startOffset="0%" data-typewriter data-continue-next="true" data-full="Joan Didion said"></textPath>
                     </text>
                     <text class="quote-small">
                         <textPath href="#quote-path-didion-right" startOffset="0%" data-typewriter data-full="it better,"></textPath>
@@ -926,12 +934,11 @@
                 </svg>
 
                 <div class="intro-copy">
-                    <div>Marker is a writing tool built to help you discover</div>
-                    <div>what <em>you</em> think. To write with you, not for you.</div>
+                    <div>Marker is a writing tool built<br/> to help you discover what <span class="underline">you</span> think.</div><div>To write with you, not for you.</div>
                 </div>
 
                 <section class="waitlist-panel" aria-label="Join the Marker waitlist">
-                    <h1>Write with us.</h1>
+                    <h1 class="font-300 text-[30px]">Write with us.</h1>
                     <form class="signup-form" novalidate>
                         <label for="fields_email" hidden>Enter your email</label>
                         <input type="email" id="fields_email" name="fields[email]" placeholder="Enter your email" required title="">
@@ -939,7 +946,7 @@
                     </form>
                 </section>
 
-                <div class="bottom-wordmark" aria-hidden="true">Marker</div>
+                <img class="bottom-wordmark" src="images/marker-logo.svg" alt="" aria-hidden="true">
                 <nav class="footer-links" aria-label="Footer">
                     <a href="#" data-open-about>About</a>
                     <a href="/jobs">Jobs</a>
@@ -1094,6 +1101,7 @@
         const scrollCue = document.querySelector('[data-scroll-cue]');
         const SVG_NS = 'http://www.w3.org/2000/svg';
         const QUOTE_TYPE_DELAY = 30;
+        const INTRO_REVEAL_DELAY = 1400;
         const SCROLL_CUE_THRESHOLD = 90;
         let scrollCueDismissed = false;
 
@@ -1134,7 +1142,7 @@
 
             textSpan.classList.add('quote-typed-text');
             cursorSpan.classList.add('quote-cursor');
-            cursorSpan.textContent = '|';
+            cursorSpan.textContent = '█';
             target.textContent = '';
             target.append(textSpan, cursorSpan);
 
@@ -1159,14 +1167,21 @@
             return text.match(/[^,.]+[,.]?/g) || [text];
         }
 
-        function completeQuote(target, onComplete) {
-            window.setTimeout(() => {
+        function completeQuote(target, onComplete, delay = 520) {
+            const complete = () => {
+                target.parentElement.classList.remove('quote-active');
                 target.parentElement.classList.add('quote-complete');
                 if (onComplete) onComplete();
-            }, 520);
+            };
+
+            if (delay > 0) {
+                window.setTimeout(complete, delay);
+            } else {
+                complete();
+            }
         }
 
-        function fallbackTypeQuote(target, textSpan, text, initialPause, onComplete) {
+        function fallbackTypeQuote(target, textSpan, text, initialPause, onComplete, completionDelay = 520) {
             let index = 0;
 
             function typeNext() {
@@ -1175,7 +1190,7 @@
                 index += 1;
 
                 if (index >= text.length) {
-                    completeQuote(target, onComplete);
+                    completeQuote(target, onComplete, completionDelay);
                     return;
                 }
 
@@ -1190,8 +1205,10 @@
                 index,
                 target,
                 parts: prepareQuoteTarget(target),
+                continueNext: target.dataset.continueNext === 'true',
                 isVisible: false,
-                isStarted: false
+                isStarted: false,
+                skipInitialPause: false
             }));
 
             if (prefersReducedMotion) {
@@ -1212,8 +1229,11 @@
                     if (prepared.index === 0) maybeShowScrollCue();
                     activeQuoteIndex += 1;
                     if (activeQuoteIndex >= preparedTargets.length) {
-                        revealIntroCopy();
+                        window.setTimeout(revealIntroCopy, INTRO_REVEAL_DELAY);
                         return;
+                    }
+                    if (prepared.continueNext) {
+                        preparedTargets[activeQuoteIndex].skipInitialPause = true;
                     }
                     tryStartVisibleQuote();
                 });
@@ -1224,12 +1244,14 @@
                 if (prepared.isStarted) return;
                 prepared.isStarted = true;
                 target.dataset.started = 'true';
+                target.parentElement.classList.add('quote-active');
 
                 const text = target.dataset.full || '';
-                const initialPause = 128 + Math.round(Math.random() * 272);
+                const initialPause = prepared.skipInitialPause ? 0 : 128 + Math.round(Math.random() * 272);
+                const completionDelay = prepared.continueNext ? 0 : 520;
 
                 if (typeof window.Typewriter !== 'function') {
-                    fallbackTypeQuote(target, parts.textSpan, text, initialPause, onComplete);
+                    fallbackTypeQuote(target, parts.textSpan, text, initialPause, onComplete, completionDelay);
                     return;
                 }
 
@@ -1244,10 +1266,15 @@
                 });
 
                 typewriter.pauseFor(initialPause);
-                splitQuoteIntoPhrases(text).forEach((phrase) => {
-                    typewriter.typeString(phrase).pauseFor(getQuotePause(phrase));
+                const phrases = splitQuoteIntoPhrases(text);
+                phrases.forEach((phrase, index) => {
+                    const isFinalPhrase = index === phrases.length - 1;
+                    typewriter.typeString(phrase);
+                    if (!(prepared.continueNext && isFinalPhrase)) {
+                        typewriter.pauseFor(getQuotePause(phrase));
+                    }
                 });
-                typewriter.callFunction(() => completeQuote(target, onComplete)).start();
+                typewriter.callFunction(() => completeQuote(target, onComplete, completionDelay)).start();
             };
 
             if (!('IntersectionObserver' in window)) {
