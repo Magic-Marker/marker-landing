@@ -12,6 +12,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
+    <script src="components/tailwind-config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         @font-face {
             font-family: 'PP Museum';
@@ -858,20 +861,10 @@
 </head>
 
 <body>
+    <div data-site-header></div>
     <div class="preview-shell">
         <div class="stage-wrap" aria-label="Marker landing page Figma preview">
             <main class="stage">
-                <header class="site-header">
-                    <a href="/" aria-label="Marker home">
-                        <img class="corner-pebbles" src="images/pebbles-together.png" alt="">
-                    </a>
-                    <a href="/" aria-label="Marker home">
-                        <img class="nav-logo" src="images/marker-logo.svg" alt="Marker">
-                    </a>
-                    <button class="outline-button about-button" type="button" data-open-about>About</button>
-                    <button class="outline-button header-join" type="button" data-focus-waitlist>Join the waitlist</button>
-                </header>
-
                 <div class="figma-rock rock-right">
                     <div class="rock-plane">
                         <div class="rock-asset"><img src="images/rocks-home/new/Frame 83352.png" alt=""></div>
@@ -946,37 +939,12 @@
                     </form>
                 </section>
 
-                <img class="bottom-wordmark" src="images/marker-logo.svg" alt="" aria-hidden="true">
-                <nav class="footer-links" aria-label="Footer">
-                    <a href="#" data-open-about>About</a>
-                    <a href="/jobs">Jobs</a>
-                    <a href="https://discord.com" rel="noopener">Discord</a>
-                    <a href="https://substack.com" rel="noopener">Substack</a>
-                </nav>
+                <div data-site-footer></div>
             </main>
         </div>
     </div>
 
-    <aside class="fixed-carousel" aria-label="Essays by Marker">
-        <div class="carousel-arrows">
-            <button class="carousel-arrow" type="button" data-carousel-prev aria-label="Previous essay">&larr;</button>
-            <button class="carousel-arrow" type="button" data-carousel-next aria-label="Next essay">&rarr;</button>
-        </div>
-        <a class="carousel-card" href="bettercraft.html" data-carousel-card aria-label="Read A Labour of the Shadows">
-            <p class="carousel-kicker">Essays by Marker</p>
-            <div class="carousel-content carousel-body">
-                <img class="carousel-thumb" src="images/editedby.png" alt="">
-                <div>
-                    <h2 class="carousel-title">A Labour of the Shadows</h2>
-                    <p class="carousel-excerpt">We taught our tools to write for us. We should have taught them to edit.</p>
-                </div>
-            </div>
-            <div class="carousel-bottom">
-                <span class="carousel-link">Read more</span>
-                <span class="carousel-count">1/4</span>
-            </div>
-        </a>
-    </aside>
+    <div data-fixed-essay-carousel></div>
 
     <button class="scroll-cue" type="button" aria-label="Scroll down" data-scroll-cue></button>
 
@@ -1028,8 +996,22 @@
         </div>
     </div>
 
+    <script src="components/site-foundation.js"></script>
+    <script src="components/site-header.js"></script>
+    <script src="components/site-footer.js"></script>
+    <script src="components/essay-data.js"></script>
+    <script src="components/essay-carousel.js"></script>
     <script src="https://unpkg.com/typewriter-effect@2.22.0/dist/core.js" integrity="sha256-UYmwidprLcDnB9n8vDklmEeBSLLcy1mgbb2AC3IZ3+A=" crossorigin="anonymous"></script>
     <script>
+        window.MarkerSite.installSiteFoundation();
+        window.MarkerSite.mountSiteHeader(document.querySelector('[data-site-header]'));
+        window.MarkerSite.mountSiteFooter(document.querySelector('[data-site-footer]'), {
+            positionClass: 'contents',
+            logoClass: 'bottom-wordmark',
+            linksClass: 'footer-links'
+        });
+        window.MarkerSite.mountFixedEssayCarousel(document.querySelector('[data-fixed-essay-carousel]'), { interval: 5000 });
+
         const DESIGN_WIDTH = 1441;
         const USERLIST_FORM_URL = 'https://forms.userlist.com/5444a4a9-ad95-4e2a-87b2-090ce86aa9cd/submissions';
         const USERLIST_WORKER_URL = 'https://userlist-proxy.marker-276.workers.dev';
@@ -1306,106 +1288,6 @@
         }
 
         revealQuotes();
-
-        const essays = [
-            {
-                title: 'A Labour of the Shadows',
-                excerpt: 'We taught our tools to write. We should have taught them to edit.',
-                image: 'images/editedby.png',
-                href: 'bettercraft.html'
-            },
-            {
-                title: 'How Rough Becomes Refined',
-                excerpt: 'A writing space for shaping the vague thing before it hardens.',
-                image: 'images/rocks-home/Vector-8.png',
-                href: '#'
-            },
-            {
-                title: 'The Winding Road',
-                excerpt: 'Notes on discovery, surprise, and the work of finding thought.',
-                image: 'images/rocks-home/Vector-7.png',
-                href: '#'
-            },
-            {
-                title: 'Write With Us',
-                excerpt: 'A small invitation to build better sentences with better company.',
-                image: 'images/rocks-home/Vector-2.png',
-                href: '#'
-            }
-        ];
-
-        const CAROUSEL_INTERVAL_MS = 5000;
-        let currentEssay = 0;
-        let carouselTimerId = 0;
-        let isCarouselAnimating = false;
-        const carouselCard = document.querySelector('[data-carousel-card]');
-        const carouselContent = document.querySelector('.carousel-content');
-        const carouselThumb = document.querySelector('.carousel-thumb');
-        const carouselTitle = document.querySelector('.carousel-title');
-        const carouselExcerpt = document.querySelector('.carousel-excerpt');
-        const carouselCount = document.querySelector('.carousel-count');
-
-        function renderEssay() {
-            const essay = essays[currentEssay];
-            carouselThumb.src = essay.image;
-            carouselTitle.textContent = essay.title;
-            carouselExcerpt.textContent = essay.excerpt;
-            carouselCard.href = essay.href;
-            carouselCard.setAttribute('aria-label', `Read ${essay.title}`);
-            carouselCount.textContent = `${currentEssay + 1}/${essays.length}`;
-        }
-
-        function setEssay(delta = 1) {
-            currentEssay = (currentEssay + delta + essays.length) % essays.length;
-            renderEssay();
-        }
-
-        function advanceEssay(delta = 1) {
-            if (prefersReducedMotion) {
-                setEssay(delta);
-                return;
-            }
-
-            if (isCarouselAnimating) return;
-
-            isCarouselAnimating = true;
-            const direction = delta >= 0 ? 'next' : 'prev';
-            carouselContent.classList.add(`slide-out-${direction}`);
-
-            window.setTimeout(() => {
-                setEssay(delta);
-                carouselContent.classList.remove(`slide-out-${direction}`);
-                carouselContent.classList.add(`prepare-${direction}`);
-                carouselContent.getBoundingClientRect();
-                carouselContent.classList.remove(`prepare-${direction}`);
-
-                window.setTimeout(() => {
-                    isCarouselAnimating = false;
-                }, 300);
-            }, 280);
-        }
-
-        function resetCarouselTimer() {
-            window.clearInterval(carouselTimerId);
-            carouselTimerId = window.setInterval(() => advanceEssay(1), CAROUSEL_INTERVAL_MS);
-        }
-
-        document.querySelector('[data-carousel-prev]').addEventListener('click', () => {
-            advanceEssay(-1);
-            resetCarouselTimer();
-        });
-
-        document.querySelector('[data-carousel-next]').addEventListener('click', () => {
-            advanceEssay(1);
-            resetCarouselTimer();
-        });
-
-        carouselCard.addEventListener('click', (event) => {
-            if (essays[currentEssay].href === '#') event.preventDefault();
-        });
-
-        renderEssay();
-        resetCarouselTimer();
 
         followupCloseBtn.addEventListener('click', () => {
             followupOverlay.classList.remove('active');

@@ -1,0 +1,216 @@
+(function () {
+  function getEssays() {
+    return window.MarkerEssays || [];
+  }
+
+  function renderBaseCard(essay, index, total) {
+    return `
+      <a href="${essay.href}" class="group relative block h-[648px] w-[436px] shrink-0 overflow-hidden rounded-[11px]" data-essay-card>
+        <div class="absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] ${essay.color}"></div>
+        <div class="absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] bg-[url('images/bag.png')] bg-[length:720px_720px] bg-bottom opacity-[0.08] mix-blend-multiply"></div>
+        <div class="absolute left-[85px] top-[104px] h-[320px] w-[265px] border-8 ${essay.border} bg-paperWarm">
+          <img class="h-full w-full object-cover" src="${essay.image}" alt="">
+        </div>
+        <div class="absolute left-1/2 top-[492px] flex w-[350px] -translate-x-1/2 -translate-y-full flex-col justify-end text-center font-museum text-[26px] leading-[1.3] ${essay.text}">
+          ${essay.title}
+        </div>
+        <p class="absolute left-1/2 top-[499px] h-[30px] w-[350px] -translate-x-1/2 text-center font-graphik text-[12px] leading-[1.25] ${essay.text}">
+          ${essay.excerpt}
+        </p>
+        <span class="absolute left-[165px] top-[552px] inline-flex h-[40px] items-center justify-center rounded-[11px] border px-[16px] font-mono text-[11px] uppercase leading-[1.25] tracking-[1.1px] ${essay.text} ${essay.text === 'text-paperWarm' ? 'border-paperWarm' : 'border-ink'}">
+          Read more
+        </span>
+        <span class="sr-only">Essay ${index + 1} of ${total}</span>
+      </a>
+    `;
+  }
+
+  function renderCard(essay, index, total, scale) {
+    const card = renderBaseCard(essay, index, total);
+    if (scale === 1) return card;
+
+    return `
+      <div class="relative shrink-0" style="width:${436 * scale}px;height:${648 * scale}px">
+        <div class="absolute left-0 top-0 h-[648px] w-[436px]" style="transform:scale(${scale});transform-origin:top left">
+          ${card}
+        </div>
+      </div>
+    `;
+  }
+
+  function mountEssayCarousel(target, options = {}) {
+    if (!target) return;
+
+    const essays = getEssays();
+    if (!essays.length) return;
+
+    const {
+      interval = 10000,
+      controls = false,
+      cardScale = 1,
+      className = '',
+      viewportClass = 'mx-auto w-[1798px] max-w-full overflow-hidden',
+      trackClass = 'flex gap-[18px] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]'
+    } = options;
+
+    target.innerHTML = `
+      <section class="${className} relative" aria-label="Essays by Marker">
+        ${controls ? `
+          <div class="absolute right-[20px] top-0 z-10 flex gap-[8px]">
+            <button class="grid h-[32px] w-[32px] place-items-center rounded-full bg-paperWarm/70 font-mono text-[16px] text-ink backdrop-blur-md" type="button" data-essay-prev aria-label="Previous essays">&larr;</button>
+            <button class="grid h-[32px] w-[32px] place-items-center rounded-full bg-paperWarm/70 font-mono text-[16px] text-ink backdrop-blur-md" type="button" data-essay-next aria-label="Next essays">&rarr;</button>
+          </div>
+        ` : ''}
+        <div class="${viewportClass}">
+          <div class="${trackClass}" data-essay-track>
+            ${essays.map((essay, index) => renderCard(essay, index, essays.length, cardScale)).join('')}
+          </div>
+        </div>
+      </section>
+    `;
+
+    const track = target.querySelector('[data-essay-track]');
+    const cardWidth = (436 * cardScale) + 18;
+    let timerId = 0;
+    let animating = false;
+
+    function moveNext() {
+      if (animating) return;
+      animating = true;
+      track.style.transition = '';
+      track.style.transform = `translateX(${-cardWidth}px)`;
+      window.setTimeout(() => {
+        track.appendChild(track.firstElementChild);
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0)';
+        track.getBoundingClientRect();
+        track.style.transition = '';
+        animating = false;
+      }, 720);
+    }
+
+    function movePrev() {
+      if (animating) return;
+      animating = true;
+      track.style.transition = 'none';
+      track.insertBefore(track.lastElementChild, track.firstElementChild);
+      track.style.transform = `translateX(${-cardWidth}px)`;
+      track.getBoundingClientRect();
+      track.style.transition = '';
+      track.style.transform = 'translateX(0)';
+      window.setTimeout(() => {
+        animating = false;
+      }, 720);
+    }
+
+    function resetTimer() {
+      window.clearInterval(timerId);
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        timerId = window.setInterval(moveNext, interval);
+      }
+    }
+
+    target.querySelector('[data-essay-next]')?.addEventListener('click', () => {
+      moveNext();
+      resetTimer();
+    });
+    target.querySelector('[data-essay-prev]')?.addEventListener('click', () => {
+      movePrev();
+      resetTimer();
+    });
+
+    resetTimer();
+  }
+
+  function mountFixedEssayCarousel(target, options = {}) {
+    if (!target) return;
+
+    const essays = getEssays();
+    if (!essays.length) return;
+
+    const interval = options.interval || 5000;
+    target.innerHTML = `
+      <aside class="fixed bottom-[28px] right-[28px] z-80 w-[259px] font-mono text-ink" aria-label="Essays by Marker">
+        <div class="absolute -top-[28px] right-0 flex gap-[4px]">
+          <button class="h-[20px] w-[20px] rounded-[8px] bg-white/55 p-0 text-[12px] leading-[20px] backdrop-blur-md" type="button" data-carousel-prev aria-label="Previous essay">&larr;</button>
+          <button class="h-[20px] w-[20px] rounded-[8px] bg-white/55 p-0 text-[12px] leading-[20px] backdrop-blur-md" type="button" data-carousel-next aria-label="Next essay">&rarr;</button>
+        </div>
+        <a class="block min-h-[114px] w-[259px] overflow-hidden rounded-[8px] bg-white/55 px-[12px] pb-[10px] pt-[13px] shadow-[0_10px_32px_rgba(0,0,0,0.08)] backdrop-blur-md hover:bg-white/65" href="${essays[0].href}" data-carousel-card>
+          <p class="mb-[9px] text-[9px] uppercase leading-[1.25] tracking-[0.9px]">Essays by Marker</p>
+          <div class="grid grid-cols-[48px_1fr] gap-x-[10px] transition duration-300 ease-out" data-carousel-content>
+            <img class="h-[48px] w-[48px] rounded-[8px] object-cover" src="${essays[0].image}" alt="" data-carousel-thumb>
+            <div>
+              <h2 class="mb-[4px] overflow-hidden text-ellipsis whitespace-nowrap text-[10px] uppercase leading-[1.25] tracking-[1px]" data-carousel-title>${essays[0].title}</h2>
+              <p class="font-mono text-[10px] leading-[1.25]" data-carousel-excerpt>${essays[0].excerpt}</p>
+            </div>
+          </div>
+          <div class="mt-[10px] flex items-center justify-between text-[9px] uppercase leading-[1.25] tracking-[0.9px]">
+            <span class="underline underline-offset-2">Read more</span>
+            <span data-carousel-count>1/${essays.length}</span>
+          </div>
+        </a>
+      </aside>
+    `;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const card = target.querySelector('[data-carousel-card]');
+    const content = target.querySelector('[data-carousel-content]');
+    const thumb = target.querySelector('[data-carousel-thumb]');
+    const title = target.querySelector('[data-carousel-title]');
+    const excerpt = target.querySelector('[data-carousel-excerpt]');
+    const count = target.querySelector('[data-carousel-count]');
+    let index = 0;
+    let timerId = 0;
+    let animating = false;
+
+    function render() {
+      const essay = essays[index];
+      card.href = essay.href;
+      thumb.src = essay.image;
+      title.textContent = essay.title;
+      excerpt.textContent = essay.excerpt;
+      count.textContent = `${index + 1}/${essays.length}`;
+    }
+
+    function advance(delta) {
+      if (animating) return;
+      index = (index + delta + essays.length) % essays.length;
+      if (prefersReducedMotion) {
+        render();
+        return;
+      }
+      animating = true;
+      content.classList.add(delta > 0 ? '-translate-x-[22px]' : 'translate-x-[22px]', 'opacity-0');
+      window.setTimeout(() => {
+        render();
+        content.classList.remove('-translate-x-[22px]', 'translate-x-[22px]');
+        content.classList.add(delta > 0 ? 'translate-x-[22px]' : '-translate-x-[22px]');
+        content.getBoundingClientRect();
+        content.classList.remove('opacity-0', 'translate-x-[22px]', '-translate-x-[22px]');
+        window.setTimeout(() => {
+          animating = false;
+        }, 300);
+      }, 280);
+    }
+
+    function resetTimer() {
+      window.clearInterval(timerId);
+      timerId = window.setInterval(() => advance(1), interval);
+    }
+
+    target.querySelector('[data-carousel-prev]').addEventListener('click', () => {
+      advance(-1);
+      resetTimer();
+    });
+    target.querySelector('[data-carousel-next]').addEventListener('click', () => {
+      advance(1);
+      resetTimer();
+    });
+
+    resetTimer();
+  }
+
+  window.MarkerSite = window.MarkerSite || {};
+  window.MarkerSite.mountEssayCarousel = mountEssayCarousel;
+  window.MarkerSite.mountFixedEssayCarousel = mountFixedEssayCarousel;
+})();

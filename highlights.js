@@ -47,7 +47,7 @@
       p.textContent = text;
       addClasses(
         p,
-        "font-byrd text-[14px] leading-[22px] text-black tracking-[0.02em]"
+        "font-graphik text-[14px] leading-[22px] text-black tracking-[0.02em]"
       );
       col.appendChild(p);
       container.appendChild(col);
@@ -57,7 +57,7 @@
     marks.forEach(function (el) {
       addClasses(
         el,
-        "bg-[#efeae7] hover:bg-[#e6ded7] rounded-[4px] px-[4px] py-[4px] cursor-pointer transition-colors duration-150 [box-decoration-break:clone] [-webkit-box-decoration-break:clone]"
+        "bg-[rgba(168,160,145,0.3)] hover:bg-[rgba(168,160,145,0.42)] rounded-[2px] px-[3px] py-0 cursor-pointer transition-colors duration-150 [box-decoration-break:clone] [-webkit-box-decoration-break:clone]"
       );
       el.setAttribute("tabindex", "0");
       el.setAttribute("role", "button");
