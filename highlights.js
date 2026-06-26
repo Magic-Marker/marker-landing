@@ -57,7 +57,7 @@
     marks.forEach(function (el) {
       addClasses(
         el,
-        "bg-[rgba(168,160,145,0.3)] hover:bg-[rgba(168,160,145,0.42)] rounded-[2px] px-[3px] py-0 cursor-pointer transition-colors duration-150 [box-decoration-break:clone] [-webkit-box-decoration-break:clone]"
+        "bg-[rgba(168,160,145,0.3)] hover:bg-[rgba(168,160,145,0.42)] rounded-[2px] px-[3px] py-0 pb-px cursor-pointer transition-colors duration-150 [box-decoration-break:clone] [-webkit-box-decoration-break:clone]"
       );
       el.setAttribute("tabindex", "0");
       el.setAttribute("role", "button");

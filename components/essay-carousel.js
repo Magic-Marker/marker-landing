@@ -6,18 +6,18 @@
   function renderBaseCard(essay, index, total) {
     return `
       <a href="${essay.href}" class="group relative block h-[648px] w-[436px] shrink-0 overflow-hidden rounded-[11px]" data-essay-card>
-        <div class="absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] ${essay.color}"></div>
-        <div class="absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] bg-[url('images/bag.png')] bg-[length:720px_720px] bg-bottom opacity-[0.08] mix-blend-multiply"></div>
-        <div class="absolute left-[85px] top-[104px] h-[320px] w-[265px] border-8 ${essay.border} bg-paperWarm">
+        <div class="essay-card-bg absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] ${essay.color}"></div>
+        <div class="essay-card-texture absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] bg-[url('images/bag.png')] bg-[length:720px_720px] bg-bottom opacity-[0.08] mix-blend-multiply"></div>
+        <div class="essay-card-image absolute left-[85px] top-[104px] h-[320px] w-[265px] border-8 ${essay.border} bg-paperWarm">
           <img class="h-full w-full object-cover" src="${essay.image}" alt="">
         </div>
-        <div class="absolute left-1/2 top-[492px] flex w-[350px] -translate-x-1/2 -translate-y-full flex-col justify-end text-center font-museum text-[26px] leading-[1.3] ${essay.text}">
+        <div class="essay-card-title absolute left-1/2 top-[492px] flex w-[350px] -translate-x-1/2 -translate-y-full flex-col justify-end text-center font-museum text-[26px] leading-[1.3] ${essay.text}">
           ${essay.title}
         </div>
-        <p class="absolute left-1/2 top-[499px] h-[30px] w-[350px] -translate-x-1/2 text-center font-graphik text-[12px] leading-[1.25] ${essay.text}">
+        <p class="essay-card-excerpt absolute left-1/2 top-[499px] h-[30px] w-[350px] -translate-x-1/2 text-center font-graphik text-[12px] leading-[1.25] ${essay.text}">
           ${essay.excerpt}
         </p>
-        <span class="absolute left-[165px] top-[552px] inline-flex h-[40px] items-center justify-center rounded-[11px] border px-[16px] font-mono text-[11px] uppercase leading-[1.25] tracking-[1.1px] ${essay.text} ${essay.text === 'text-paperWarm' ? 'border-paperWarm' : 'border-ink'}">
+        <span class="essay-card-cta absolute left-[165px] top-[552px] inline-flex h-[40px] items-center justify-center rounded-[11px] border px-[16px] font-mono text-[11px] uppercase leading-[1.25] tracking-[1.1px] ${essay.text} ${essay.text === 'text-paperWarm' ? 'border-paperWarm' : 'border-ink'}">
           Read more
         </span>
         <span class="sr-only">Essay ${index + 1} of ${total}</span>
@@ -46,6 +46,7 @@
 
     const {
       interval = 10000,
+      autoplay = false,
       controls = false,
       cardScale = 1,
       className = '',
@@ -54,7 +55,7 @@
     } = options;
 
     target.innerHTML = `
-      <section class="${className} relative" aria-label="Essays by Marker">
+      <section class="${className} relative" aria-label="Essays by Marker" data-essay-carousel-mounted>
         ${controls ? `
           <div class="absolute right-[20px] top-0 z-10 flex gap-[8px]">
             <button class="grid h-[32px] w-[32px] place-items-center rounded-full bg-paperWarm/70 font-mono text-[16px] text-ink backdrop-blur-md" type="button" data-essay-prev aria-label="Previous essays">&larr;</button>
@@ -70,15 +71,26 @@
     `;
 
     const track = target.querySelector('[data-essay-track]');
-    const cardWidth = (436 * cardScale) + 18;
     let timerId = 0;
     let animating = false;
+    let dragStartX = 0;
+    let dragCurrentX = 0;
+    let dragging = false;
+    let suppressClick = false;
+
+    function getStep() {
+      const firstCard = track.firstElementChild;
+      if (!firstCard) return (436 * cardScale) + 18;
+      const styles = window.getComputedStyle(track);
+      const gap = Number.parseFloat(styles.columnGap || styles.gap || '18') || 18;
+      return firstCard.getBoundingClientRect().width + gap;
+    }
 
     function moveNext() {
       if (animating) return;
       animating = true;
       track.style.transition = '';
-      track.style.transform = `translateX(${-cardWidth}px)`;
+      track.style.transform = `translateX(${-getStep()}px)`;
       window.setTimeout(() => {
         track.appendChild(track.firstElementChild);
         track.style.transition = 'none';
@@ -94,7 +106,7 @@
       animating = true;
       track.style.transition = 'none';
       track.insertBefore(track.lastElementChild, track.firstElementChild);
-      track.style.transform = `translateX(${-cardWidth}px)`;
+      track.style.transform = `translateX(${-getStep()}px)`;
       track.getBoundingClientRect();
       track.style.transition = '';
       track.style.transform = 'translateX(0)';
@@ -105,7 +117,7 @@
 
     function resetTimer() {
       window.clearInterval(timerId);
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (autoplay && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         timerId = window.setInterval(moveNext, interval);
       }
     }
@@ -119,6 +131,49 @@
       resetTimer();
     });
 
+    track.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      dragging = true;
+      dragStartX = event.clientX;
+      dragCurrentX = event.clientX;
+      track.style.transition = 'none';
+      track.setPointerCapture?.(event.pointerId);
+    });
+
+    track.addEventListener('pointermove', (event) => {
+      if (!dragging || animating) return;
+      dragCurrentX = event.clientX;
+      const delta = dragCurrentX - dragStartX;
+      track.style.transform = `translateX(${Math.max(Math.min(delta, 70), -70)}px)`;
+    });
+
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      const delta = dragCurrentX - dragStartX;
+      track.style.transition = '';
+      track.style.transform = 'translateX(0)';
+      if (Math.abs(delta) < 45) return;
+      suppressClick = true;
+      if (delta < 0) {
+        moveNext();
+      } else {
+        movePrev();
+      }
+      resetTimer();
+    }
+
+    track.addEventListener('click', (event) => {
+      if (!suppressClick) return;
+      event.preventDefault();
+      event.stopPropagation();
+      suppressClick = false;
+    }, true);
+
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+    track.addEventListener('pointerleave', endDrag);
+
     resetTimer();
   }
 
@@ -129,6 +184,7 @@
     if (!essays.length) return;
 
     const interval = options.interval || 5000;
+    const autoplay = options.autoplay === true;
     target.innerHTML = `
       <aside class="fixed bottom-[28px] right-[28px] z-80 w-[259px] font-mono text-ink" aria-label="Essays by Marker">
         <div class="absolute -top-[28px] right-0 flex gap-[4px]">
@@ -195,7 +251,9 @@
 
     function resetTimer() {
       window.clearInterval(timerId);
-      timerId = window.setInterval(() => advance(1), interval);
+      if (autoplay) {
+        timerId = window.setInterval(() => advance(1), interval);
+      }
     }
 
     target.querySelector('[data-carousel-prev]').addEventListener('click', () => {

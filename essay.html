@@ -30,7 +30,7 @@
         </figure>
 
         <section class="mx-auto mt-[110px] grid w-[calc(100%-48px)] max-w-[936px] grid-cols-1 gap-[52px] lg:grid-cols-[450px_450px] lg:gap-[36px]">
-            <aside class="self-start lg:sticky lg:top-[96px]">
+            <aside class="essay-sticky-rail self-start">
                 <h1 class="font-museum text-[44px] font-normal leading-[1.2] tracking-normal text-black">
                     A Labour of<br>the Shadows
                 </h1>
@@ -72,16 +72,16 @@
         <section class="relative mt-[180px] w-full">
             <div class="relative left-1/2 top-0 w-screen -translate-x-1/2 overflow-hidden pl-[22px]" data-essay-carousel></div>
 
-            <section class="mx-auto mt-[170px] w-full max-w-[550px] text-center" aria-label="Join the Marker waitlist">
+            <section class="marker-waitlist mx-auto mt-[170px] w-full max-w-[550px] text-center" aria-label="Join the Marker waitlist">
                 <h2 class="font-museum text-[26px] font-normal leading-[1.3] text-ink">Write with us.</h2>
-                <form class="mt-[35px] flex h-[64px] w-full items-start gap-[16px] border-b-2 border-[#111] pb-[20px]" data-waitlist-form novalidate>
+                <form class="marker-waitlist-form mt-[35px] flex h-[64px] w-full items-start gap-[16px] border-b-2 border-[#111] pb-[20px]" data-waitlist-form novalidate>
                     <label class="sr-only" for="fields_email">Enter your email</label>
-                    <input class="h-[42px] min-w-0 flex-1 bg-transparent px-[14px] font-graphik text-[16px] leading-none text-ink outline-none placeholder:text-ink" type="email" id="fields_email" name="fields[email]" placeholder="Enter your email" data-waitlist-email required>
-                    <button class="h-[42px] w-[165px] rounded-[11px] border border-ink font-mono text-[11px] uppercase leading-[1.25] tracking-[1.1px] text-ink" type="submit">Join the waitlist</button>
+                    <input class="marker-waitlist-input h-[42px] min-w-0 flex-1 bg-transparent px-[14px] font-graphik text-[16px] leading-none text-ink outline-none placeholder:text-ink" type="email" id="fields_email" name="fields[email]" placeholder="Enter your email" data-waitlist-email required>
+                    <button class="marker-waitlist-button h-[42px] w-[165px] rounded-[11px] border border-ink font-mono text-[11px] uppercase leading-[1.25] tracking-[1.1px] text-ink" type="submit">Join the waitlist</button>
                 </form>
             </section>
 
-            <div class="relative left-1/2 mt-[170px] w-screen -translate-x-1/2" data-site-footer></div>
+            <div class="footer-spacer relative left-1/2 w-screen -translate-x-1/2" data-site-footer></div>
         </section>
     </main>
 
@@ -95,7 +95,7 @@
         window.MarkerSite.installSiteFoundation();
         window.MarkerSite.mountSiteHeader(document.querySelector('[data-site-header]'), { positionClass: 'fixed left-0 top-0' });
         window.MarkerSite.mountSiteFooter(document.querySelector('[data-site-footer]'), {
-            positionClass: 'relative flex w-full flex-col items-center',
+            positionClass: 'footer-spacer relative flex w-full flex-col items-center',
             logoClass: 'block w-[1370px] max-w-none opacity-95',
             linksClass: 'mt-[35px] flex items-center justify-center gap-[30px] pb-[35px]'
         });

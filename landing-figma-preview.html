@@ -1010,7 +1010,7 @@
             logoClass: 'bottom-wordmark',
             linksClass: 'footer-links'
         });
-        window.MarkerSite.mountFixedEssayCarousel(document.querySelector('[data-fixed-essay-carousel]'), { interval: 5000 });
+        window.MarkerSite.mountFixedEssayCarousel(document.querySelector('[data-fixed-essay-carousel]'), { autoplay: false });
 
         const DESIGN_WIDTH = 1441;
         const USERLIST_FORM_URL = 'https://forms.userlist.com/5444a4a9-ad95-4e2a-87b2-090ce86aa9cd/submissions';
@@ -1103,7 +1103,7 @@
                 if (!scrollCueDismissed && window.scrollY <= SCROLL_CUE_THRESHOLD) {
                     scrollCue.classList.add('is-visible');
                 }
-            }, 3000);
+            }, 300);
         }
 
         window.addEventListener('scroll', () => {
