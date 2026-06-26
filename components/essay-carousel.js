@@ -74,8 +74,11 @@
     let timerId = 0;
     let animating = false;
     let dragStartX = 0;
+    let dragStartY = 0;
     let dragCurrentX = 0;
+    let dragCurrentY = 0;
     let dragging = false;
+    let pointerDownLink = null;
     let suppressClick = false;
 
     function getStep() {
@@ -135,7 +138,10 @@
       if (event.pointerType === 'mouse' && event.button !== 0) return;
       dragging = true;
       dragStartX = event.clientX;
+      dragStartY = event.clientY;
       dragCurrentX = event.clientX;
+      dragCurrentY = event.clientY;
+      pointerDownLink = event.target.closest('a[href]');
       track.style.transition = 'none';
       track.setPointerCapture?.(event.pointerId);
     });
@@ -143,6 +149,7 @@
     track.addEventListener('pointermove', (event) => {
       if (!dragging || animating) return;
       dragCurrentX = event.clientX;
+      dragCurrentY = event.clientY;
       const delta = dragCurrentX - dragStartX;
       track.style.transform = `translateX(${Math.max(Math.min(delta, 70), -70)}px)`;
     });
@@ -154,9 +161,22 @@
         track.releasePointerCapture?.(event.pointerId);
       }
       const delta = dragCurrentX - dragStartX;
+      const verticalDelta = dragCurrentY - dragStartY;
       track.style.transition = '';
       track.style.transform = 'translateX(0)';
-      if (Math.abs(delta) < 45) return;
+      if (Math.abs(delta) < 45) {
+        const link = pointerDownLink;
+        pointerDownLink = null;
+        if (link && Math.abs(verticalDelta) < 12 && !event?.metaKey && !event?.ctrlKey && !event?.shiftKey && !event?.altKey) {
+          suppressClick = true;
+          window.setTimeout(() => {
+            suppressClick = false;
+          }, 450);
+          window.location.href = link.href;
+        }
+        return;
+      }
+      pointerDownLink = null;
       suppressClick = true;
       window.setTimeout(() => {
         suppressClick = false;
@@ -176,11 +196,7 @@
         event.preventDefault();
         event.stopPropagation();
         suppressClick = false;
-        return;
       }
-      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0 || link.target) return;
-      event.preventDefault();
-      window.location.href = link.href;
     });
 
     track.addEventListener('pointerup', endDrag);
