@@ -8,8 +8,8 @@
       <a href="${essay.href}" class="group relative block h-[648px] w-[436px] shrink-0 overflow-hidden rounded-[11px]" data-essay-card>
         <div class="essay-card-bg absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] ${essay.color}"></div>
         <div class="essay-card-texture absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] bg-[url('images/bag.png')] bg-[length:720px_720px] bg-bottom opacity-[0.08] mix-blend-multiply"></div>
-        <div class="essay-card-image absolute left-[85px] top-[104px] h-[320px] w-[265px] border-8 ${essay.border} bg-paperWarm">
-          <img class="h-full w-full object-cover" src="${essay.image}" alt="">
+        <div class="essay-card-image absolute left-[85px] top-[104px] flex h-[320px] w-[265px] items-center justify-center">
+          <img class="block max-h-full max-w-full object-contain" src="${essay.image}" alt="">
         </div>
         <div class="essay-card-title absolute left-1/2 top-[492px] flex w-[350px] -translate-x-1/2 -translate-y-full flex-col justify-end text-center font-museum text-[26px] leading-[1.3] ${essay.text}">
           ${essay.title}
@@ -147,14 +147,20 @@
       track.style.transform = `translateX(${Math.max(Math.min(delta, 70), -70)}px)`;
     });
 
-    function endDrag() {
+    function endDrag(event) {
       if (!dragging) return;
       dragging = false;
+      if (event?.pointerId != null) {
+        track.releasePointerCapture?.(event.pointerId);
+      }
       const delta = dragCurrentX - dragStartX;
       track.style.transition = '';
       track.style.transform = 'translateX(0)';
       if (Math.abs(delta) < 45) return;
       suppressClick = true;
+      window.setTimeout(() => {
+        suppressClick = false;
+      }, 450);
       if (delta < 0) {
         moveNext();
       } else {
@@ -164,15 +170,21 @@
     }
 
     track.addEventListener('click', (event) => {
-      if (!suppressClick) return;
+      const link = event.target.closest('a[href]');
+      if (!link || !track.contains(link)) return;
+      if (suppressClick) {
+        event.preventDefault();
+        event.stopPropagation();
+        suppressClick = false;
+        return;
+      }
+      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0 || link.target) return;
       event.preventDefault();
-      event.stopPropagation();
-      suppressClick = false;
-    }, true);
+      window.location.href = link.href;
+    });
 
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);
-    track.addEventListener('pointerleave', endDrag);
 
     resetTimer();
   }
