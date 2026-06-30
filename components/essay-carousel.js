@@ -6,7 +6,7 @@
   function renderBaseCard(essay, index, total) {
     return `
       <a href="${essay.href}" class="group relative block h-[648px] w-[436px] shrink-0 overflow-hidden rounded-[11px]" data-essay-card>
-        <div class="essay-card-bg absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] ${essay.color}"></div>
+        <div class="essay-card-bg absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] transition-[filter] duration-300 ease-out group-hover:brightness-[0.95] ${essay.color}"></div>
         <div class="essay-card-texture absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] bg-[url('images/bag.png')] bg-[length:720px_720px] bg-bottom opacity-[0.08] mix-blend-multiply"></div>
         <div class="essay-card-image absolute left-[85px] top-[104px] flex h-[320px] w-[265px] items-center justify-center">
           <img class="block max-h-full max-w-full object-contain" src="${essay.image}" alt="">
@@ -57,7 +57,7 @@
     target.innerHTML = `
       <section class="${className} relative" aria-label="Essays by Marker" data-essay-carousel-mounted>
         ${controls ? `
-          <div class="absolute right-[20px] top-0 z-10 flex gap-[8px]">
+          <div class="absolute right-[20px] top-0 z-10 flex gap-[8px]" data-essay-controls>
             <button class="grid h-[32px] w-[32px] place-items-center rounded-full bg-paperWarm/70 font-mono text-[16px] text-ink backdrop-blur-md" type="button" data-essay-prev aria-label="Previous essays">&larr;</button>
             <button class="grid h-[32px] w-[32px] place-items-center rounded-full bg-paperWarm/70 font-mono text-[16px] text-ink backdrop-blur-md" type="button" data-essay-next aria-label="Next essays">&rarr;</button>
           </div>
@@ -73,6 +73,57 @@
     const track = target.querySelector('[data-essay-track]');
     let timerId = 0;
     let animating = false;
+    // When every card fits inside the viewport (e.g. just a couple of essays
+    // on a wide screen) we centre them and disable advancing/drag/controls.
+    let isStatic = false;
+
+    function applyLayout() {
+      const viewport = track.parentElement;
+      const styles = window.getComputedStyle(track);
+      const gap = Number.parseFloat(styles.columnGap || styles.gap || '18') || 18;
+
+      // Reset any layout-mode styling before measuring/deciding.
+      track.classList.remove('justify-center');
+      track.style.transformOrigin = '';
+      track.style.transform = '';
+      viewport.style.height = '';
+
+      const cards = track.children;
+      const count = cards.length;
+      if (!count) return;
+      // Measure the real rendered card size (handles responsive overrides and
+      // the cardScale wrapper) rather than assuming the base 436px.
+      let cardsW = 0;
+      for (let i = 0; i < count; i += 1) cardsW += cards[i].getBoundingClientRect().width;
+      const total = cardsW + (gap * (count - 1));
+      const cardH = cards[0].getBoundingClientRect().height;
+
+      const fitsFull = total <= viewport.clientWidth + 1;
+      // A "couple" of essays are always shown together: centred if they fit at
+      // full size, otherwise scaled down so both fit the width (e.g. mobile).
+      const fitAll = fitsFull || count <= 2;
+      isStatic = fitAll;
+
+      if (fitAll) {
+        target.style.paddingLeft = '0px';
+        track.style.transition = 'none';
+        if (fitsFull) {
+          track.classList.add('justify-center');
+        } else {
+          const scale = viewport.clientWidth / total;
+          track.style.transformOrigin = 'top left';
+          track.style.transform = `scale(${scale})`;
+          viewport.style.height = `${cardH * scale}px`;
+        }
+        track.getBoundingClientRect();
+      } else {
+        if (target.style.paddingLeft !== '') target.style.paddingLeft = '';
+        track.style.transition = '';
+      }
+
+      const ctrls = target.querySelector('[data-essay-controls]');
+      if (ctrls) ctrls.style.display = isStatic ? 'none' : '';
+    }
     let dragStartX = 0;
     let dragStartY = 0;
     let dragCurrentX = 0;
@@ -90,7 +141,7 @@
     }
 
     function moveNext() {
-      if (animating) return;
+      if (isStatic || animating) return;
       animating = true;
       track.style.transition = '';
       track.style.transform = `translateX(${-getStep()}px)`;
@@ -105,7 +156,7 @@
     }
 
     function movePrev() {
-      if (animating) return;
+      if (isStatic || animating) return;
       animating = true;
       track.style.transition = 'none';
       track.insertBefore(track.lastElementChild, track.firstElementChild);
@@ -120,6 +171,7 @@
 
     function resetTimer() {
       window.clearInterval(timerId);
+      if (isStatic) return;
       if (autoplay && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         timerId = window.setInterval(moveNext, interval);
       }
@@ -135,6 +187,7 @@
     });
 
     track.addEventListener('pointerdown', (event) => {
+      if (isStatic) return;
       if (event.pointerType === 'mouse' && event.button !== 0) return;
       dragging = true;
       dragStartX = event.clientX;
@@ -202,6 +255,27 @@
     track.addEventListener('pointerup', endDrag);
     track.addEventListener('pointercancel', endDrag);
 
+    let layoutRaf = 0;
+    function scheduleLayout() {
+      window.cancelAnimationFrame(layoutRaf);
+      layoutRaf = window.requestAnimationFrame(() => {
+        applyLayout();
+        resetTimer();
+      });
+    }
+
+    window.addEventListener('resize', scheduleLayout);
+    window.addEventListener('load', scheduleLayout);
+    // The Tailwind CDN applies card widths asynchronously, so re-measure once
+    // a card reports its real size (and on any later size change).
+    if (typeof ResizeObserver !== 'undefined') {
+      const ro = new ResizeObserver(scheduleLayout);
+      ro.observe(track);
+      if (track.firstElementChild) ro.observe(track.firstElementChild);
+    }
+    [120, 360, 720].forEach((delay) => window.setTimeout(scheduleLayout, delay));
+
+    scheduleLayout();
     resetTimer();
   }
 

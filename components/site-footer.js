@@ -14,7 +14,6 @@
         <nav class="${linksClass} font-mono text-[11px] uppercase leading-[1.25] tracking-[1.1px]" aria-label="Footer">
           <a class="hover:underline hover:underline-offset-4" href="about.html">About</a>
           <a class="hover:underline hover:underline-offset-4" href="jobs/">Jobs</a>
-          <a class="hover:underline hover:underline-offset-4" href="https://discord.com" rel="noopener">Discord</a>
           <a class="hover:underline hover:underline-offset-4" href="https://substack.com" rel="noopener">Substack</a>
         </nav>
       </footer>

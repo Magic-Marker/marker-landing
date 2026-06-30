@@ -85,14 +85,23 @@
       text-indent: 2.5em;
     }
 
-    .marker-waitlist-input::placeholder {
-      color: #111111 !important;
-      opacity: 1 !important;
+    .marker-waitlist {
+      max-width: 538px !important;
+    }
+
+    .marker-waitlist h2 {
+      margin-bottom: 48px !important;
     }
 
     .marker-waitlist-form {
       position: relative !important;
+      margin-top: 0 !important;
+      height: 64px !important;
+      align-items: flex-start !important;
+      gap: 16px !important;
       border-bottom: 0 !important;
+      padding-bottom: 0 !important;
+      background: transparent !important;
     }
 
     .marker-waitlist-form::after {
@@ -101,38 +110,38 @@
       left: 0;
       right: 0;
       bottom: 0;
-      height: 4px;
-      background-image: url("data:image/svg+xml,%3Csvg width='550' height='5' viewBox='0 0 550 5' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 2.9C34.6 1.2 68.5 3.2 102.2 2.1C139.8 0.9 176.2 3.4 213.7 2.2C253.4 0.9 290 3.1 329.7 2.1C366.4 1.2 403.1 3.4 439.9 2.1C477 1 513.8 2.7 549 1.9' stroke='%23111111' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: 100% 4px;
+      height: 2px;
+      background: #111111;
+      opacity: 0.72;
+      transform: rotate(-0.25deg);
+      transform-origin: left center;
+      box-shadow: 0 2px 0 rgba(17, 17, 17, 0.18);
       pointer-events: none;
     }
 
-    .marker-waitlist {
-      max-width: 1100px !important;
-    }
-
-    .marker-waitlist-form {
-      height: 88px !important;
-      align-items: flex-start !important;
-      gap: 36px !important;
-      padding-bottom: 30px !important;
-    }
-
     .marker-waitlist-input {
-      height: 58px !important;
-      padding-left: 24px !important;
-      padding-right: 24px !important;
-      font-size: 24px !important;
-      line-height: 1.3 !important;
+      flex: 1 1 auto !important;
+      height: 42px !important;
+      padding: 0 14px !important;
+      border-bottom: 0 !important;
+      font-family: 'iA Writer Quattro', 'Courier New', monospace !important;
+      font-size: 18px !important;
+      line-height: 1.1 !important;
+      color: #111111 !important;
+    }
+
+    .marker-waitlist-input::placeholder {
+      color: #111111 !important;
+      opacity: 1 !important;
     }
 
     .marker-waitlist-button {
-      width: 330px !important;
-      height: 58px !important;
-      font-size: 14px !important;
-      letter-spacing: 1.4px !important;
+      flex: 0 0 165px !important;
+      width: 165px !important;
+      height: 42px !important;
+      border-width: 1.2px !important;
+      font-size: 11px !important;
+      letter-spacing: 1.1px !important;
     }
 
     [data-site-header-mounted] {
@@ -362,23 +371,24 @@
       .marker-waitlist h2 {
         font-size: 24px !important;
         line-height: 1.2 !important;
+        margin-bottom: 40px !important;
       }
 
       .marker-waitlist-form {
-        margin-top: 40px !important;
+        margin-top: 0 !important;
         display: flex !important;
         height: auto !important;
         flex-direction: column !important;
         align-items: center !important;
-        gap: 40px !important;
+        gap: 28px !important;
         border-bottom: 0 !important;
         padding-bottom: 0 !important;
       }
 
       .marker-waitlist-form::after {
-        top: 29px;
+        top: 31px;
         bottom: auto;
-        background-image: url("data:image/svg+xml,%3Csvg width='340' height='5' viewBox='0 0 340 5' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 2.9C21.9 1.4 42.8 3.1 63.7 2.2C86.9 1.2 109.3 3.5 132.4 2.3C157.1 1 179.7 2.9 204.2 2.1C226.8 1.3 249.3 3.4 271.9 2.2C294.7 1.1 317.2 2.6 339 1.9' stroke='%23111111' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+        background: #111111;
       }
 
       .marker-waitlist-input {
