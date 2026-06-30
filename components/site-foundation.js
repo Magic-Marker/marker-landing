@@ -235,8 +235,8 @@
         position: absolute !important;
         left: 50% !important;
         top: 28px !important;
-        transform: translate(-50%, var(--logo-shift, 0px)) !important;
-        opacity: var(--logo-opacity, 1);
+        transform: translate(-50%, 0) !important;
+        opacity: 1 !important;
       }
 
       .site-header-logo img {
@@ -333,6 +333,7 @@
       }
 
       .about-learn-more-label {
+        text-align: center !important;
         font-size: 14px !important;
         line-height: 1.25 !important;
         letter-spacing: 1.4px !important;
@@ -411,6 +412,7 @@
       }
 
       .marker-waitlist-button {
+        flex: none !important;
         width: 214px !important;
         height: 43px !important;
         font-size: 14px !important;
@@ -463,7 +465,7 @@
         top: 42px !important;
         width: 159px !important;
         height: 177px !important;
-        border-width: 4.8px !important;
+        border: 0 !important;
       }
 
       .essay-card-title {
@@ -474,16 +476,16 @@
       }
 
       .essay-card-excerpt {
-        top: 311px !important;
+        top: 313px !important;
         width: 232px !important;
         height: auto !important;
-        font-size: 13px !important;
-        line-height: 1.25 !important;
+        font-size: 17px !important;
+        line-height: 1.28 !important;
       }
 
       .essay-card-cta {
         left: 50% !important;
-        top: 369px !important;
+        top: 384px !important;
         width: 130px !important;
         height: 43px !important;
         transform: translateX(-50%) !important;
