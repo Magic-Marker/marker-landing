@@ -1180,7 +1180,7 @@
                     <h1 class="font-300 text-[30px]">Write with us.</h1>
                     <form class="signup-form" novalidate>
                         <label class="sr-only" for="fields_email">Enter your email</label>
-                        <input type="email" id="fields_email" name="fields[email]" placeholder="Enter your email" required>
+                        <input type="email" id="fields_email" name="fields[email]" placeholder="Enter your email" pattern="[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}" title="Enter a valid email address including the domain, e.g. you@example.com" required>
                         <button class="outline-button" type="submit">Join the waitlist</button>
                     </form>
                 </section>
@@ -1229,7 +1229,7 @@
                     <h2>Write with us.</h2>
                     <form class="m-signup-form" id="m-signup" novalidate>
                         <label class="sr-only" for="fields_email_m">Enter your email</label>
-                        <input type="email" id="fields_email_m" name="fields[email]" placeholder="Enter your email" required>
+                        <input type="email" id="fields_email_m" name="fields[email]" placeholder="Enter your email" pattern="[^@\s]+@[^@\s]+\.[a-zA-Z]{2,}" title="Enter a valid email address including the domain, e.g. you@example.com" required>
                     </form>
                     <button class="m-cta" type="submit" form="m-signup">Join the waitlist</button>
                 </section>
@@ -1738,7 +1738,7 @@
 
                     const errorEl = document.createElement('div');
                     errorEl.className = 'signup-error';
-                    errorEl.textContent = 'Something went wrong. Please try again.';
+                    errorEl.textContent = 'Hmmm, that did not work. Check your email and try again.';
                     form.parentNode.insertBefore(errorEl, form.nextSibling);
 
                     setTimeout(() => errorEl.remove(), 4000);
