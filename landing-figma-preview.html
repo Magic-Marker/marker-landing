@@ -367,6 +367,17 @@
             }
         }
 
+        /* When the reader scrolls ahead of the typing, drop the remaining
+           quotes in with a gentle fade instead of letting them keep typing. */
+        .quote-finalized .quote-typed-text {
+            animation: quote-finalize-fade 0.55s ease both;
+        }
+
+        @keyframes quote-finalize-fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .quote-layer path {
             fill: none;
             stroke: none;
@@ -1384,6 +1395,7 @@
         const INTRO_REVEAL_DELAY = 500;
         const SCROLL_CUE_THRESHOLD = 90;
         let scrollCueDismissed = false;
+        let quotesFinalized = false;
 
         function revealIntroCopy() {
             if (!introCopy || introCopy.classList.contains('is-visible')) return;
@@ -1465,6 +1477,7 @@
             let index = 0;
 
             function typeNext() {
+                if (quotesFinalized) return;
                 const nextCharacter = text[index];
                 textSpan.textContent += nextCharacter;
                 index += 1;
@@ -1521,7 +1534,7 @@
 
             const startQuote = (prepared, onComplete) => {
                 const { target, parts } = prepared;
-                if (prepared.isStarted) return;
+                if (quotesFinalized || prepared.isStarted) return;
                 prepared.isStarted = true;
                 target.dataset.started = 'true';
                 target.parentElement.classList.add('quote-active');
@@ -1540,7 +1553,7 @@
                     cursor: '',
                     skipAddStyles: true,
                     onCreateTextNode: (character) => {
-                        parts.textSpan.textContent += character;
+                        if (!quotesFinalized) parts.textSpan.textContent += character;
                         return null;
                     }
                 });
@@ -1583,6 +1596,39 @@
             preparedTargets.forEach(({ target }) => {
                 observer.observe(target.parentElement);
             });
+
+            // If the reader scrolls fast enough to reach the final quote before
+            // the typing has caught up, stop animating and fade the remaining
+            // quotes in so they don't keep slowly typing below the fold.
+            const finalizeRemainingQuotes = () => {
+                if (quotesFinalized) return;
+                quotesFinalized = true;
+                preparedTargets.forEach((prepared) => {
+                    const { target, parts } = prepared;
+                    const parent = target.parentElement;
+                    if (parent.classList.contains('quote-complete')) return;
+                    parts.textSpan.textContent = target.dataset.full || '';
+                    parent.classList.remove('quote-active');
+                    parent.classList.add('quote-complete', 'quote-finalized');
+                });
+                revealIntroCopy();
+            };
+
+            const finalTarget = preparedTargets[preparedTargets.length - 1];
+            if (finalTarget) {
+                const finalObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+                        finalObserver.disconnect();
+                        finalizeRemainingQuotes();
+                    });
+                }, {
+                    root: null,
+                    rootMargin: '0px 0px -25% 0px',
+                    threshold: 0.4
+                });
+                finalObserver.observe(finalTarget.target.parentElement);
+            }
         }
 
         revealQuotes();
