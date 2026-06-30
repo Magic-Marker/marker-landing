@@ -1176,7 +1176,7 @@
                         – from first idea to final draft.</div>
                 </div>
 
-                <section class="waitlist-panel" aria-label="Join the Marker waitlist">
+                <section id="waitlist" class="waitlist-panel" aria-label="Join the Marker waitlist">
                     <h1 class="font-300 text-[30px]">Write with us.</h1>
                     <form class="signup-form" novalidate>
                         <label class="sr-only" for="fields_email">Enter your email</label>
@@ -1377,6 +1377,20 @@
             form.scrollIntoView({ behavior: 'smooth', block: 'center' });
             const input = form.querySelector('input[type="email"]');
             setTimeout(() => input && input.focus(), 450);
+        });
+
+        // Support #waitlist as a scroll target on both the desktop and mobile
+        // shells (only one is visible at a time, so we scroll whichever shows).
+        function scrollToWaitlist(smooth) {
+            const form = getVisibleSignupForm();
+            if (!form) return;
+            form.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'center' });
+        }
+        if (window.location.hash === '#waitlist') {
+            window.requestAnimationFrame(() => scrollToWaitlist(false));
+        }
+        window.addEventListener('hashchange', () => {
+            if (window.location.hash === '#waitlist') scrollToWaitlist(true);
         });
 
         document.addEventListener('keydown', (event) => {
