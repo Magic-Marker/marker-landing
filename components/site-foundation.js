@@ -110,12 +110,11 @@
       left: 0;
       right: 0;
       bottom: 0;
-      height: 2px;
-      background: #111111;
-      opacity: 0.72;
-      transform: rotate(-0.25deg);
-      transform-origin: left center;
-      box-shadow: 0 2px 0 rgba(17, 17, 17, 0.18);
+      height: 4px;
+      background-image: url("data:image/svg+xml,%3Csvg width='753' height='4' viewBox='0 0 753 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23rough-underline)'%3E%3Cline x1='1.40039' y1='1.89844' x2='751.4' y2='1.89844' stroke='black'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='rough-underline' x='0.000390649' y='-0.00156248' width='752.8' height='3.8' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04237288236618042 0.04237288236618042' numOctaves='3' seed='7255'/%3E%3CfeDisplacementMap in='shape' scale='2.7999999523162842' xChannelSelector='R' yChannelSelector='G' result='displacedImage' width='100%25' height='100%25'/%3E%3CfeMerge result='effect1_texture'%3E%3CfeMergeNode in='displacedImage'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% 4px;
       pointer-events: none;
     }
 
@@ -307,25 +306,18 @@
       .site-header-nav button.site-header-link::before {
         content: '';
         position: absolute;
-        inset: -14px -22px -20px;
+        inset: -14px -22px -16px;
         z-index: -1;
-        border-radius: 12px;
-        background: #111;
+        background-image: url("data:image/svg+xml,%3Csvg width='75' height='40' viewBox='0 0 75 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23join-chip)'%3E%3Crect x='0.799805' y='0.800781' width='73' height='38' rx='11' fill='%23111111'/%3E%3Crect x='1.2948' y='1.29578' width='72.01' height='37.01' rx='10.505' stroke='%23111111' stroke-width='0.99'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='join-chip' x='-0.000195324' y='0.000781238' width='74.6' height='39.6' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.158730149269104 0.158730149269104' numOctaves='3' seed='2524'/%3E%3CfeDisplacementMap in='shape' scale='1.6000000238418579' xChannelSelector='R' yChannelSelector='G' result='displacedImage' width='100%25' height='100%25'/%3E%3CfeMerge result='effect1_texture'%3E%3CfeMergeNode in='displacedImage'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
         opacity: var(--header-progress, 0);
         pointer-events: none;
       }
 
+      /* Underline fades out as the chip fades in, so the scrolled Join chip has no line under it. */
       .site-header-nav button.site-header-link::after {
-        background-image: none;
-        background-color: color-mix(in srgb, #111 calc((1 - var(--header-progress, 0)) * 100%), #fff);
-        -webkit-mask-image: url("data:image/svg+xml,%3Csvg width='72' height='4' viewBox='0 0 72 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 2.4C7 1.1 11.8 2.8 17.9 1.8C24.4 0.7 29 2.9 35.7 1.9C42.2 1 48.1 2.7 54.7 1.8C60.8 1 65.2 2.1 71 1.6' stroke='%23111' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
-        mask-image: url("data:image/svg+xml,%3Csvg width='72' height='4' viewBox='0 0 72 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 2.4C7 1.1 11.8 2.8 17.9 1.8C24.4 0.7 29 2.9 35.7 1.9C42.2 1 48.1 2.7 54.7 1.8C60.8 1 65.2 2.1 71 1.6' stroke='%23111' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
-        -webkit-mask-repeat: no-repeat;
-        mask-repeat: no-repeat;
-        -webkit-mask-position: center;
-        mask-position: center;
-        -webkit-mask-size: 100% 3px;
-        mask-size: 100% 3px;
+        opacity: calc(1 - var(--header-progress, 0));
       }
 
       .site-header-join-full {
@@ -362,7 +354,7 @@
       }
 
       .about-hero-copy p + p {
-        margin-top: 10px !important;
+        margin-top: 6px !important;
         text-indent: 2.5em !important;
       }
 
@@ -436,7 +428,15 @@
       .marker-waitlist-form::after {
         top: 31px;
         bottom: auto;
-        background: #111111;
+        height: 4px;
+        opacity: 1;
+        transform: none;
+        box-shadow: none;
+        background: none;
+        background-image: url("data:image/svg+xml,%3Csvg width='343' height='4' viewBox='0 0 343 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg filter='url(%23rough-underline)'%3E%3Cline x1='1.3999' y1='1.89844' x2='341.4' y2='1.89844' stroke='black'/%3E%3C/g%3E%3Cdefs%3E%3Cfilter id='rough-underline' x='-9.76324e-05' y='-0.00156248' width='342.8' height='3.8' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeFlood flood-opacity='0' result='BackgroundImageFix'/%3E%3CfeBlend mode='normal' in='SourceGraphic' in2='BackgroundImageFix' result='shape'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04237288236618042 0.04237288236618042' numOctaves='3' seed='7255'/%3E%3CfeDisplacementMap in='shape' scale='2.7999999523162842' xChannelSelector='R' yChannelSelector='G' result='displacedImage' width='100%25' height='100%25'/%3E%3CfeMerge result='effect1_texture'%3E%3CfeMergeNode in='displacedImage'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3C/svg%3E");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 4px;
       }
 
       .marker-waitlist-input {
