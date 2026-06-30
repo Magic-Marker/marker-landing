@@ -244,6 +244,7 @@
         width: auto !important;
         height: 27px !important;
         transform: none !important;
+        opacity: 1 !important;
       }
 
       .site-header-nav {
@@ -421,7 +422,8 @@
 
       [data-about-carousel],
       [data-essay-carousel] {
-        padding-left: 30px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
       }
 
       [data-essay-carousel-mounted] {
@@ -445,7 +447,7 @@
 
       [data-essay-card] {
         width: 280px !important;
-        height: 432px !important;
+        height: 462px !important;
         border-radius: 6.6px !important;
       }
 
@@ -476,7 +478,7 @@
       }
 
       .essay-card-excerpt {
-        top: 313px !important;
+        top: 301px !important;
         width: 232px !important;
         height: auto !important;
         font-size: 17px !important;
@@ -485,7 +487,7 @@
 
       .essay-card-cta {
         left: 50% !important;
-        top: 384px !important;
+        top: 389px !important;
         width: 130px !important;
         height: 43px !important;
         transform: translateX(-50%) !important;
