@@ -576,6 +576,15 @@
     document.body.style.color = '#111';
     document.documentElement.style.overflowX = 'clip';
     document.body.style.overflowX = 'clip';
+    // Match the paper tone behind iOS browser chrome (dynamic island / status
+    // bar at the top, URL bar at the bottom) so those areas blend in.
+    document.documentElement.style.backgroundColor = '#fbede2';
+    if (!document.querySelector('meta[name="theme-color"]')) {
+      const themeColor = document.createElement('meta');
+      themeColor.name = 'theme-color';
+      themeColor.content = '#fbede2';
+      document.head.append(themeColor);
+    }
   }
 
   window.MarkerSite = window.MarkerSite || {};
