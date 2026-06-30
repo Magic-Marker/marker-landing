@@ -6,10 +6,12 @@
       active = '',
       positionClass = 'fixed left-0 top-0',
       blend = false,
-      aboutModal = false
+      aboutModal = false,
+      texture = false
     } = options;
 
     const difference = blend ? ' mix-blend-difference' : '';
+    const textureClass = texture ? ' site-header-textured' : '';
     const aboutActive = active === 'about';
     const buttonBase = 'site-header-link inline-flex h-[40px] items-center justify-center rounded-[11px] border border-ink px-[16px] font-mono text-[11px] uppercase leading-[1.25] tracking-[1.1px] transition-colors hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/25';
     const aboutClass = aboutActive
@@ -17,7 +19,7 @@
       : `${buttonBase} bg-transparent text-ink`;
 
     target.outerHTML = `
-      <header class="${positionClass} z-30 h-[84px] w-full font-mono${difference}" style="position: fixed; left: 0; top: 0; width: 100%; height: 84px; z-index: 100;" data-site-header-mounted>
+      <header class="${positionClass} z-30 h-[84px] w-full font-mono${difference}${textureClass}" style="position: fixed; left: 0; top: 0; width: 100%; height: 84px; z-index: 100;" data-site-header-mounted>
         <a class="site-header-pebbles" href="landing-figma-preview.html" aria-label="Marker home">
           <img class="absolute left-[27px] top-[18px] block h-auto w-[38px]" src="images/pebbles-together.png" alt="">
         </a>

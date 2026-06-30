@@ -109,6 +109,32 @@
       pointer-events: none;
     }
 
+    .marker-waitlist {
+      max-width: 1100px !important;
+    }
+
+    .marker-waitlist-form {
+      height: 88px !important;
+      align-items: flex-start !important;
+      gap: 36px !important;
+      padding-bottom: 30px !important;
+    }
+
+    .marker-waitlist-input {
+      height: 58px !important;
+      padding-left: 24px !important;
+      padding-right: 24px !important;
+      font-size: 24px !important;
+      line-height: 1.3 !important;
+    }
+
+    .marker-waitlist-button {
+      width: 330px !important;
+      height: 58px !important;
+      font-size: 14px !important;
+      letter-spacing: 1.4px !important;
+    }
+
     [data-site-header-mounted] {
       position: fixed !important;
       left: 0 !important;
@@ -116,6 +142,21 @@
       width: 100% !important;
       height: 84px !important;
       z-index: 100 !important;
+    }
+
+    .site-header-textured {
+      background-color: #fbede2;
+      background-image: url('images/bag.png');
+      background-position: center top;
+      background-repeat: repeat;
+      background-size: 1254px 1254px;
+    }
+
+    @media (min-width: 768px) {
+      .writer-thinking-hero-image {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
     }
 
     @media (min-width: 768px) and (max-width: 1023px) {
@@ -465,7 +506,7 @@
       document.head.append(style);
     }
 
-    document.documentElement.classList.add('bg-paper', 'text-ink');
+    document.documentElement.classList.add('text-ink');
     document.body.classList.add('min-h-screen', 'overflow-x-clip', 'bg-paper', 'bg-repeat', 'bg-top', 'text-ink', 'antialiased');
     document.body.style.backgroundColor = '#fbede2';
     document.body.style.backgroundImage = "url('images/bag.png')";
