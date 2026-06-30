@@ -389,8 +389,8 @@
 
         .intro-copy div {
             opacity: 0;
-            transform: translateY(14px);
-            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(32px) scale(0.97);
+            transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .intro-copy em {
@@ -404,7 +404,7 @@
 
         .intro-copy.is-visible div {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .intro-copy.is-visible div:nth-child(1) {
@@ -1096,7 +1096,7 @@
         const scrollCue = document.querySelector('[data-scroll-cue]');
         const SVG_NS = 'http://www.w3.org/2000/svg';
         const QUOTE_TYPE_DELAY = 30;
-        const INTRO_REVEAL_DELAY = 1400;
+        const INTRO_REVEAL_DELAY = 500;
         const SCROLL_CUE_THRESHOLD = 90;
         let scrollCueDismissed = false;
 

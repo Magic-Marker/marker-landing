@@ -153,6 +153,12 @@
       z-index: 100 !important;
     }
 
+    .site-header-logo img {
+      transform: translateX(-50%) translateY(var(--logo-shift, 0px)) !important;
+      opacity: var(--logo-opacity, 1);
+      will-change: transform, opacity;
+    }
+
     .site-header-textured {
       background-color: #fbede2;
       background-image: url('images/bag.png');
@@ -229,7 +235,8 @@
         position: absolute !important;
         left: 50% !important;
         top: 28px !important;
-        transform: translateX(-50%) !important;
+        transform: translate(-50%, var(--logo-shift, 0px)) !important;
+        opacity: var(--logo-opacity, 1);
       }
 
       .site-header-logo img {

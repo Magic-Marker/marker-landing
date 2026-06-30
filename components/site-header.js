@@ -18,6 +18,8 @@
       ? `${buttonBase} bg-ink text-paperWarm hover:bg-ink`
       : `${buttonBase} bg-transparent text-ink`;
 
+    const parent = target.parentNode;
+
     target.outerHTML = `
       <header class="${positionClass} z-30 h-[84px] w-full font-mono${difference}${textureClass}" style="position: fixed; left: 0; top: 0; width: 100%; height: 84px; z-index: 100;" data-site-header-mounted>
         <a class="site-header-pebbles" href="landing-figma-preview.html" aria-label="Marker home">
@@ -32,6 +34,31 @@
         </nav>
       </header>
     `;
+
+    const header = (parent || document).querySelector('[data-site-header-mounted]');
+    if (header) attachLogoScroll(header);
+  }
+
+  function attachLogoScroll(header) {
+    const fadeDistance = 84;
+    let ticking = false;
+
+    function render() {
+      ticking = false;
+      const y = Math.max(0, window.scrollY || window.pageYOffset || 0);
+      const progress = Math.min(1, y / fadeDistance);
+      header.style.setProperty('--logo-shift', `${-(progress * fadeDistance)}px`);
+      header.style.setProperty('--logo-opacity', `${1 - progress}`);
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(render);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    render();
   }
 
   window.MarkerSite = window.MarkerSite || {};
