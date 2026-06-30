@@ -30,40 +30,40 @@
   var TOOLS = {
     editor: {
       name: "Editor",
-      desc: "Your first reader - work through a passage together or do quick research and much more.",
+      desc: "Marker's Editor is your first reader - work through a passage together, do quick research and much more.",
       dot: "bg-markerYellow"
     },
     "self-notes": {
       name: "Self notes",
-      desc: "Notes in the margins of Marker only for your - capture asides, reminders and stray thoughts without cluttering the page.",
+      desc: "Make notes in the margins of Marker for your eyes only all without your hands leaving the keyboard.",
       dot: "bg-markerYellow",
       icon: '<svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.4102 1.49021L7.78671 11.489C7.40918 12.1602 6.44642 12.1707 6.05437 11.5078L0.140795 1.50906C-0.253459 0.842452 0.227053 1.22578e-06 1.00152 1.15807e-06L12.5386 1.49469e-07C13.3034 8.26079e-08 13.7851 0.823603 13.4102 1.49021Z" fill="#8C8C8C"/></svg>'
     },
     materials: {
       name: "Materials",
-      desc: "Keep your sources, references and research in one place, ready to pull into your writing.",
+      desc: "Marker Materials allows you to keep notes and upload sources and research right in your document.",
       dot: "bg-markerYellow",
       icon: '<svg width="25" height="19" viewBox="0 0 25 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.838116 16.6348L6.46158 6.63602C6.83911 5.96476 7.80187 5.95428 8.19392 6.61717L14.1075 16.6159C14.5017 17.2825 14.0212 18.125 13.2468 18.125H1.70972C0.944924 18.125 0.463207 17.3014 0.838116 16.6348Z" fill="#8FA689"/><path d="M24.1459 6.32443C24.6552 7.0254 24.6552 7.9746 24.1459 8.67557L20.6717 13.4574C20.1624 14.1583 19.2597 14.4516 18.4357 14.1839L12.8143 12.3574C11.9903 12.0897 11.4324 11.3218 11.4324 10.4553V4.5447C11.4324 3.67824 11.9903 2.91033 12.8143 2.64258L18.4357 0.816104C19.2597 0.548355 20.1624 0.841671 20.6717 1.54265L24.1459 6.32443Z" fill="#A8C5E8"/></svg>'
     },
     observations: {
       name: "Observations",
-      desc: "Surface patterns and notes about your draft so you can see what you're really saying.",
+      desc: "Marker tracks dozens of patterns in your writing to help it understand your work and provide feedback.",
       dot: "bg-markerYellow"
     },
     "reverse-outline": {
       name: "Reverse Outline",
-      desc: "Work backwards from your draft to map its structure and spot what's missing.",
+      desc: "Allows you to work backwards from your draft to map its structure and spot what's missing.",
       dot: "bg-markerYellow",
       icon: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="7.65674" y="-0.828369" width="12" height="12" rx="2" transform="rotate(45 7.65674 -0.828369)" fill="#8B6B85"/></svg>'
     },
     "super-thesaurus": {
       name: "Super-Thesaurus",
-      desc: "Find sharper words and phrasings in context, without losing your own voice.",
+      desc: "Lets you find sharper words and phrasings in context, without losing your own voice.",
       dot: "bg-markerYellow"
     },
     namer: {
       name: "XXX",
-      desc: "Leave a placeholder, Marker will do the research and find the answer",
+      desc: "You leave a placeholder, Marker will do the research and find the answer",
       dot: "bg-markerYellow",
       icon: '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="4.41421" y1="3" x2="13.7056" y2="12.2914" stroke="#A8C5E8" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="-1" x2="14.14" y2="-1" transform="matrix(-0.707107 0.707107 0.707107 0.707107 14.7056 3)" stroke="#A8C5E8" stroke-width="2" stroke-linecap="round"/><line x1="8.57007" y1="1" x2="8.57007" y2="14.14" stroke="#A8C5E8" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="-1" x2="13.14" y2="-1" transform="matrix(-1 0 0 1 15.8472 8.2771)" stroke="#A8C5E8" stroke-width="2" stroke-linecap="round"/></svg>'
     },

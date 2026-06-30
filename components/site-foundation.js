@@ -576,6 +576,11 @@
     document.body.style.color = '#111';
     document.documentElement.style.overflowX = 'clip';
     document.body.style.overflowX = 'clip';
+    // Establish a block formatting context so a child's top margin (e.g. a
+    // hero figure's margin-top) can't collapse through the body and push its
+    // paper-textured background down, which would expose a flat strip of the
+    // root background color at the top of the page.
+    document.body.style.display = 'flow-root';
     // Match the paper tone behind iOS browser chrome (dynamic island / status
     // bar at the top, URL bar at the bottom) so those areas blend in.
     document.documentElement.style.backgroundColor = '#fbede2';
