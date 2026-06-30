@@ -4,24 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/">
   <link rel="icon" type="image/png" href="../images/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="../images/favicon-16x16.png" sizes="16x16" />
   <link rel="icon" type="image/svg+xml" href="../images/favicon.svg" />
   <link rel="shortcut icon" href="../images/favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png" />
   <title>Marker - Jobs</title>
+  <script src="components/tailwind-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'cream': '#fbede2',
-          }
-        }
-      }
-    }
-  </script>
   <link rel="stylesheet" href="../styles.css">
 
   <!-- HTML Meta Tags -->
@@ -51,9 +42,9 @@
 
 </head>
 
-<body class="bg-cream min-h-screen mt-8 mx-4 byrd">
-  <div class="flex flex-col justify-center items-center space-y-8">
-    <a href="/"><img src="../images/logo2x.png" width="150"></a>
+<body class="bg-cream min-h-screen byrd">
+  <div data-site-header></div>
+  <div class="flex flex-col justify-center items-center space-y-8 pt-[140px]">
 
 
     <div class="w-full max-w-[900px]">
@@ -65,7 +56,7 @@
         <p>We are actively recruiting the roles below but are always looking for great people to join us. Write to us at <a href="mailto:workhere@marker.page" class="text-blue-600 underline">workhere@marker.page</a>  if you are interested.</p>
       </div>
       <div class="flex flex-col md:flex-row gap-4 flex-wrap">
-        <a href="product-designer" class="group flex-1 min-w-[200px] max-w-[400px]">
+        <a href="/jobs/product-designer" class="group flex-1 min-w-[200px] max-w-[400px]">
           <div
             class="relative z-10 bg-white transition-all mx-auto rounded-xl border border-gray-200 group-hover:border-gray-300">
             <div class="p-5 py-4 space-y-2.5">
@@ -93,7 +84,7 @@
             <div class="text-md font-grosa text-black hover:underline text-white">Learn more</div>
           </div>
         </a>
-          <a href="ai-engineer" class="group flex-1 min-w-[200px] max-w-[400px]">
+          <a href="/jobs/ai-engineer" class="group flex-1 min-w-[200px] max-w-[400px]">
             <div
               class="relative z-10 bg-white transition-all mx-auto rounded-xl border border-gray-200 group-hover:border-gray-300">
               <div class="p-5 py-4 space-y-2.5">
@@ -122,7 +113,7 @@
               <div class="text-md font-grosa text-black hover:underline text-white">Learn more</div>
             </div>
           </a>
-          <a href="product-engineer" class="group flex-1 min-w-[200px] max-w-[400px]">
+          <a href="/jobs/product-engineer" class="group flex-1 min-w-[200px] max-w-[400px]">
             <div
               class="relative z-10 bg-white transition-all mx-auto rounded-xl border border-gray-200 group-hover:border-gray-300">
               <div class="p-5 py-4 space-y-2.5">
@@ -153,6 +144,12 @@
     </div>
   </div>
 
+  <script src="components/site-foundation.js"></script>
+  <script src="components/site-header.js"></script>
+  <script>
+    window.MarkerSite.installSiteFoundation();
+    window.MarkerSite.mountSiteHeader(document.querySelector('[data-site-header]'));
+  </script>
 </body>
 
 </html>
