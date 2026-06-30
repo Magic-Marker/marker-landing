@@ -41,6 +41,7 @@
 
   function attachLogoScroll(header) {
     const fadeDistance = 84;
+    const mobileFadeDistance = 120;
     let ticking = false;
 
     function render() {
@@ -49,6 +50,9 @@
       const progress = Math.min(1, y / fadeDistance);
       header.style.setProperty('--logo-shift', `${-(progress * fadeDistance)}px`);
       header.style.setProperty('--logo-opacity', `${1 - progress}`);
+      // Drives the mobile header: the logo + About link scroll up and fade out
+      // while the Join chip stays pinned (see site-foundation mobile styles).
+      header.style.setProperty('--header-progress', `${Math.min(1, y / mobileFadeDistance)}`);
     }
 
     function onScroll() {

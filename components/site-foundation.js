@@ -235,8 +235,9 @@
         position: absolute !important;
         left: 50% !important;
         top: 28px !important;
-        transform: translate(-50%, 0) !important;
-        opacity: 1 !important;
+        transform: translate(-50%, calc(var(--header-progress, 0) * -150px)) !important;
+        opacity: calc(1 - var(--header-progress, 0)) !important;
+        will-change: transform, opacity;
       }
 
       .site-header-logo img {
@@ -287,6 +288,44 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100% 3px;
+      }
+
+      /* About link drifts up and fades out as you scroll */
+      .site-header-nav a.site-header-link {
+        transform: translateY(calc(var(--header-progress, 0) * -150px)) !important;
+        opacity: calc(1 - var(--header-progress, 0)) !important;
+        will-change: transform, opacity;
+      }
+
+      /* Join stays pinned. As you scroll a solid black chip fades in, and the
+         text + underline shift from ink to white so they stay legible on it.
+         Adjust the chip padding via the inset value below. */
+      .site-header-nav button.site-header-link {
+        color: color-mix(in srgb, #111 calc((1 - var(--header-progress, 0)) * 100%), #fff) !important;
+      }
+
+      .site-header-nav button.site-header-link::before {
+        content: '';
+        position: absolute;
+        inset: -14px -22px -20px;
+        z-index: -1;
+        border-radius: 12px;
+        background: #111;
+        opacity: var(--header-progress, 0);
+        pointer-events: none;
+      }
+
+      .site-header-nav button.site-header-link::after {
+        background-image: none;
+        background-color: color-mix(in srgb, #111 calc((1 - var(--header-progress, 0)) * 100%), #fff);
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg width='72' height='4' viewBox='0 0 72 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 2.4C7 1.1 11.8 2.8 17.9 1.8C24.4 0.7 29 2.9 35.7 1.9C42.2 1 48.1 2.7 54.7 1.8C60.8 1 65.2 2.1 71 1.6' stroke='%23111' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg width='72' height='4' viewBox='0 0 72 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 2.4C7 1.1 11.8 2.8 17.9 1.8C24.4 0.7 29 2.9 35.7 1.9C42.2 1 48.1 2.7 54.7 1.8C60.8 1 65.2 2.1 71 1.6' stroke='%23111' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        -webkit-mask-size: 100% 3px;
+        mask-size: 100% 3px;
       }
 
       .site-header-join-full {
