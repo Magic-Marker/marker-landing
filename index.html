@@ -1651,7 +1651,53 @@
             }
         }
 
-        revealQuotes();
+        // Hold the typewriter until the hero rocks have painted, so the quotes
+        // don't finish typing against an empty background while the art is still
+        // downloading. Capped by a timeout so a slow/failed image never blocks
+        // the animation indefinitely. Skipped for reduced-motion and mobile
+        // (the desktop hero is display:none there, so its rocks never load).
+        function startQuotesWhenReady() {
+            if (prefersReducedMotion || window.innerWidth <= MOBILE_BREAKPOINT) {
+                revealQuotes();
+                return;
+            }
+
+            const heroRocks = Array.from(
+                document.querySelectorAll('.preview-shell .figma-rock img[fetchpriority="high"]')
+            );
+
+            if (heroRocks.length === 0) {
+                revealQuotes();
+                return;
+            }
+
+            let started = false;
+            const begin = () => {
+                if (started) return;
+                started = true;
+                revealQuotes();
+            };
+
+            let remaining = heroRocks.length;
+            const markSettled = () => {
+                remaining -= 1;
+                if (remaining <= 0) begin();
+            };
+
+            heroRocks.forEach((img) => {
+                if (img.complete && img.naturalWidth > 0) {
+                    markSettled();
+                } else {
+                    img.addEventListener('load', markSettled, { once: true });
+                    img.addEventListener('error', markSettled, { once: true });
+                }
+            });
+
+            // Safety net: start no later than this even if a rock stalls.
+            window.setTimeout(begin, 2500);
+        }
+
+        startQuotesWhenReady();
 
         // Mobile quotes: static (no typewriter), auto-sized so each line fits its traced path.
         function fitMobileQuotes() {
