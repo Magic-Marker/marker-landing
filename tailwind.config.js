@@ -1,5 +1,18 @@
-window.tailwind = window.tailwind || {};
-window.tailwind.config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  // Only the pages that actually link to the compiled styles.tailwind.css.
+  // Several other .html files in this repo are one-off prototypes that still
+  // load the Tailwind CDN directly with their own bespoke inline configs —
+  // don't add them here without also merging their custom theme tokens.
+  content: [
+    './index.html',
+    './about.html',
+    './labour-of-the-shadows.html',
+    './what-is-the-writer-thinking.html',
+    './jobs/*.html',
+    './components/*.js',
+    './highlights.js'
+  ],
   safelist: [
     'bg-paper',
     'bg-paperWarm',
@@ -36,5 +49,6 @@ window.tailwind.config = {
         80: '80'
       }
     }
-  }
+  },
+  plugins: []
 };

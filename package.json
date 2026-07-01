@@ -1,0 +1,14 @@
+{
+  "name": "marker-landing",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Marker marketing site",
+  "scripts": {
+    "build:css": "tailwindcss -i ./tailwind-input.css -o ./styles.tailwind.css --minify",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "tailwindcss": "^3.4.17"
+  }
+}

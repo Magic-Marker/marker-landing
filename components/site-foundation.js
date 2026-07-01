@@ -160,7 +160,7 @@
 
     .site-header-textured {
       background-color: #fbede2;
-      background-image: url('images/bag.png');
+      background-image: url('images/bag.webp');
       background-position: center top;
       background-repeat: repeat;
       background-size: 1254px 1254px;
@@ -569,7 +569,7 @@
     document.documentElement.classList.add('text-ink');
     document.body.classList.add('min-h-screen', 'overflow-x-clip', 'bg-paper', 'bg-repeat', 'bg-top', 'text-ink', 'antialiased');
     document.body.style.backgroundColor = '#fbede2';
-    document.body.style.backgroundImage = "url('images/bag.png')";
+    document.body.style.backgroundImage = "url('images/bag.webp')";
     document.body.style.backgroundPosition = 'center top';
     document.body.style.backgroundRepeat = 'repeat';
     document.body.style.backgroundSize = '1254px 1254px';

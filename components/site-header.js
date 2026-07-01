@@ -23,7 +23,7 @@
     target.outerHTML = `
       <header class="${positionClass} z-30 h-[84px] w-full font-mono${difference}${textureClass}" style="position: fixed; left: 0; top: 0; width: 100%; height: 84px; z-index: 100;" data-site-header-mounted>
         <a class="site-header-pebbles" href="/" aria-label="Marker home">
-          <img class="absolute left-[27px] top-[18px] block h-auto w-[38px]" src="images/pebbles-together.png" alt="">
+          <img class="absolute left-[27px] top-[18px] block h-auto w-[38px]" src="images/pebbles-together.webp" alt="">
         </a>
         <a class="site-header-logo" href="/" aria-label="Marker home">
           <img class="absolute left-1/2 top-[24px] block h-auto w-[110px] -translate-x-1/2" src="images/marker-logo.svg" alt="Marker">

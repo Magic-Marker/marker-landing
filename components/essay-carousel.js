@@ -7,7 +7,7 @@
     return `
       <a href="${essay.href}" class="group relative block h-[648px] w-[436px] shrink-0 overflow-hidden rounded-[11px]" data-essay-card>
         <div class="essay-card-bg absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] transition-[filter] duration-300 ease-out group-hover:brightness-[0.95] ${essay.color}"></div>
-        <div class="essay-card-texture absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] bg-[url('images/bag.png')] bg-[length:720px_720px] bg-bottom opacity-[0.08] mix-blend-multiply"></div>
+        <div class="essay-card-texture absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] bg-[url('images/bag.webp')] bg-[length:720px_720px] bg-bottom opacity-[0.08] mix-blend-multiply"></div>
         <div class="essay-card-image absolute left-[85px] top-[104px] flex h-[320px] w-[265px] items-center justify-center">
           <img class="block max-h-full max-w-full object-contain" src="${essay.image}" alt="">
         </div>
