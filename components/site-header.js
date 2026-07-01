@@ -22,7 +22,7 @@
 
     target.outerHTML = `
       <header class="${positionClass} z-30 h-[84px] w-full font-mono${difference}${textureClass}" style="position: fixed; left: 0; top: 0; width: 100%; height: 84px; z-index: 100;" data-site-header-mounted>
-        <a class="site-header-pebbles" href="landing-figma-preview.html" aria-label="Marker home">
+        <a class="site-header-pebbles" href="/" aria-label="Marker home">
           <img class="absolute left-[27px] top-[18px] block h-auto w-[38px]" src="images/pebbles-together.png" alt="">
         </a>
         <a class="site-header-logo" href="/" aria-label="Marker home">
