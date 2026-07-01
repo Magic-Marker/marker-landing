@@ -25,7 +25,7 @@
         <a class="site-header-pebbles" href="landing-figma-preview.html" aria-label="Marker home">
           <img class="absolute left-[27px] top-[18px] block h-auto w-[38px]" src="images/pebbles-together.png" alt="">
         </a>
-        <a class="site-header-logo" href="landing-figma-preview.html" aria-label="Marker home">
+        <a class="site-header-logo" href="/" aria-label="Marker home">
           <img class="absolute left-1/2 top-[24px] block h-auto w-[110px] -translate-x-1/2" src="images/marker-logo.svg" alt="Marker">
         </a>
         <nav class="site-header-nav absolute right-[27px] top-[22px] flex items-center gap-[16px]" aria-label="Primary">
