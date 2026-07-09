@@ -16,6 +16,7 @@
           <a class="hover:underline hover:underline-offset-4" href="jobs/">Jobs</a>
           <a class="hover:underline hover:underline-offset-4" href="privacy.html">Privacy</a>
           <a class="hover:underline hover:underline-offset-4" href="terms.html">Terms</a>
+          <a class="hover:underline hover:underline-offset-4" href="https://my.marker.page">Login</a>
         </nav>
       </footer>
     `;

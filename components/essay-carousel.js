@@ -5,21 +5,23 @@
 
   function renderBaseCard(essay, index, total) {
     return `
-      <a href="${essay.href}" class="group relative block h-[648px] w-[436px] shrink-0 overflow-hidden rounded-[11px]" data-essay-card>
-        <div class="essay-card-bg absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] transition-[filter] duration-300 ease-out group-hover:brightness-[0.95] ${essay.color}"></div>
-        <div class="essay-card-texture absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] bg-[url('images/bag.webp')] bg-[length:720px_720px] bg-bottom opacity-[0.08] mix-blend-multiply"></div>
-        <div class="essay-card-image absolute left-[85px] top-[104px] flex h-[320px] w-[265px] items-center justify-center">
-          <img class="block max-h-full max-w-full object-contain" src="${essay.image}" alt="">
+      <a href="${essay.href}" class="group relative block h-[648px] w-[436px] shrink-0 rounded-[11px]" data-essay-card>
+        <div class="essay-card-inner absolute inset-0 overflow-hidden rounded-[11px] transition-transform duration-300 ease-out will-change-transform md:group-hover:-translate-y-[30px]">
+          <div class="essay-card-bg absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] transition-[filter] duration-300 ease-out group-hover:brightness-[0.95] ${essay.color}"></div>
+          <div class="essay-card-texture absolute inset-x-0 bottom-0 top-[45px] rounded-[11px] bg-[url('images/bag.webp')] bg-[length:720px_720px] bg-bottom opacity-[0.08] mix-blend-multiply"></div>
+          <div class="essay-card-image absolute left-[85px] top-[104px] flex h-[320px] w-[265px] items-center justify-center">
+            <img class="block max-h-full max-w-full object-contain" src="${essay.image}" alt="">
+          </div>
+          <div class="essay-card-title absolute left-1/2 top-[492px] flex w-[350px] -translate-x-1/2 -translate-y-full flex-col justify-end text-center font-museum text-[26px] leading-[1.3] ${essay.text}">
+            ${essay.title}
+          </div>
+          <p class="essay-card-excerpt absolute left-1/2 top-[499px] h-[30px] w-[350px] -translate-x-1/2 text-center font-graphik text-[12px] leading-[1.25] ${essay.text}">
+            ${essay.excerpt}
+          </p>
+          <span class="essay-card-cta absolute left-[165px] top-[552px] inline-flex h-[40px] items-center justify-center rounded-[11px] border px-[16px] font-mono text-[11px] uppercase leading-[1.25] tracking-[1.1px] ${essay.text} ${essay.text === 'text-paperWarm' ? 'border-paperWarm' : 'border-ink'}">
+            Read more
+          </span>
         </div>
-        <div class="essay-card-title absolute left-1/2 top-[492px] flex w-[350px] -translate-x-1/2 -translate-y-full flex-col justify-end text-center font-museum text-[26px] leading-[1.3] ${essay.text}">
-          ${essay.title}
-        </div>
-        <p class="essay-card-excerpt absolute left-1/2 top-[499px] h-[30px] w-[350px] -translate-x-1/2 text-center font-graphik text-[12px] leading-[1.25] ${essay.text}">
-          ${essay.excerpt}
-        </p>
-        <span class="essay-card-cta absolute left-[165px] top-[552px] inline-flex h-[40px] items-center justify-center rounded-[11px] border px-[16px] font-mono text-[11px] uppercase leading-[1.25] tracking-[1.1px] ${essay.text} ${essay.text === 'text-paperWarm' ? 'border-paperWarm' : 'border-ink'}">
-          Read more
-        </span>
         <span class="sr-only">Essay ${index + 1} of ${total}</span>
       </a>
     `;
