@@ -565,10 +565,6 @@
         font-size: 12px !important;
         letter-spacing: 1.2px !important;
       }
-
-      [data-site-footer-mounted] nav a:first-child {
-        display: none !important;
-      }
     }
   `;
 
