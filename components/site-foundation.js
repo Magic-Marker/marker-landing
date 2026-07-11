@@ -220,9 +220,13 @@
         backdrop-filter: blur(10px);
       }
 
-      [data-site-header-mounted] .site-header-link:not(.text-paperWarm),
-      [data-site-header-mounted] .site-header-link:not(.text-paperWarm):hover {
+      [data-site-header-mounted] .site-header-link:not(.text-paperWarm) {
         background-color: transparent !important;
+      }
+
+      [data-site-header-mounted] .site-header-link:not(.text-paperWarm):not(.site-header-login):hover {
+        background-color: #111111 !important;
+        color: #fff7f1 !important;
       }
     }
 
@@ -333,6 +337,10 @@
       /* Underline fades out as the chip fades in, so the scrolled Join chip has no line under it. */
       .site-header-nav button.site-header-link::after {
         opacity: calc(1 - var(--header-progress, 0));
+      }
+
+      .site-header-login {
+        display: none !important;
       }
 
       .site-header-join-full {

@@ -43,7 +43,7 @@
     <meta name="twitter:image:alt" content="Marker — A space for thinking and writing">
 
 
-    <link rel="stylesheet" href="styles.tailwind.css">
+    <link rel="stylesheet" href="styles.tailwind.css?v=20260711c">
     
     <style>
         @font-face {
@@ -1286,7 +1286,7 @@
     </div>
 
     <script src="components/site-foundation.js"></script>
-    <script src="components/site-header.js?v=20260701"></script>
+    <script src="components/site-header.js?v=20260711b"></script>
     <script src="components/site-footer.js"></script>
     <script src="components/essay-data.js"></script>
     <script src="components/essay-carousel.js"></script>
@@ -1299,7 +1299,7 @@
             logoClass: 'bottom-wordmark',
             linksClass: 'footer-links'
         });
-        window.MarkerSite.mountFixedEssayCarousel(document.querySelector('[data-fixed-essay-carousel]'), { autoplay: false });
+        window.MarkerSite.mountFixedEssayCarousel(document.querySelector('[data-fixed-essay-carousel]'), { autoplay: true, interval: 5000 });
 
         const DESIGN_WIDTH = 1441;
         const MOBILE_BREAKPOINT = 767;

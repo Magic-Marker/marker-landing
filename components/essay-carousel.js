@@ -290,15 +290,15 @@
     const interval = options.interval || 5000;
     const autoplay = options.autoplay === true;
     target.innerHTML = `
-      <aside class="fixed bottom-[28px] right-[28px] z-80 w-[259px] font-mono text-ink" aria-label="Essays by Marker">
+      <aside class="fixed bottom-[28px] right-[28px] z-80 w-[269px] font-mono text-ink" aria-label="Essays by Marker">
         <div class="absolute -top-[28px] right-0 flex gap-[4px]">
           <button class="h-[20px] w-[20px] rounded-[8px] bg-white/55 p-0 text-[12px] leading-[20px] backdrop-blur-md" type="button" data-carousel-prev aria-label="Previous essay">&larr;</button>
           <button class="h-[20px] w-[20px] rounded-[8px] bg-white/55 p-0 text-[12px] leading-[20px] backdrop-blur-md" type="button" data-carousel-next aria-label="Next essay">&rarr;</button>
         </div>
-        <a class="block min-h-[114px] w-[259px] overflow-hidden rounded-[8px] bg-white/55 px-[12px] pb-[10px] pt-[13px] shadow-[0_10px_32px_rgba(0,0,0,0.08)] backdrop-blur-md hover:bg-white/65" href="${essays[0].href}" data-carousel-card>
+        <a class="block min-h-[114px] w-[269px] overflow-hidden rounded-[8px] bg-white/55 px-[12px] pb-[10px] pt-[13px] shadow-[0_10px_32px_rgba(0,0,0,0.08)] backdrop-blur-md hover:bg-white/65" href="${essays[0].href}" data-carousel-card>
           <p class="mb-[9px] text-[9px] uppercase leading-[1.25] tracking-[0.9px]">Essays by Marker</p>
           <div class="grid grid-cols-[48px_1fr] gap-x-[10px] transition duration-300 ease-out" data-carousel-content>
-            <img class="h-[48px] w-[48px] rounded-[8px] object-cover" src="${essays[0].image}" alt="" data-carousel-thumb>
+            <img class="h-[72px] w-[48px] self-start rounded-[8px] object-contain" src="${essays[0].image}" alt="" data-carousel-thumb>
             <div>
               <h2 class="mb-[4px] overflow-hidden text-ellipsis whitespace-nowrap text-[10px] uppercase leading-[1.25] tracking-[1px]" data-carousel-title>${essays[0].title}</h2>
               <p class="font-mono text-[10px] leading-[1.25]" data-carousel-excerpt>${essays[0].excerpt}</p>

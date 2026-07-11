@@ -12,7 +12,7 @@
     {
       title: 'What is the writer thinking?',
       excerpt: "Working out what we think is the most ordinary thing we do. It's the least supported.",
-      image: 'images/ack-mobile.webp',
+      image: 'images/ack-carousel.webp',
       href: 'what-is-the-writer-thinking.html',
       color: 'bg-markerRed',
       text: 'text-paperWarm',

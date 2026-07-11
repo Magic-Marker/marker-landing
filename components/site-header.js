@@ -15,7 +15,7 @@
     const aboutActive = active === 'about';
     const buttonBase = 'site-header-link inline-flex h-[40px] items-center justify-center rounded-[11px] border border-ink px-[16px] font-mono text-[11px] uppercase leading-[1.25] tracking-[1.1px] transition-colors hover:bg-ink/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/25';
     const aboutClass = aboutActive
-      ? `${buttonBase} bg-ink text-paperWarm hover:bg-ink`
+      ? `${buttonBase.replace(' hover:bg-ink/5', '')} bg-ink text-paperWarm hover:bg-ink`
       : `${buttonBase} bg-transparent text-ink`;
 
     const parent = target.parentNode;
@@ -29,6 +29,7 @@
           <img class="absolute left-1/2 top-[24px] block h-auto w-[110px] -translate-x-1/2" src="images/marker-logo.svg" alt="Marker">
         </a>
         <nav class="site-header-nav absolute right-[27px] top-[22px] flex items-center gap-[16px]" aria-label="Primary">
+          <a class="site-header-link site-header-login hidden h-[40px] items-center justify-center px-[10px] font-mono  text-[12px] opacity-70 hover:opacity-100 leading-[1.25]  text-ink/80 transition-colors hover:bg-ink/5 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 md:inline-flex" href="https://my.marker.page">Login</a>
           <a class="${aboutClass} w-[82px]" href="about.html"${aboutModal ? ' data-open-about' : ''}>About</a>
           <button class="${buttonBase} w-[168px] bg-transparent text-ink" type="button" data-focus-waitlist><span class="site-header-join-full">Join the waitlist</span><span class="site-header-join-short">Join</span></button>
         </nav>
