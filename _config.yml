@@ -1,0 +1,30 @@
+# GitHub Pages (legacy Jekyll build, main @ /) publishes everything not listed here.
+# Files/dirs beginning with "." or "_" are already dropped by Jekyll automatically.
+# NOTE: setting `exclude` REPLACES Jekyll's defaults, so node_modules is re-listed below.
+
+exclude:
+  # --- tooling, dependencies, build sources ---
+  - node_modules/          # replaces the Jekyll default we're overriding
+  - package.json
+  - package-lock.json
+  - pnpm-lock.yaml
+  - tailwind.config.js     # build config
+  - tailwind-input.css     # source for the committed styles.tailwind.css
+  - README.md
+  - worker/                # Cloudflare Worker source, deployed separately
+  - .husky/                # already auto-excluded (dot-prefixed); listed for clarity
+  - _redirects             # already auto-excluded (underscore); inert on GH Pages anyway
+
+  # --- unlinked prototype pages (kept in git, not served) ---
+  - index-old.html
+  - index-old-new.html
+  - index-simple.html
+  - landing-page.html
+  - new-landing.html
+  - new-home.html
+  - new-home-fancy-move.html
+  - discover-alt.html
+  - discover-alt2.html
+  - bettercraft.html
+  - rockpile.html
+  - pebbles/               # only referenced by the two prototypes above
