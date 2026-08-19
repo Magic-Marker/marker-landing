@@ -797,76 +797,13 @@
             text-decoration: underline;
         }
 
-        .followup-field {
-            margin-bottom: 24px;
+        #followup-modal .modal p {
+            margin-bottom: 7px;
         }
 
-        .followup-label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 15px;
-            line-height: 1.3;
-        }
-
-        .followup-input {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid rgba(17, 17, 17, 0.28);
-            border-radius: 8px;
-            background: white;
-            color: var(--ink);
-            outline: 0;
-            font-size: 14px;
-        }
-
-        .followup-checkboxes {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .followup-checkbox-label {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-            font-size: 14px;
-            line-height: 1.35;
-            cursor: pointer;
-        }
-
-        .followup-checkbox-label input {
-            margin-top: 2px;
-        }
-
-        .followup-submit {
-            width: 100%;
-            height: 44px;
-            border: 1.2px solid var(--outline);
-            border-radius: 11px;
-            background: var(--ink);
-            color: var(--paper-warm);
-            cursor: pointer;
-            font-family: 'iA Writer Quattro', 'Courier New', monospace;
-            font-size: 11px;
-            letter-spacing: 1.1px;
-            text-transform: uppercase;
-        }
-
-        .followup-submit:disabled,
         .signup-form button:disabled {
             cursor: not-allowed;
             opacity: 0.58;
-        }
-
-        .followup-thankyou {
-            text-align: center;
-            padding: 22px 0;
-        }
-
-        .followup-thankyou h3 {
-            margin: 0 0 12px;
-            font-size: 28px;
-            font-weight: 400;
         }
 
         @media (min-width: 1442px) {
@@ -1251,38 +1188,8 @@
     <div class="modal-overlay" id="followup-modal">
         <div class="modal">
             <button class="modal-close" type="button" id="followup-close" aria-label="Close">&times;</button>
-            <h2 class="modal-title" id="followup-title">You're on the list!</h2>
-            <p id="followup-subtitle">These questions are optional, but they help us prioritise the waitlist. Email us at <a href="mailto:hi@marker.page">hi@marker.page</a> if you are desperate though.</p>
-
-            <form id="followup-form">
-                <div class="followup-field">
-                    <label class="followup-label" for="field_name">What is your name?</label>
-                    <input type="text" id="field_name" class="followup-input" placeholder="Your name">
-                </div>
-
-                <div class="followup-field">
-                    <label class="followup-label">What are you writing?</label>
-                    <div class="followup-checkboxes">
-                        <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Newsletter or blog"> Newsletter or blog (Substack and beyond)</label>
-                        <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Journalism and non-fiction"> Journalism, non-fiction, personal essays</label>
-                        <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Creative writing"> Creative writing (novels, scripts, short stories)</label>
-                        <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Work writing"> Work writing (comms, PR, memos, grants)</label>
-                        <label class="followup-checkbox-label"><input type="checkbox" name="writing" value="Academic"> Academic papers or assignments</label>
-                    </div>
-                </div>
-
-                <div class="followup-field">
-                    <label class="followup-label" for="field_secret_code">Do you have a secret code?</label>
-                    <input type="text" id="field_secret_code" class="followup-input" placeholder="Enter your code">
-                </div>
-
-                <button type="submit" class="followup-submit">Submit</button>
-            </form>
-
-            <div class="followup-thankyou" id="followup-thankyou" hidden>
-                <h3>Thanks!</h3>
-                <p>You're all signed up. We'll be in touch.</p>
-            </div>
+            <h2 class="modal-title">You're on the list!</h2>
+            <p>You're all signed up. We'll be in touch. Email us at <a href="mailto:hi@marker.page">hi@marker.page</a> if you are desperate though.</p>
         </div>
     </div>
 
@@ -1305,16 +1212,11 @@
         const DESIGN_WIDTH = 1441;
         const MOBILE_BREAKPOINT = 767;
         const USERLIST_FORM_URL = 'https://forms.userlist.com/5444a4a9-ad95-4e2a-87b2-090ce86aa9cd/submissions';
-        const USERLIST_WORKER_URL = 'https://userlist-proxy.marker-276.workers.dev';
-
         const root = document.documentElement;
         const signupForms = document.querySelectorAll('.signup-form, .m-signup-form');
         const aboutModal = document.getElementById('about-modal');
         const followupOverlay = document.getElementById('followup-modal');
         const followupCloseBtn = document.getElementById('followup-close');
-        const followupForm = document.getElementById('followup-form');
-        const followupThankyou = document.getElementById('followup-thankyou');
-        let storedEmail = '';
 
         if ('scrollRestoration' in window.history) {
             window.history.scrollRestoration = 'manual';
@@ -1766,17 +1668,12 @@
 
                     if (!res.ok) throw new Error('Submission failed');
 
-                    storedEmail = email;
                     input.value = '';
                     if (submitBtn) {
                         submitBtn.disabled = false;
                         submitBtn.textContent = origText;
                     }
 
-                    followupForm.style.display = '';
-                    followupThankyou.hidden = true;
-                    document.getElementById('followup-title').style.display = '';
-                    document.getElementById('followup-subtitle').style.display = '';
                     followupOverlay.classList.add('active');
                 } catch (err) {
                     if (submitBtn) {
@@ -1794,49 +1691,6 @@
             });
         });
 
-        followupForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            const submitBtn = followupForm.querySelector('.followup-submit');
-            const origText = submitBtn.textContent;
-            submitBtn.disabled = true;
-            submitBtn.textContent = '...';
-
-            const secretCode = document.getElementById('field_secret_code').value.trim();
-            const name = document.getElementById('field_name').value.trim();
-            const checkedBoxes = followupForm.querySelectorAll('input[name="writing"]:checked');
-            const writingValues = Array.from(checkedBoxes).map((checkbox) => checkbox.value).join(', ');
-            const nameParts = name.split(/\s+/);
-            const firstName = nameParts[0] || '';
-            const lastName = nameParts.slice(1).join(' ') || '';
-
-            const properties = {};
-            if (secretCode) properties.secret_code = secretCode;
-            if (writingValues) properties.writing_question = writingValues;
-            if (firstName) properties.firstname = firstName;
-            if (lastName) properties.lastname = lastName;
-
-            try {
-                const res = await fetch(USERLIST_WORKER_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: storedEmail, properties })
-                });
-
-                if (!res.ok) throw new Error('Submission failed');
-
-                followupForm.style.display = 'none';
-                document.getElementById('followup-title').style.display = 'none';
-                document.getElementById('followup-subtitle').style.display = 'none';
-                followupThankyou.hidden = false;
-
-                setTimeout(() => followupOverlay.classList.remove('active'), 5000);
-            } catch (err) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = origText;
-                alert('Something went wrong. Please try again.');
-            }
-        });
     </script>
 </body>
 
