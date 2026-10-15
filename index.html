@@ -1223,11 +1223,11 @@
         }
 
         function resetScrollPosition() {
+            if (window.location.hash) return;
             window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         }
 
         resetScrollPosition();
-        window.addEventListener('pageshow', resetScrollPosition);
 
         function updateScale() {
             const scale = Math.min(window.innerWidth / DESIGN_WIDTH, 1);
@@ -1283,11 +1283,17 @@
             setTimeout(() => input && input.focus({ preventScroll: true }), 450);
         });
 
-        // Support #waitlist as a scroll target on both the desktop and mobile
-        // shells (only one is visible at a time, so we scroll whichever shows).
-        if (window.location.hash === '#waitlist') {
-            window.requestAnimationFrame(() => scrollToWaitlist(false));
-        }
+        // pageshow runs after the browser's initial fragment navigation, and
+        // also when returning from the back/forward cache. Wait for fonts and
+        // the next layout frame before positioning the visible desktop/mobile
+        // shell, so neither loading nor the homepage reset can undo the link.
+        window.addEventListener('pageshow', async () => {
+            if (document.fonts) await document.fonts.ready;
+            window.requestAnimationFrame(() => {
+                if (window.location.hash === '#waitlist') scrollToWaitlist(false);
+                else resetScrollPosition();
+            });
+        });
         window.addEventListener('hashchange', () => {
             if (window.location.hash === '#waitlist') scrollToWaitlist(true);
         });
