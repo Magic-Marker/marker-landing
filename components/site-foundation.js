@@ -80,6 +80,31 @@
     .border-ink { border-color: #111111; }
     .border-paperWarm { border-color: #fff7f1; }
     .site-header-join-short { display: none; }
+
+    .site-header-login-tip {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      white-space: nowrap;
+      padding: 6px 9px;
+      border-radius: 8px;
+      background: #111111;
+      color: #fff7f1;
+      font-family: 'iA Writer Quattro', 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 0.6px;
+      opacity: 0;
+      transform: translateY(-2px);
+      pointer-events: none;
+      transition: opacity 120ms ease, transform 120ms ease;
+      z-index: 40;
+    }
+
+    .site-header-login:hover .site-header-login-tip,
+    .site-header-login:focus-visible .site-header-login-tip {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .about-hero-copy p + p {
       margin-top: 10px;
       text-indent: 2.5em;
