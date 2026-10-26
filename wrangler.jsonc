@@ -1,0 +1,22 @@
+// Cloudflare Workers (static assets) deployment of the marketing site.
+// The repo root is served as-is; .assetsignore keeps tooling and prototype
+// pages out of the upload, mirroring the `exclude` list in _config.yml.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "marker-landing",
+  "compatibility_date": "2026-10-23",
+  "assets": {
+    "directory": ".",
+    // Serves /about from about.html and /jobs/ from jobs/index.html,
+    // redirecting the .html / missing-slash forms, like GitHub Pages does.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  }
+
+  // Uncomment once marker.page's DNS is on Cloudflare and you're ready to
+  // move it off GitHub Pages. Until then deploys only go to *.workers.dev.
+  // "routes": [
+  //   { "pattern": "marker.page", "custom_domain": true },
+  //   { "pattern": "www.marker.page", "custom_domain": true }
+  // ]
+}

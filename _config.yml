@@ -12,6 +12,7 @@ exclude:
   - tailwind-input.css     # source for the committed styles.tailwind.css
   - README.md
   - worker/                # Cloudflare Worker source, deployed separately
+  - wrangler.jsonc         # Cloudflare Workers static-assets deploy config
   - .husky/                # already auto-excluded (dot-prefixed); listed for clarity
   - _redirects             # already auto-excluded (underscore); inert on GH Pages anyway
 

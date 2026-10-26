@@ -1,0 +1,40 @@
+# Files Wrangler must not upload as static assets (gitignore syntax).
+# Keep the prototype list in sync with `exclude` in _config.yml.
+
+# --- repo / tooling ---
+.git
+.github
+.claude
+.husky
+.wrangler
+.DS_Store
+**/.DS_Store
+.gitignore
+.assetsignore
+node_modules
+package.json
+package-lock.json
+pnpm-lock.yaml
+tailwind.config.js
+tailwind-input.css
+wrangler.jsonc
+README.md
+worker/
+
+# --- GitHub Pages only ---
+CNAME
+_config.yml
+
+# --- unlinked prototype pages (kept in git, not served) ---
+index-old.html
+index-old-new.html
+index-simple.html
+landing-page.html
+new-landing.html
+new-home.html
+new-home-fancy-move.html
+discover-alt.html
+discover-alt2.html
+bettercraft.html
+rockpile.html
+pebbles/
