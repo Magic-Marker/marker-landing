@@ -22,5 +22,3 @@ First paint should already be the final page, so:
   woff2 files it shows above the fold. A new page needs the same preloads.
 - Header/footer/carousel scripts load in `<head>` and mount from an inline
   `<script>` placed right after their placeholder `<div>`.
-- After editing a component script or the CSS, bump its `?v=` query in the
-  pages that link it.
