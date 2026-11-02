@@ -43,50 +43,32 @@
     <meta name="twitter:image:alt" content="Marker — A space for thinking and writing">
 
 
-    <link rel="stylesheet" href="styles.tailwind.css?v=20261023a">
+    <meta name="theme-color" content="#fbede2">
+
+    <!-- Above-the-fold fonts (font-display: optional) and the paper texture. -->
+    <link rel="preload" as="font" type="font/woff2" href="fonts/museum-light.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="fonts/museum.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="fonts/iAWriterQuattroS-Regular.woff2" crossorigin>
+    <link rel="preload" as="image" href="images/bag.webp">
+
+    <link rel="stylesheet" href="styles.tailwind.css">
+
+    <!-- Size the desktop stage before first paint; updateScale keeps it in sync. -->
+    <script>
+        document.documentElement.style.setProperty('--scale', Math.min(window.innerWidth / 1441, 1).toFixed(5));
+    </script>
+
+    <script src="components/site-foundation.js"></script>
+    <script src="components/site-header.js"></script>
+    <script src="components/site-footer.js"></script>
+    <script src="components/essay-data.js"></script>
+    <script src="components/essay-carousel.js"></script>
     
     <style>
-        @font-face {
-            font-family: 'PP Museum';
-            src: url('fonts/museum.woff2') format('woff2'),
-                url('fonts/museum.woff') format('woff');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'PP Museum';
-            src: url('fonts/museum-light.woff2') format('woff2'),
-                url('fonts/museum-light.woff') format('woff');
-            font-weight: 300;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'iA Writer Quattro';
-            src: url('fonts/iAWriterQuattroS-Regular.woff2') format('woff2'),
-                url('fonts/iAWriterQuattroS-Regular.woff') format('woff');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: 'iA Writer Quattro';
-            src: url('fonts/iAWriterQuattroS-Bold.woff2') format('woff2'),
-                url('fonts/iAWriterQuattroS-Bold.woff') format('woff');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-
         :root {
             --ink: #111;
             --paper: #fbede2;
             --paper-warm: #fff7f1;
-            --paper-texture: url('images/bag.webp');
             --outline: rgba(17, 17, 17, 0.82);
             --scale: 1;
         }
@@ -108,11 +90,6 @@
             width: 100%;
             max-width: 100%;
             overflow-x: clip;
-            background-color: var(--paper);
-            background-image: var(--paper-texture);
-            background-position: center top;
-            background-repeat: repeat;
-            background-size: 1254px 1254px;
             color: var(--ink);
             font-family: 'PP Museum', Georgia, 'Times New Roman', serif;
             font-weight: 300;
@@ -220,20 +197,20 @@
             width: 168px;
         }
 
-        .figma-rock {
+        .hero-rock {
             position: absolute;
             pointer-events: none;
             user-select: none;
         }
 
-        .figma-rock .rock-asset,
-        .figma-rock .rock-plane {
+        .hero-rock .rock-asset,
+        .hero-rock .rock-plane {
             position: relative;
             width: 100%;
             height: 100%;
         }
 
-        .figma-rock img {
+        .hero-rock img {
             display: block;
             width: 100%;
             height: 100%;
@@ -825,8 +802,8 @@
         }
 
         /* ===================================================================
-           MOBILE LANDING (Figma node 11313:111)
-           The native 402px-wide Figma frame, rendered at true size and
+           MOBILE LANDING
+           The native 402px-wide design frame, rendered at true size and
            centered. Rocks bleed past the frame edges and are clipped by the
            viewport on narrow phones; as the screen widens the crop reveals
            more of each rock, but rock/text sizes never change. Shown only at
@@ -1029,42 +1006,43 @@
 
 <body>
     <div data-site-header></div>
+    <script>window.MarkerSite.mountSiteHeader(document.querySelector('[data-site-header]'));</script>
     <div class="preview-shell">
-        <div class="stage-wrap" aria-label="Marker landing page Figma preview">
+        <div class="stage-wrap" aria-label="Marker landing page">
             <main class="stage">
-                <div class="figma-rock rock-right">
+                <div class="hero-rock rock-right">
                     <div class="rock-plane">
                         <div class="rock-asset"><img src="images/rocks-home/new/frame-83352.webp" alt="" fetchpriority="high" decoding="async"></div>
                     </div>
                 </div>
-                <div class="figma-rock rock-cream">
+                <div class="hero-rock rock-cream">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector.webp" alt="" fetchpriority="high" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-rust">
+                <div class="hero-rock rock-rust">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-1.webp" alt="" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-blue">
+                <div class="hero-rock rock-blue">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-2.webp" alt="" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-black">
+                <div class="hero-rock rock-black">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-3.webp" alt="" fetchpriority="high" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-tan">
+                <div class="hero-rock rock-tan">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-4.webp" alt="" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-amber">
+                <div class="hero-rock rock-amber">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-5.webp" alt="" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-gray">
+                <div class="hero-rock rock-gray">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-6.webp" alt="" fetchpriority="high" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-yellow">
+                <div class="hero-rock rock-yellow">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-7.webp" alt="" fetchpriority="high" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-red-small">
+                <div class="hero-rock rock-red-small">
                     <div class="rock-asset"><img src="images/small-red.webp" alt="" fetchpriority="high" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-marble">
+                <div class="hero-rock rock-marble">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-8.webp" alt="" decoding="async"></div>
                 </div>
 
@@ -1109,11 +1087,18 @@
                 </section>
 
                 <div data-site-footer></div>
+                <script>
+                    window.MarkerSite.mountSiteFooter(document.querySelector('[data-site-footer]'), {
+                        positionClass: 'contents',
+                        logoClass: 'bottom-wordmark',
+                        linksClass: 'footer-links'
+                    });
+                </script>
             </main>
         </div>
     </div>
 
-    <!-- ===== Mobile landing (Figma node 11313:111) ===== -->
+    <!-- ===== Mobile landing ===== -->
     <div class="m-shell">
         <div class="m-stage-wrap">
             <div class="m-stage">
@@ -1172,6 +1157,7 @@
     </div>
 
     <div data-fixed-essay-carousel></div>
+    <script>window.MarkerSite.mountFixedEssayCarousel(document.querySelector('[data-fixed-essay-carousel]'), { autoplay: true, interval: 5000 });</script>
 
     <button class="scroll-cue" type="button" aria-label="Scroll down" data-scroll-cue></button>
 
@@ -1193,21 +1179,9 @@
         </div>
     </div>
 
-    <script src="components/site-foundation.js?v=20261023a"></script>
-    <script src="components/site-header.js?v=20261023a"></script>
-    <script src="components/site-footer.js"></script>
-    <script src="components/essay-data.js"></script>
-    <script src="components/essay-carousel.js"></script>
     <script src="https://unpkg.com/typewriter-effect@2.22.0/dist/core.js" integrity="sha256-UYmwidprLcDnB9n8vDklmEeBSLLcy1mgbb2AC3IZ3+A=" crossorigin="anonymous"></script>
     <script>
         window.MarkerSite.installSiteFoundation();
-        window.MarkerSite.mountSiteHeader(document.querySelector('[data-site-header]'));
-        window.MarkerSite.mountSiteFooter(document.querySelector('[data-site-footer]'), {
-            positionClass: 'contents',
-            logoClass: 'bottom-wordmark',
-            linksClass: 'footer-links'
-        });
-        window.MarkerSite.mountFixedEssayCarousel(document.querySelector('[data-fixed-essay-carousel]'), { autoplay: true, interval: 5000 });
 
         const DESIGN_WIDTH = 1441;
         const MOBILE_BREAKPOINT = 767;
@@ -1567,7 +1541,7 @@
             }
 
             const heroRocks = Array.from(
-                document.querySelectorAll('.preview-shell .figma-rock img[fetchpriority="high"]')
+                document.querySelectorAll('.preview-shell .hero-rock img[fetchpriority="high"]')
             );
 
             if (heroRocks.length === 0) {

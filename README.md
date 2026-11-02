@@ -10,3 +10,15 @@ static assets (`wrangler.jsonc`, `.assetsignore`):
 
 When adding a page that shouldn't be public, exclude it in both `_config.yml`
 and `.assetsignore`.
+
+## Page loading
+
+First paint should already be the final page, so:
+
+- Appearance lives in CSS, never injected from JS. Shared styles and all
+  `@font-face` rules are in `tailwind-input.css` (built to
+  `styles.tailwind.css`).
+- Fonts use `font-display: optional`, and each page `<link rel="preload">`s the
+  woff2 files it shows above the fold. A new page needs the same preloads.
+- Header/footer/carousel scripts load in `<head>` and mount from an inline
+  `<script>` placed right after their placeholder `<div>`.
