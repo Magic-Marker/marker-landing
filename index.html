@@ -52,6 +52,17 @@
     <link rel="preload" as="image" href="images/bag.webp">
 
     <link rel="stylesheet" href="styles.tailwind.css?v=20261102a">
+
+    <!-- Size the desktop stage before first paint; updateScale keeps it in sync. -->
+    <script>
+        document.documentElement.style.setProperty('--scale', Math.min(window.innerWidth / 1441, 1).toFixed(5));
+    </script>
+
+    <script src="components/site-foundation.js?v=20261102a"></script>
+    <script src="components/site-header.js?v=20261102a"></script>
+    <script src="components/site-footer.js?v=20261102a"></script>
+    <script src="components/essay-data.js?v=20261102a"></script>
+    <script src="components/essay-carousel.js?v=20261102a"></script>
     
     <style>
         :root {
@@ -995,6 +1006,7 @@
 
 <body>
     <div data-site-header></div>
+    <script>window.MarkerSite.mountSiteHeader(document.querySelector('[data-site-header]'));</script>
     <div class="preview-shell">
         <div class="stage-wrap" aria-label="Marker landing page Figma preview">
             <main class="stage">
@@ -1075,6 +1087,13 @@
                 </section>
 
                 <div data-site-footer></div>
+                <script>
+                    window.MarkerSite.mountSiteFooter(document.querySelector('[data-site-footer]'), {
+                        positionClass: 'contents',
+                        logoClass: 'bottom-wordmark',
+                        linksClass: 'footer-links'
+                    });
+                </script>
             </main>
         </div>
     </div>
@@ -1138,6 +1157,7 @@
     </div>
 
     <div data-fixed-essay-carousel></div>
+    <script>window.MarkerSite.mountFixedEssayCarousel(document.querySelector('[data-fixed-essay-carousel]'), { autoplay: true, interval: 5000 });</script>
 
     <button class="scroll-cue" type="button" aria-label="Scroll down" data-scroll-cue></button>
 
@@ -1159,21 +1179,9 @@
         </div>
     </div>
 
-    <script src="components/site-foundation.js?v=20261023a"></script>
-    <script src="components/site-header.js?v=20261023a"></script>
-    <script src="components/site-footer.js"></script>
-    <script src="components/essay-data.js"></script>
-    <script src="components/essay-carousel.js"></script>
     <script src="https://unpkg.com/typewriter-effect@2.22.0/dist/core.js" integrity="sha256-UYmwidprLcDnB9n8vDklmEeBSLLcy1mgbb2AC3IZ3+A=" crossorigin="anonymous"></script>
     <script>
         window.MarkerSite.installSiteFoundation();
-        window.MarkerSite.mountSiteHeader(document.querySelector('[data-site-header]'));
-        window.MarkerSite.mountSiteFooter(document.querySelector('[data-site-footer]'), {
-            positionClass: 'contents',
-            logoClass: 'bottom-wordmark',
-            linksClass: 'footer-links'
-        });
-        window.MarkerSite.mountFixedEssayCarousel(document.querySelector('[data-fixed-essay-carousel]'), { autoplay: true, interval: 5000 });
 
         const DESIGN_WIDTH = 1441;
         const MOBILE_BREAKPOINT = 767;

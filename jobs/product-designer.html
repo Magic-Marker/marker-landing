@@ -33,10 +33,12 @@
 
   <link rel="stylesheet" href="styles.tailwind.css?v=20261102a">
   <link rel="stylesheet" href="../styles.css">
+  <script src="components/site-header.js?v=20261102a"></script>
 </head>
 
 <body class="mt-8 font-graphik">
   <div data-site-header></div>
+  <script>window.MarkerSite.mountSiteHeader(document.querySelector('[data-site-header]'));</script>
   <div class="flex flex-col justify-center items-center space-y-8 pt-[140px]">
 
     <div class="w-full max-w-[700px]">
@@ -146,12 +148,6 @@
     </div>
   </div>
 
-  <script src="components/site-foundation.js?v=20261023a"></script>
-  <script src="components/site-header.js?v=20261023a"></script>
-  <script>
-    window.MarkerSite.installSiteFoundation();
-    window.MarkerSite.mountSiteHeader(document.querySelector('[data-site-header]'));
-  </script>
 </body>
 
 </html>

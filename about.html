@@ -40,10 +40,19 @@
     <link rel="preload" as="image" href="images/bag.webp">
 
     <link rel="stylesheet" href="styles.tailwind.css?v=20261102a">
+
+    <script src="components/site-foundation.js?v=20261102a"></script>
+    <script src="components/site-header.js?v=20261102a"></script>
+    <script src="components/site-footer.js?v=20261102a"></script>
+    <script src="components/essay-data.js?v=20261102a"></script>
+    <script src="components/essay-carousel.js?v=20261102a"></script>
 </head>
 
 <body>
     <div data-site-header></div>
+    <script>
+        window.MarkerSite.mountSiteHeader(document.querySelector('[data-site-header]'), { active: 'about' });
+    </script>
 
     <main class="about-page-main relative mx-auto w-full max-w-[1440px] px-[clamp(28px,6vw,86px)] pt-[clamp(150px,16vw,238px)]">
         <section class="about-hero mx-auto grid w-full max-w-[935px] grid-cols-1 gap-[48px] lg:grid-cols-[455px_420px] lg:gap-[60px]">
@@ -67,6 +76,14 @@
         </section>
 
         <div class="relative left-1/2 mt-[96px] w-screen -translate-x-1/2 overflow-hidden pl-[22px]" data-about-carousel></div>
+        <script>
+            window.MarkerSite.mountEssayCarousel(document.querySelector('[data-about-carousel]'), {
+                controls: true,
+                className: 'w-full',
+                viewportClass: 'w-full overflow-hidden',
+                trackClass: 'flex gap-[18px] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]'
+            });
+        </script>
 
         <section class="about-learn-more mx-auto mt-[84px] grid w-full max-w-[1268px] grid-cols-1 gap-[48px] lg:grid-cols-[430px_1fr] lg:gap-[128px]">
             <div>
@@ -119,28 +136,18 @@
         </section>
 
         <div class="footer-spacer relative left-1/2 w-screen -translate-x-1/2" data-site-footer></div>
+        <script>
+            window.MarkerSite.mountSiteFooter(document.querySelector('[data-site-footer]'), {
+                positionClass: 'footer-spacer relative flex w-full flex-col items-center',
+                logoClass: 'block w-[1370px] max-w-none opacity-95',
+                linksClass: 'mt-[35px] flex items-center justify-center gap-[30px] pb-[35px]'
+            });
+        </script>
     </main>
 
-    <script src="components/site-foundation.js?v=20261023a"></script>
-    <script src="components/site-header.js?v=20261023a"></script>
-    <script src="components/site-footer.js"></script>
-    <script src="components/essay-data.js"></script>
-    <script src="components/essay-carousel.js"></script>
-    <script src="components/waitlist.js"></script>
+    <script src="components/waitlist.js?v=20261102a"></script>
     <script>
         window.MarkerSite.installSiteFoundation();
-        window.MarkerSite.mountSiteHeader(document.querySelector('[data-site-header]'), { active: 'about' });
-        window.MarkerSite.mountSiteFooter(document.querySelector('[data-site-footer]'), {
-            positionClass: 'footer-spacer relative flex w-full flex-col items-center',
-            logoClass: 'block w-[1370px] max-w-none opacity-95',
-            linksClass: 'mt-[35px] flex items-center justify-center gap-[30px] pb-[35px]'
-        });
-        window.MarkerSite.mountEssayCarousel(document.querySelector('[data-about-carousel]'), {
-            controls: true,
-            className: 'w-full',
-            viewportClass: 'w-full overflow-hidden',
-            trackClass: 'flex gap-[18px] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]'
-        });
         window.MarkerSite.mountWaitlistModal();
         window.MarkerSite.initWaitlist();
     </script>
