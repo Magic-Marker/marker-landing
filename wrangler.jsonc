@@ -11,7 +11,11 @@
     // redirecting the .html / missing-slash forms, like GitHub Pages does.
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "none"
-  }
+  },
+
+  // Required for `wrangler preview` (non-production branch builds). Empty
+  // because previews need no settings beyond the top-level assets config.
+  "previews": {}
 
   // Uncomment once marker.page's DNS is on Cloudflare and you're ready to
   // move it off GitHub Pages. Until then deploys only go to *.workers.dev.
