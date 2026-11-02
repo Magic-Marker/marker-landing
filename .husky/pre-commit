@@ -1,2 +1,2 @@
-npm run build:css
+pnpm run build:css
 git add styles.tailwind.css
