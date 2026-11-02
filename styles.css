@@ -5,7 +5,7 @@
         url('fonts/GTFByrdTRIAL-SemiBold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 /* 
 @font-face {
@@ -14,7 +14,7 @@
         url('fonts/GTFByrdTRIAL-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 } */
 
 @font-face {
@@ -23,7 +23,7 @@
         url('fonts/GTFByrdTRIAL-Light.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -32,7 +32,7 @@
         url('fonts/iAWriterQuattroS-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -41,7 +41,7 @@
         url('fonts/iAWriterQuattroS-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -50,7 +50,7 @@
         url('fonts/iAWriterQuattroS-BoldItalic.woff') format('woff');
     font-weight: bold;
     font-style: italic;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -59,7 +59,7 @@
         url('fonts/iAWriterQuattroS-Italic.woff') format('woff');
     font-weight: normal;
     font-style: italic;
-    font-display: swap;
+    font-display: optional;
 }
 
  /* Custom font definitions */
@@ -69,7 +69,7 @@
         url('fonts/museum.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -78,7 +78,7 @@
         url('fonts/museum-light.woff') format('woff');
     font-weight: 300;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -87,7 +87,7 @@
         url('fonts/museum-light-italic.woff') format('woff');
     font-weight: 300;
     font-style: italic;
-    font-display: swap;
+    font-display: optional;
 }
 
 
@@ -98,7 +98,7 @@
         url('fonts/grosa.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -107,7 +107,7 @@
         url('fonts/scratchyregular-ezylo-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -116,7 +116,7 @@
         url('fonts/TiemposText-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -125,7 +125,7 @@
         url('fonts/TiemposText-RegItalic.woff') format('woff');
     font-weight: normal;
     font-style: italic;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -134,7 +134,7 @@
         url('fonts/TiemposText-Semibold.woff') format('woff');
     font-weight: 600;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -143,7 +143,7 @@
         url('fonts/TiemposText-SemiboldItalic.woff') format('woff');
     font-weight: 600;
     font-style: italic;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -152,7 +152,7 @@
         url('fonts/graphik-regular-webfont.woff') format('woff');
     font-weight: 400;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -161,7 +161,7 @@
         url('fonts/graphik-regularitalic-webfont.woff') format('woff');
     font-weight: 400;
     font-style: italic;
-    font-display: swap;
+    font-display: optional;
 }
 
 @font-face {
@@ -170,7 +170,7 @@
         url('fonts/graphik-semibold-webfont.woff') format('woff');
     font-weight: 600;
     font-style: normal;
-    font-display: swap;
+    font-display: optional;
 }
 
 /* Font class definitions with fallbacks */
