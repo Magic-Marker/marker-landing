@@ -168,7 +168,7 @@
     }
 
     .site-header-logo img {
-      transform: translateX(-50%) translateY(var(--logo-shift, 0px)) !important;
+      transform: translateY(var(--logo-shift, 0px)) !important;
       opacity: var(--logo-opacity, 1);
       will-change: transform, opacity;
     }

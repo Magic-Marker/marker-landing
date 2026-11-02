@@ -20,16 +20,23 @@
 
     const parent = target.parentNode;
 
+    // Desktop layout: two equal flex-1 wings keep the logo centred, and the nav
+    // won't shrink below its buttons, so on narrow screens the logo slides left
+    // instead of overlapping them. Mobile repositions everything absolutely
+    // (see site-foundation mobile styles).
+
     target.outerHTML = `
-      <header class="${positionClass} z-30 h-[84px] w-full font-mono${difference}${textureClass}" style="position: fixed; left: 0; top: 0; width: 100%; height: 84px; z-index: 100;" data-site-header-mounted>
-        <a class="site-header-pebbles" href="/" aria-label="Marker home">
-          <img class="absolute left-[27px] top-[18px] block h-auto w-[38px]" src="images/pebbles-together.webp" alt="">
+      <header class="${positionClass} z-30 flex h-[84px] w-full items-start gap-[24px] px-[27px] font-mono${difference}${textureClass}" style="position: fixed; left: 0; top: 0; width: 100%; height: 84px; z-index: 100;" data-site-header-mounted>
+        <div class="min-w-0 flex-1 basis-0">
+          <a class="site-header-pebbles relative top-[18px] inline-block" href="/" aria-label="Marker home">
+            <img class="block h-auto w-[38px]" src="images/pebbles-together.webp" alt="">
+          </a>
+        </div>
+        <a class="site-header-logo relative top-[24px] block shrink-0" href="/" aria-label="Marker home">
+          <img class="block h-auto w-[110px]" src="images/marker-logo.svg" alt="Marker">
         </a>
-        <a class="site-header-logo" href="/" aria-label="Marker home">
-          <img class="absolute left-1/2 top-[24px] block h-auto w-[110px] -translate-x-1/2" src="images/marker-logo.svg" alt="Marker">
-        </a>
-        <nav class="site-header-nav absolute right-[27px] top-[22px] flex items-center gap-[16px]" aria-label="Primary">
-          <a class="site-header-link site-header-login hidden h-[40px] items-center justify-center px-[10px] font-mono  text-[12px] opacity-70 hover:opacity-100 leading-[1.25]  text-ink/80 transition-colors hover:bg-ink/5 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 md:inline-flex" href="https://my.marker.page">Login</a>
+        <nav class="site-header-nav relative top-[22px] flex min-w-max flex-1 basis-0 items-center justify-end gap-[16px]" aria-label="Primary">
+          <a class="site-header-link site-header-login hidden h-[40px] items-center justify-center rounded-[11px] px-[16px] font-mono text-[11px] uppercase leading-[1.25] tracking-[1.1px] opacity-70 hover:opacity-100 text-ink/80 transition-colors hover:bg-ink/5 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/25 md:inline-flex" href="https://my.marker.page">Login</a>
           <a class="${aboutClass} w-[82px]" href="about.html"${aboutModal ? ' data-open-about' : ''}>About</a>
           <button class="${buttonBase} w-[168px] bg-transparent text-ink" type="button" data-focus-waitlist><span class="site-header-join-full">Join the waitlist</span><span class="site-header-join-short">Join</span></button>
         </nav>
