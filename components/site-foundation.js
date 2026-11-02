@@ -6,7 +6,7 @@
 
   const SVG_NS = 'http://www.w3.org/2000/svg';
 
-  // The exported Figma rough line uses an feTurbulence + feDisplacementMap
+  // The rough line uses an feTurbulence + feDisplacementMap
   // filter. Rendered as a CSS background-image it rasterises to a low-res
   // bitmap (pixelated); rendered as a live inline <svg> the browser applies
   // the filter at full device resolution, so it stays crisp and subtle.

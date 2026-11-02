@@ -197,20 +197,20 @@
             width: 168px;
         }
 
-        .figma-rock {
+        .hero-rock {
             position: absolute;
             pointer-events: none;
             user-select: none;
         }
 
-        .figma-rock .rock-asset,
-        .figma-rock .rock-plane {
+        .hero-rock .rock-asset,
+        .hero-rock .rock-plane {
             position: relative;
             width: 100%;
             height: 100%;
         }
 
-        .figma-rock img {
+        .hero-rock img {
             display: block;
             width: 100%;
             height: 100%;
@@ -802,8 +802,8 @@
         }
 
         /* ===================================================================
-           MOBILE LANDING (Figma node 11313:111)
-           The native 402px-wide Figma frame, rendered at true size and
+           MOBILE LANDING
+           The native 402px-wide design frame, rendered at true size and
            centered. Rocks bleed past the frame edges and are clipped by the
            viewport on narrow phones; as the screen widens the crop reveals
            more of each rock, but rock/text sizes never change. Shown only at
@@ -1008,41 +1008,41 @@
     <div data-site-header></div>
     <script>window.MarkerSite.mountSiteHeader(document.querySelector('[data-site-header]'));</script>
     <div class="preview-shell">
-        <div class="stage-wrap" aria-label="Marker landing page Figma preview">
+        <div class="stage-wrap" aria-label="Marker landing page">
             <main class="stage">
-                <div class="figma-rock rock-right">
+                <div class="hero-rock rock-right">
                     <div class="rock-plane">
                         <div class="rock-asset"><img src="images/rocks-home/new/frame-83352.webp" alt="" fetchpriority="high" decoding="async"></div>
                     </div>
                 </div>
-                <div class="figma-rock rock-cream">
+                <div class="hero-rock rock-cream">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector.webp" alt="" fetchpriority="high" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-rust">
+                <div class="hero-rock rock-rust">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-1.webp" alt="" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-blue">
+                <div class="hero-rock rock-blue">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-2.webp" alt="" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-black">
+                <div class="hero-rock rock-black">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-3.webp" alt="" fetchpriority="high" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-tan">
+                <div class="hero-rock rock-tan">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-4.webp" alt="" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-amber">
+                <div class="hero-rock rock-amber">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-5.webp" alt="" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-gray">
+                <div class="hero-rock rock-gray">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-6.webp" alt="" fetchpriority="high" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-yellow">
+                <div class="hero-rock rock-yellow">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-7.webp" alt="" fetchpriority="high" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-red-small">
+                <div class="hero-rock rock-red-small">
                     <div class="rock-asset"><img src="images/small-red.webp" alt="" fetchpriority="high" decoding="async"></div>
                 </div>
-                <div class="figma-rock rock-marble">
+                <div class="hero-rock rock-marble">
                     <div class="rock-asset"><img src="images/rocks-home/new/Vector-8.webp" alt="" decoding="async"></div>
                 </div>
 
@@ -1098,7 +1098,7 @@
         </div>
     </div>
 
-    <!-- ===== Mobile landing (Figma node 11313:111) ===== -->
+    <!-- ===== Mobile landing ===== -->
     <div class="m-shell">
         <div class="m-stage-wrap">
             <div class="m-stage">
@@ -1541,7 +1541,7 @@
             }
 
             const heroRocks = Array.from(
-                document.querySelectorAll('.preview-shell .figma-rock img[fetchpriority="high"]')
+                document.querySelectorAll('.preview-shell .hero-rock img[fetchpriority="high"]')
             );
 
             if (heroRocks.length === 0) {
